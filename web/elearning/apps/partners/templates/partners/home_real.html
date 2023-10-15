@@ -1,0 +1,135 @@
+{% extends "elearning/base.html" %}
+{% load static i18n cms_tags menu_tags sekizai_tags thumbnail %}
+{% load cms_tags %}
+
+{% block title %}
+ ELEARNING
+{% endblock title %}
+
+{% block add_css %}
+        <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+{% endblock add_css %}
+
+{% block nav_bar %}
+        <!-- Navigation -->
+<!--        <nav style="height: 60px;" dir="LTR" class="navbar navbar-expand-sm navbar-white bg-light">-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-info static-top">
+        <ul style="margin-top:20px; text-align: center">
+            <a class="navbar-brand" href="/" style="top: 50px;">
+                <img style="border-radius:25px;" src="{% static "core/logo.pn" %}" alt="My image" height="100" width="100">
+            </a>
+        </ul>
+
+        <ul dir="LTR" class="navbar-nav mr-auto">
+
+        </ul>
+
+        <ul class="nav navbar-nav navbar-left">
+            <li style="font-size: 125%;">
+                    <a href="/">
+                          <span class="badge badge-pill badge-info" >  {% trans "Home" %}</span>
+                    </a>
+                </li>
+            <li style="font-size: 105%;">
+                    <a href="/">
+                          <span class="badge badge-pill badge-info" >  {% trans "About Us" %}</span>
+                    </a>
+            </li>
+            <li style="font-size: 125%;">
+                    <a href="/">
+                          <span class="badge badge-pill badge-info" >  {% trans "Services" %}</span>
+                    </a>
+             </li>
+             <li style="font-size: 105%;">
+                    <a href="{% url 'users:contact_us' %}">
+                          <span class="badge badge-pill badge-info" >  {% trans "Contact US" %}</span>
+                    </a>
+             </li>
+            {% if user.is_authenticated %}
+             <li style="font-size: 125%;">
+                    <a href="{% url 'users:my_account' %}">
+                          <span class="badge badge-pill badge-info" >  {% trans "My Account" %}</span>
+                    </a>
+             </li>
+             <li style="font-size: 105%;">
+                    <a href="{% url 'users:logout' %}">
+                         <span class="badge badge-pill badge-danger">{% trans "Log-out" %}</span>
+                    </a>
+             </li>
+            {% else %}
+                <a href="{% url 'users:login' %}" style="font-size:20px">
+                    <span class="badge badge-pill badge-danger">Log in/Sign up</span>
+                 </a>
+<!--                <li style="font-size: 150%;">-->
+<!--                    <span class="badge badge-info" modal_id="id01" onmouseover="login_signup_onmouseover(event)">{% trans "Log in/Sign up" %}</span>-->
+<!--                </li>-->
+            {% endif %}
+        </ul>
+    </nav>
+{% endblock %}
+
+
+
+{% block content %}
+    {% for n in partners_ %}
+    {% render_placeholder n.description %}
+    {% endfor %}
+{% endblock %}
+
+<!--    beginning of footer -->
+{% block nav_footer %}
+<!--      <div class="body-footer">-->
+<!--            &lt;!&ndash;body-footer__brand&ndash;&gt;-->
+<!--            <div class="" style="margin-left:120px">-->
+<!--                <a href="/">-->
+<!--                    <img src="{{ institution_obj.footer_image.url }}" width="72px" height="80px" alt="">-->
+<!--                </a>-->
+<!--            </div>-->
+<!--            <div class="body-footer__container">-->
+<!--                <div class="body-footer__menu">-->
+<!--                    <p class="body-footer__subtitle">Learn more</p>-->
+<!--                    <div class="body-footer__items">-->
+<!--                        <a href="//localhost:8080/en/annex/about/">About</a>-->
+<!--                        <a href="//localhost:8080/en/annex/sitemap/">Sitemap</a>-->
+<!--                        <a href="/styleguide/">Style guide</a>-->
+<!--                        <div class="nested-item nested-item&#45;&#45;list nested-item&#45;&#45;0">-->
+<!--                            <div class="nested-item__content">{{institution_obj.institution_name}} community</div>-->
+<!--                            <ul class="nested-item__items">-->
+<!--                                <li><a href="https://{{institution_obj.github_link}}" target="_blank">Github</a></li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="body-footer__insert">-->
+<!--                    <p class="body-footer__title">{{institution_obj.footer_phrase}}</p>-->
+<!--                    <div class="richie-react richie-react&#45;&#45;language-selector" data-props-source="[data-language-selector]"></div>-->
+<!--                    <div class="body-footer__badges">-->
+<!--                        <a href="https://{{institution_obj.facebook_link}}" class="body-footer__badge" target="_blank">-->
+<!--                            <svg role="img"><title>Facebook</title><use href="#icon-facebook" /></svg>-->
+<!--                        </a>-->
+<!--                        <a href="https://{{institution_obj.twitter_link}}" class="body-footer__badge" target="_blank" title="Twitter page">-->
+<!--                            <svg role="img"><title>Twitter</title><use href="#icon-twitter" /></svg>-->
+<!--                        </a>-->
+<!--                        <a href="https://{{institution_obj.linkedin_link}}" class="body-footer__badge" target="_blank" title="Linkedin">-->
+<!--                            <svg role="img"><title>Linkedin</title><use href="#icon-linkedin" /></svg>-->
+<!--                        </a>-->
+<!--                        <a href="https://{{institution_obj.instagram_link}}" class="body-footer__badge" target="_blank" title="Instagram">-->
+<!--                            <svg role="img"><title>Instagram</title><use href="#icon-instagram" /></svg>-->
+<!--                        </a>-->
+
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--      <div class="body-mentions">-->
+<!--              <div class="body-mentions__container">-->
+<!--                  <div class="body-mentions__poweredby">-->
+<!--                      <a href="https://academycity.org" target="_blank">-->
+<!--                          <small>Powered by</small>-->
+<!--                          <strong>Academy City</strong>-->
+<!--                      </a>-->
+<!--                  </div>-->
+<!--              </div>-->
+<!--            </div>-->
+{% endblock %}
+ <!--    end of footer  -->

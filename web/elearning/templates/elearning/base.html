@@ -1,0 +1,18 @@
+{% extends "base0.html" %}
+{% load static i18n cms_tags menu_tags sekizai_tags thumbnail %}
+
+    {% block add_base_css %}
+       <!-- CAROUSEL SLIDE CSS -->
+        <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link href="{% static 'vendor/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet">
+        <link href="{% static 'css/django_cms_original.css' %}" rel="stylesheet">
+        <link href="{% static 'css/messages.css' %}" rel="stylesheet">
+        <link href="{% static 'css/general.css' %}" rel="stylesheet">
+    {% endblock add_base_css %}
+
+
+    {% block add_base_js %}
+
+    {% endblock add_base_js %}

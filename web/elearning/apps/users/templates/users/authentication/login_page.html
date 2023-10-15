@@ -1,0 +1,319 @@
+{% extends "elearning/base_user.html" %}
+{% load static i18n cms_tags menu_tags sekizai_tags thumbnail %}
+{% load core_tags %}
+{% load user_agents %}
+{% block title %}
+    <title>Login</title>
+{% endblock title %}
+
+<!-- SideNav slide-out button -->
+<!-- https://mdbootstrap.com/snippets/jquery/mdbootstrap/670810 -->
+{% block add_css %}
+     <link href="{% static 'css/user_home.css' %}" rel="stylesheet">
+     <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+{% endblock add_css %}
+
+{% block nav_bar %}
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info static-top">
+        <ul style="margin-top:20px; text-align: center">
+            <a class="navbar-brand" href="/" style="top: 50px;">
+                <img style="border-radius:25px;" src="{% static "core/logo.pn" %}" alt="My image" height="100" width="100">
+            </a>
+        </ul>
+
+        <ul dir="LTR" class="navbar-nav mr-auto">
+
+        </ul>
+        <ul class="nav navbar-nav navbar-left">
+
+            <li style="font-size: 150%;">
+                    <a href="/">
+                          <span class="badge badge-pill badge-info" >  {% trans "Home" %}</span>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+{% endblock %}
+
+{% block body_content %}
+<!--https://mdbootstrap.com/docs/standard/extended/login/#section-2-->
+<!--https://mdbootstrap.com/docs/standard/tools/design/gradients/-->
+<style>
+.gradient-custom-2 {
+    /* fallback for old browsers */
+    background: #fccb90;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+    }
+
+    @media (min-width: 768px) {
+    .gradient-form {
+    height: 100vh !important;
+    }
+    }
+    @media (min-width: 769px) {
+    .gradient-custom-2 {
+    border-top-right-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+    }
+}
+</style>
+
+<style>
+.flip-container {
+	perspective: 1000;
+}
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+}
+
+.front, .back {
+  /*background-color: rgba(0,0,0,.3);*/
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.front{
+	z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+
+.back{
+    transform: rotateY(180deg);
+}
+.flip{
+		transform: rotateY(180deg);
+}
+input{
+    width:100%;
+    margin-bottom:15px;
+    height:40px;
+    box-sizing: border-box;
+    padding:10px;
+}
+
+.submit_btn {
+    width:100%;
+    margin-bottom:15px;
+    height:40px;
+    box-sizing: border-box;
+    padding:10px;
+}
+
+.title{
+  text-align: center;
+}
+.flipbutton{
+    text-decoration:none;
+}
+
+.btn_create_new{
+    width:200px;
+    padding:5px;
+    font-size:18px;
+    border-radius:25px;
+    margin-right:5px;
+    border: 2px solid red;
+    background-color: white;
+    color: #f44336;
+}
+
+.btn_create_new:hover {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Alignment styles */
+
+body, html {
+  height: 100%;
+}
+
+<!--body {-->
+<!--  display: flex;-->
+<!--  justify-content: center;-->
+<!--  align-items: center;-->
+
+
+<!--    background: #092756;-->
+<!--    background: -moz-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%),-moz-linear-gradient(top, rgba(57,173,219,.25) 0%, rgba(42,60,87,.4) 100%), -moz-linear-gradient(-45deg, #670d10 0%, #092756 100%);-->
+<!--    background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -webkit-linear-gradient(top, rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -webkit-linear-gradient(-45deg, #670d10 0%,#092756 100%);-->
+<!--    background: -o-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -o-linear-gradient(top, rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -o-linear-gradient(-45deg, #670d10 0%,#092756 100%);-->
+<!--    background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -ms-linear-gradient(top, rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -ms-linear-gradient(-45deg, #670d10 0%,#092756 100%);-->
+<!--    background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), linear-gradient(to bottom, rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), linear-gradient(135deg, #670d10 0%,#092756 100%);-->
+<!--}-->
+
+</style>
+<br/>
+    {% if request|is_mobile %}
+    <div style="display: flex;justify-content: center;color:red">
+    {% else %}
+    <div style="display: flex;justify-content: center;color:red;margin-right:-800px">
+    {% endif %}
+      <strong>
+      <ul>
+        {% if messages %}
+            {% for message in messages %}
+            <li>{{message}}</li>
+            {% endfor %}
+        {% endif %}
+
+        {% if error_message != '' %}
+            <li>{{error_message}}</li>
+        {% endif %}
+      </ul>
+      </strong>
+    </div>
+<br/>
+<!--margin-top:-105px-->
+{% if request|is_mobile %}
+<div class="flip-container" style="display: flex;justify-content: center;margin-top:-80px;">
+{% else %}
+<div class="flip-container" style="display: flex;justify-content: center;margin-top:-80px;margin-right:-1030px;">
+{% endif %}
+  <div class="flipper container py-5 h-100" id="flipper">
+<!--  Front signin page    -->
+      <div class="front">
+      <div class="col-xl-10">
+        <div class="card rounded-3 text-black">
+          <div class="row g-0">
+            <div class="col-lg-6">
+              <div class="card-body p-md-5 mx-md-4">
+                <div class="text-center">
+                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+                    style="width: 185px;" alt="logo">
+                  <h4 class="mt-1 mb-5 pb-1">We are The Lotus Team</h4>
+                </div>
+                <form action="{% url 'users:login' %}" method="post">
+                    {% csrf_token %}
+                  <p>Please login to your account</p>
+                  <div class="form-outline mb-4">
+                    {{form_login.username}}
+                    <label class="form-label" for="">Username</label>
+                  </div>
+                  <div class="form-outline mb-4">
+                    {{ form_login.password }}
+                    <label class="form-label" for="">Password</label>
+                  </div>
+                  <div class="text-center pt-1 mb-5 pb-1">
+                    <button class="submit_btn btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Log
+                      in</button>
+                    <a class="text-muted" href="{% url 'allauth:account_reset_password' %}">Forgot password?</a>
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center pb-4">
+                    <p class="mb-0 me-2">Don't have an account?</p>
+                    <button type="button" id="loginButton" class="flipbutton btn_create_new">Create new</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+              <div class="text-black px-3 py-4 p-md-5 mx-md-4">
+                <h4 class="mb-4">We are more than just a company</h4>
+                <p class="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!--  Back signup page    -->
+      <div class="back" style="height:50px">
+      <div class="col-xl-10">
+        <div class="card rounded-3 text-black">
+          <div class="row g-0">
+            <div class="col-lg-6">
+              <div class="card-body p-md-5 mx-md-4">
+                <!-- <div class="text-center">-->
+                <!-- <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"-->
+                <!-- style="width: 185px;" alt="logo">-->
+                <!--<h4 class="mt-1 mb-5 pb-1">We are The Lotus Team</h4>-->
+                <!--</div>-->
+                <form action="{% url 'users:login' %}" method="post">
+                  {% csrf_token %}
+                  <p>Feel free to create a New Account with us.</p>
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="">Enter 1</label>
+                    <input type="text" id="id_test" name="test" class="form-control" autofocus="" maxlength="150"
+                      placeholder="Enter 1" required="" />
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="">Username</label>
+                    {{ form_signup.username }}
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="">Email</label>
+                    {{ form_signup.email }}
+                  </div>
+
+                   <div class="form-outline mb-4">
+                    <label class="form-label" for="">Password</label>
+                    {{ form_signup.password1 }}
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="">Confirm Password</label>
+                    {{ form_signup.password2 }}
+                  </div>
+
+                  <div class="text-center pt-1 mb-5 pb-1">
+                    <button class="submit_btn btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Sign
+                      Up</button>
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center pb-4">
+                    <p class="mb-0 me-2">You have an account?</p>
+                    <button type="button" id="registerButton" class="flipbutton btn_create_new">Log in</button>
+
+                  </div>
+
+                </form>
+              </div>
+            </div>
+            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+              <div class="text-black px-3 py-4 p-md-5 mx-md-4">
+                <h4 class="mb-4">We are more than just a company</h4>
+                <p class="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<br/>
+<br/>
+<script>
+var loginButton = document.getElementById("loginButton");
+var registerButton = document.getElementById("registerButton");
+
+loginButton.onclick = function(){
+	document.querySelector("#flipper").classList.toggle("flip");
+}
+
+registerButton.onclick = function(){
+	document.querySelector("#flipper").classList.toggle("flip");
+}
+</script>
+
+{% endblock %}
+
+

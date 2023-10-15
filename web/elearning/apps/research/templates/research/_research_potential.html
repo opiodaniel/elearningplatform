@@ -1,0 +1,221 @@
+{% load static i18n cms_tags menu_tags sekizai_tags thumbnail %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% block title %}<title>Title</title>{% endblock%}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="{% page_attribute meta_description %}">
+    <meta name="robots" content="index,follow,all">
+    <meta name="msapplication-TileColor" content="#eceff1">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="google-site-verification" content="1NKy94ZSBrapf9w9BU4mJdhW__UB__qbGWa1V2aWoUs" />
+  {% render_block "css" %}
+
+  {% block meta %}{% endblock %}
+  {% block add_meta %}{% endblock %}
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!--  <link rel="stylesheet" type="text/css" href="{% static 'css/main.a399bc1a5519.css' %}">-->
+
+  <link rel="apple-touch-icon" sizes="120x120" href="{% static 'images/apple-touch-icon.e3f5be308427.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.b0adf6b91841.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.bd459d491a1e.png' %}">
+  <link rel="manifest" href="{% static 'images/site.57775445aa3a.webmanifest' %}">
+  <link rel="mask-icon" href="{% static 'images/safari-pinned-tab.00983a824cb5.svg' %}" color="#f72c30">
+  <link rel="shortcut icon" href="{% static 'images/favicon.bc906d84c4a9.ico' %}">
+  <link href="{% static 'css/general.css' %}" rel="stylesheet">
+
+  {% block links %} {% endblock %}
+  {% block add_links %} {% endblock %}
+
+    {% block add_css_base %}
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'css/django_cms_original.css' %}" rel="stylesheet">
+        <link href="{% static 'css/messages.css' %}" rel="stylesheet">
+              <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        <!-- Bootstrap core CSS
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        -->
+        <!-- Material Design Bootstrap Nav bar -->
+        <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+        <link href="{% static 'css/style_mdb.css' %}" rel="stylesheet">
+
+    {% endblock add_css_base %}
+
+    {{ ALDRYN_SNAKE.render_head }}
+
+    {% block add_css %}{% endblock add_css %}
+
+      <style>
+          .h1_hide {
+              font-size: 0;
+              width: 1px;
+              height: 1px;
+              display: inline-block;
+              overflow: hidden;
+              position: absolute!important;
+              border: 0!important;
+              padding: 0!important;
+              margin: 0!important;
+              clip: rect(1px,1px,1px,1px);
+            }
+      </style>
+</head>
+<body id="body_base0">
+     <h1 class="h1_hide">AcademyCity</h1>
+     {% cms_toolbar %}
+
+<div id="modal-exclude">
+<!--    beginning of top nav -->
+    {% block nav_bar %}
+    <!-- Navigation -->
+    <!--        <nav style="height: 60px;" dir="LTR" class="navbar navbar-expand-sm navbar-white bg-light">-->
+     <nav class="navbar navbar-expand-lg navbar-dark bg-info static-top">
+        <ul style="margin-top:20px; text-align: center">
+            <a class="navbar-brand" href="/" style="top: 50px;">
+                <img style="border-radius:25px;" src="{% static "core/logo.pn" %}" alt="My image" height="100" width="100">
+            </a>
+        </ul>
+
+        <ul dir="LTR" class="navbar-nav mr-auto">
+
+        </ul>
+
+        <ul class="nav navbar-nav navbar-left">
+            {% if user.is_authenticated %}
+            <li style="font-size: 150%;">
+                    <a href="/">
+                          <span class="badge badge-pill badge-info" >  {% trans "Home" %}</span>
+                    </a>
+                </li>
+                <li style="font-size: 150%;">
+                    <a href="{% url 'users:my_account' %}">
+                          <span class="badge badge-pill badge-info" >  {% trans "My Account" %}</span>
+                    </a>
+                </li>
+                <li style="font-size: 100%;">
+                    <a href="{% url 'users:logout' %}">
+                         <span class="badge badge-pill badge-danger">{% trans "Log-out" %}</span>
+                    </a>
+                </li>
+                {% endif %}
+        </ul>
+    </nav>
+    {% endblock %}
+
+<!--    end of top nav  -->
+    <div class="body-content">
+        <div class="homepage">
+            {% block main_page %}
+            {% endblock %}
+
+            {% block body_content %}
+            {% endblock %}
+
+{% block content %}
+<div  class="container">
+    <br/>
+    <hr>
+    <h1 style="color:blue">Research Work</h1>
+    <hr/>
+    {% if researches %}
+        Your research uploads:
+        <ul>
+        {% for research in researches %}
+            <li>{{research.title}}&nbsp; ---- &nbsp;<a href="{{ research.file.url }}">{{ research.file.name }}</a>&nbsp; ---- &nbsp;
+                <a href="{{ research.file_result }}"> Result</a> </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No previous researches.</p>
+    {% endif %}
+
+        <form action="{% url 'research:potential' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>{{ form.non_field_errors }}</p>
+            <p>
+                {{ form.file.errors }}
+                {{ form.as_p }}
+            </p>
+            <p><input type="submit" value="Upload" /></p>
+        </form>
+</div>
+{% endblock %}
+
+        </div>
+    </div>
+<!--    beginning of footer -->
+    {% block nav_footer %}
+    {% endblock %}
+<!--    end of footer  -->
+</div>
+<!-- end of body content-->
+
+{% block base_js %}
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/mdb.js' %}"></script>
+{% endblock base_js %}
+
+     {% block js %}{% endblock %}
+     {% block add_js %}{% endblock add_js %}
+
+<p id="demo"></p>
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'js/npm/cookie/js.cookie.min.js' %}"></script>
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+
+<script>
+
+var csrftoken = Cookies.get('csrftoken');
+function csrfSafeMethod(method) {
+// these HTTP methods do not require CSRF protection
+return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+$.ajaxSetup({
+beforeSend: function(xhr, settings) {
+  if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+  }
+}
+});
+
+$(document).ready(function(){
+
+post_ajax_create_action = function (verb_="", app_="", model_, obj_slug_=null, pkey_=null) {
+  $.post(link_create_action,
+    {
+      verb: verb_,
+      app: app_,
+      model: model_,
+      obj_slug: obj_slug_,
+      pkey: pkey_
+    },
+    function(data){
+        alert(data["status"])
+    }
+  );
+}
+
+{% block domready %}
+{% endblock %}
+});
+
+
+</script>
+
+ {% render_block "js" %}
+ {{ ALDRYN_SNAKE.render_tail }}
+
+{% static_placeholder "Footer" %}
+</body>
+</html>
+
+
+
+

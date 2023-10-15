@@ -1,0 +1,99 @@
+{% extends "elearning/base.html" %}
+{% load static i18n cms_tags menu_tags sekizai_tags thumbnail %}
+{% load cms_tags %}
+
+{% block title %}
+ ELEARNING-HOMEPAGE
+{% endblock title %}
+
+{% block add_css %} <link href="{% static 'css/ugandatowns.css' %}" rel="stylesheet"> {% endblock add_css %}
+
+
+
+
+
+{% block content %}
+<div id="myMenu" class="sidenav" style="border:1px dotted black;overflow: scroll; background-color:white; left:10px" onclick="show_town(event)">
+<!--   <input type="text" id="mySearch" onkeyup="search(event)" placeholder="Search.." title="Type in a category">-->
+    <h5 style="margin-left:25px; color:blue; ">UPLOADED VIDEOS</h5>
+     <div id="home_1{{town_.slug}}" href="" style="margin-left:-10px;">
+         <video id="my-video" class="video-js" controls preload="auto" width="300" height="150" poster="{% static 'core/img_13.png' %}" data-setup="{}" >
+          <source src="https://videos.ctfassets.net/hrltx12pl8hq/TGSzZa2En50mkWusMrs4A/408bf8b903d46c786f57746298d3ccf7/VHP_5-27.webm" type="video/mp4" />
+         </video>
+         <video id="my-video" class="video-js" controls preload="auto" width="300" height="150" poster="{% static 'core/img_6.png' %}" data-setup="{}" >
+          <source src="https://www.shutterstock.com/shutterstock/videos/1086556394/preview/stock-footage-cybersecurity-cybercrime-digital-wallet-vpn-internet-scam-businessman-mobile-phone-network.webm" type="video/mp4" />
+         </video>
+         <video id="my-video" class="video-js" controls preload="auto" width="300" height="150" poster="{% static 'core/img_12.png' %}" data-setup="{}" >
+          <source src="https://www.shutterstock.com/shutterstock/videos/1056029879/preview/stock-footage-smart-city-aerial-drone-footage-hologram-information-arches-forming-during-network-communication.webm" type="video/mp4" />
+         </video>
+         <video id="my-video" class="video-js" controls preload="auto" width="300" height="150" poster="{% static 'core/img_14.png' %}" data-setup="{}" >
+          <source src="https://www.shutterstock.com/shutterstock/videos/1055506715/preview/stock-footage-project-manager-walks-to-a-big-screen-with-neural-network-team-of-professional-computer-data.webm" type="video/mp4" />
+         </video>
+         <video id="my-video" class="video-js" controls preload="auto" width="300" height="150" poster="{% static 'core/img_15.png' %}" data-setup="{}" >
+          <source src="https://www.shutterstock.com/shutterstock/videos/1078120481/preview/stock-footage-global-business-concept-communication-network-management-strategy-digital-transformation.webm" type="video/mp4" />
+         </video>
+     </div>
+
+ </div>
+
+<!--<div id="town_header" class="town_header" style="margin-left: -10px">-->
+<!--    {% placeholder "header" %}-->
+<!--        <br/>-->
+<!--        <a id="" href="#" class="badge badge-pill badge-info" onclick="create_new_conference(event)">-->
+<!--            Create new conference:-->
+<!--        </a>-->
+<!--        <input id="conference_id" type="text" placeholder="Enter conference name" />-->
+<!--        <div id="conferencing">-->
+<!--        </div>-->
+<!--        <br/>-->
+<!--</div>-->
+<br/>
+<div id="town_title" class="town_title" style="margin-left: 0px">
+      <div class="row">
+          <div id="town_info" class="column_title" style="background-color:#ccc;">
+            <div class="row">
+                <div style="float: left;width: 15%; padding: 10px;">
+                   <img id="town_logo" src="{{ town.logo.url }}" width="70px" class="rounded-circle">
+                </div>
+                <div style="float: left;width: 85%; padding: 10px;font-size:20px;">
+                 {{town.town_name}} Municipal Council<br/>
+                    Mayor: {{town.mayor}}<br/>
+                    Town Clerk: {{town.town_clerk}}
+                </div>
+            </div>
+        </div>
+          <div class="column_title" style="border-left: 5px solid lightgray;background-color:#ccc;">
+            <div id="weather" style="width:150px">
+                <span id="temp" class="temp_" style="padding: 10px;"></span>
+                <span class="temp_description" >
+                    <i id="description" class='' style='font-size:36px;color:red'></i>
+                </span>
+            </div>
+          <h4 style="margin-top:10px">{% now "jS F Y H:i" %}</h4>
+      </div>
+          <div class="column_title" style="border-left: 5px solid lightgray;background-color:#ccc;" onclick="menu_onclick(event, slug='{{town.slug}}')">
+          <marquee id="newannouncement_menus" behavior="scroll" direction="up" scrollamount="3" onmouseover="this.stop()" onmouseout="this.start()" >
+                        <a id="newannouncement_{{newannouncement_.slug}}" menu="newannouncements" item_slug="{{newannouncement_.slug}}" href="" style="font-size: 15px;">
+                            (1) “All our dreams can come true; if we have the courage to pursue them.” – Walt Disney
+                        </a><br>
+                       <a id="newannouncement_{{newannouncement_.slug}}" menu="newannouncements" item_slug="{{newannouncement_.slug}}" href="" style="font-size: 15px;">
+                           (2) “However difficult life may seem, there is always something you can do and succeed at.” – Stephen Hawking
+                        </a><br>
+                        <a id="newannouncement_{{newannouncement_.slug}}" menu="newannouncements" item_slug="{{newannouncement_.slug}}" href="" style="font-size: 15px;">
+                            (3) “People begin to become successful the minute they decide to be.” – Harvey MacKay
+                        </a><br>
+                        <a id="newannouncement_{{newannouncement_.slug}}" menu="newannouncements" item_slug="{{newannouncement_.slug}}" href="" style="font-size: 15px;">
+                            (4) “It always seems impossible until it’s done.” – Nelson Mandela
+                        </a><br>
+                       <a id="newannouncement_{{newannouncement_.slug}}" menu="newannouncements" item_slug="{{newannouncement_.slug}}" href="" style="font-size: 15px;">
+                            (5) “Nothing is impossible, the word itself says ‘I’m possible’!” – Audrey Hepburn
+                        </a>
+          </marquee>
+      </div>
+      </div>
+</div><br>
+   {% placeholder "content" %}
+{% endblock %}
+
+{% block add_js %} {% endblock add_js %}
+

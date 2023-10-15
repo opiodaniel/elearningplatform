@@ -1,0 +1,333 @@
+{% extends "elearning/base_user.html" %}
+{% load static i18n cms_tags menu_tags sekizai_tags thumbnail %}
+{% load core_tags %}
+{% block title %}
+    <title>Login</title>
+{% endblock title %}
+
+<!-- SideNav slide-out button -->
+<!-- https://mdbootstrap.com/snippets/jquery/mdbootstrap/670810 -->
+{% block add_css %}
+     <link href="{% static 'css/user_home.css' %}" rel="stylesheet">
+{% endblock add_css %}
+
+{% block nav_bar %}
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <ul style="margin-top:20px; text-align: center">
+            <a class="navbar-brand" href="/" style="top: 50px;">
+                <img style="border-radius:25px;" src="{% static "core/logo.pn" %}" alt="My image" height="100" width="100">
+            </a>
+        </ul>
+
+        <ul dir="LTR" class="navbar-nav mr-auto">
+
+        </ul>
+
+        <ul class="nav navbar-nav navbar-left">
+            {% if user.is_authenticated %}
+            <li style="font-size: 150%;">
+                    <a href="/">
+                          <span class="badge badge-pill badge-dark" >  {% trans "Home" %}</span>
+                    </a>
+                </li>
+
+                <li style="font-size: 100%;">
+                    <a href="{% url 'users:logout' %}">
+                         <span class="badge badge-pill badge-danger">{% trans "Log-out" %}</span>
+                    </a>
+                </li>
+                {% endif %}
+        </ul>
+    </nav>
+{% endblock %}
+
+{% block body_content %}
+<!--https://mdbootstrap.com/docs/standard/extended/login/#section-2-->
+<!--https://mdbootstrap.com/docs/standard/tools/design/gradients/-->
+<style>
+    .gradient-custom-2{
+    /* fallback for old browsers */
+    background: #4facfe;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(79,172,254,0.5), rgba(0,242,254,0.5));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(79,172,254,0.5), rgba(0,242,254,0.5))
+  }
+</style>
+
+<style>
+.flip-container {
+	perspective: 1000;
+}
+.flipper {
+  padding: 30px;
+  width: 350px;
+  height:425px;
+  position: relative;
+    background: #f5f5f5;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+
+	transition: 0.6s;
+	transform-style: preserve-3d;
+}
+
+.front, .back {
+  /*background-color: rgba(0,0,0,.3);*/
+  position: absolute;
+    padding:10px 30px;
+  top: 0;
+  left: 0;
+  right: 0;
+
+	backface-visibility: hidden;
+}
+
+.front{
+	z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+
+.back{
+    transform: rotateY(180deg);
+}
+.flip{
+		transform: rotateY(180deg);
+}
+input{
+    width:100%;
+    margin-bottom:15px;
+    height:40px;
+    box-sizing: border-box;
+    padding:10px;
+}
+
+.submit_btn {
+    width:100%;
+    margin-bottom:15px;
+    height:40px;
+    box-sizing: border-box;
+    padding:10px;
+}
+
+.title{
+  text-align: center;
+}
+.flipbutton{
+    color:#4096ee;
+    text-decoration:none;
+    text-align:left !important;
+}
+
+
+
+/* Alignment styles */
+
+body, html {
+  height: 100%;
+}
+
+<!--body {-->
+<!--  display: flex;-->
+<!--  justify-content: center;-->
+<!--  align-items: center;-->
+
+
+<!--    background: #092756;-->
+<!--    background: -moz-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%),-moz-linear-gradient(top, rgba(57,173,219,.25) 0%, rgba(42,60,87,.4) 100%), -moz-linear-gradient(-45deg, #670d10 0%, #092756 100%);-->
+<!--    background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -webkit-linear-gradient(top, rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -webkit-linear-gradient(-45deg, #670d10 0%,#092756 100%);-->
+<!--    background: -o-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -o-linear-gradient(top, rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -o-linear-gradient(-45deg, #670d10 0%,#092756 100%);-->
+<!--    background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -ms-linear-gradient(top, rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -ms-linear-gradient(-45deg, #670d10 0%,#092756 100%);-->
+<!--    background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), linear-gradient(to bottom, rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), linear-gradient(135deg, #670d10 0%,#092756 100%);-->
+<!--}-->
+
+</style>
+<br/>
+    <div style="display: flex;justify-content: center;color:red">
+      <strong>
+      <ul>
+        {% if messages %}
+            {% for message in messages %}
+            <li>{{message}}</li>
+            {% endfor %}
+        {% endif %}
+
+        {% if error_message != '' %}
+            <li>{{error_message}}</li>
+        {% endif %}
+      </ul>
+      </strong>
+    </div>
+<br/>
+
+<!--<section class="h-100 gradient-form" style="background-color: #eee;">-->
+<!--  <div class="container py-5 h-100">-->
+<!--    <div class="row d-flex justify-content-center align-items-center h-100">-->
+<!--      <div class="col-xl-10">-->
+<!--        <div class="card rounded-3 text-black">-->
+<!--          <div class="row g-0">-->
+<!--            <div class="col-lg-6">-->
+<!--              <div class="card-body p-md-5 mx-md-4">-->
+
+<!--                <div class="text-center">-->
+<!--                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"-->
+<!--                    style="width: 185px;" alt="logo">-->
+<!--                  <h4 class="mt-1 mb-5 pb-1">We are The Lotus Team</h4>-->
+<!--                </div>-->
+
+<!--                <form>-->
+<!--                  <p>Please login to your account</p>-->
+
+<!--                  <div class="form-outline mb-4">-->
+<!--                    <input type="email" id="form2Example11" class="form-control"-->
+<!--                      placeholder="Phone number or email address" />-->
+<!--                    <label class="form-label" for="form2Example11">Username</label>-->
+<!--                  </div>-->
+
+<!--                  <div class="form-outline mb-4">-->
+<!--                    <input type="password" id="form2Example22" class="form-control" />-->
+<!--                    <label class="form-label" for="form2Example22">Password</label>-->
+<!--                  </div>-->
+
+<!--                  <div class="text-center pt-1 mb-5 pb-1">-->
+<!--                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Log-->
+<!--                      in</button>-->
+<!--                    <a class="text-muted" href="#!">Forgot password?</a>-->
+<!--                  </div>-->
+
+<!--                  <div class="d-flex align-items-center justify-content-center pb-4">-->
+<!--                    <p class="mb-0 me-2">Don't have an account?</p>-->
+<!--                    <button type="button" class="btn btn-outline-danger" style="width:200px; margin-right:25px;border: 2px solid red;">Create new</button>-->
+<!--                  </div>-->
+
+<!--                </form>-->
+
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">-->
+<!--              <div class="text-black px-3 py-4 p-md-5 mx-md-4">-->
+<!--                <h4 class="mb-4">We are more than just a company</h4>-->
+<!--                <p class="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod-->
+<!--                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud-->
+<!--                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+
+<div class="flip-container" style="display: flex;justify-content: center;">
+    <div class="flipper" id="flipper" style="background-color:lightblue; border-radius:25px">
+        <div class="front">
+            <h1 class="title" style="color:blue">LOGIN</h1>
+                <form action="{% url 'users:login' %}" method="post">
+                    {% csrf_token %}
+                      {% if redirect_field_value %}
+                      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                      {% endif %}
+                         <table>
+                            <tr>
+                                <td>{{ form_login.username.label_tag }}</td>
+                                <td>{{ form_login.username }}</td>
+                            </tr>
+                            <tr>
+                                <td>{% if form_login.username.help_text %}
+                                    <p class="help">{{ form_login.username.help_text|safe }}</p>
+                                    {% endif %}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ form_login.password.label_tag }}</td>
+                                <td>{{ form_login.password }}</td>
+                            </tr>
+<!--
+                            <tr>
+                                <td>{{ form_login.captcha.label_tag }}</td>
+                                <td>{{ form_login.captcha }}</td>
+                            </tr>
+                            -->
+                         </table>
+                          <p>
+                              <button class="submit_btn" type="submit" style="font-size:18px; padding:5px; color:red; background-color:lightblue">{% trans "SIGN IN" %}</button>
+                          </p>
+                         <p>
+<!--                             url 'allauth:account_reset_password'-->
+                              <a href="">
+                                 <span style="font-size: 125%">{% trans "Forgot Password?" %}</span>
+                              </a>
+                         </p>
+              </form>
+              <a class="flipbutton" id="loginButton" style="color:green; font-size:18px" href="#">Create my account / sign up →</a>
+        </div>
+        <div class="back" style="background-color:lightblue; border-radius:25px">
+            <h1 class="title" style="color:blue">REGISTER</h1>
+
+              <form action="{% url 'users:login' %}" method="post">
+                {% csrf_token %}
+                      {% if redirect_field_value %}
+                      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                      {% endif %}
+
+                    <table>
+<!--
+                            <tr>
+                                <td>{{ form_login.captcha.label_tag }}</td>
+                                <td>{{ form_login.captcha }}</td>
+                            </tr>
+                             -->
+                            <tr>
+                                <td><label for="id_test">Enter 1:</label></td>
+                                <td><input type="text" name="test" maxlength="150" autofocus="" required="" id="id_test"></td>
+                            </tr>
+                            <tr>
+                                <td>{{ form_signup.username.label_tag }}</td>
+                                <td>{{ form_signup.username }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ form_signup.email.label_tag }}</td>
+                                <td>{{ form_signup.email }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ form_signup.password1.label_tag }}</td>
+                                <td>{{ form_signup.password1 }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ form_signup.password2.label_tag }}</td>
+                                <td>{{ form_signup.password2 }}</td>
+                            </tr>
+                    </table>
+
+                          <p>
+                              <button class="submit_btn" type="submit" style="font-size:18px; padding:5px; color:red; background-color:lightblue">{% trans "SIGN UP" %}</button>
+                          </p>
+              </form>
+            <a class="flipbutton" id="registerButton" style="color:green; font-size:18px" href="#">Login to my account / Sign in →</a>
+        </div>
+    </div>
+</div>
+
+<br/>
+<br/>
+<script>
+var loginButton = document.getElementById("loginButton");
+var registerButton = document.getElementById("registerButton");
+
+loginButton.onclick = function(){
+	document.querySelector("#flipper").classList.toggle("flip");
+}
+
+registerButton.onclick = function(){
+	document.querySelector("#flipper").classList.toggle("flip");
+}
+</script>
+
+{% endblock %}
+
+

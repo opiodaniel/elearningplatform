@@ -1,0 +1,140 @@
+{% extends "base_core1.html" %}
+{% load static i18n cms_tags menu_tags sekizai_tags thumbnail %}
+{% load cms_tags %}
+
+    {% block title %}
+        {{title}}
+    {% endblock title %}
+
+{% block add_css %}
+<link href="{% static 'css/ugandatowns.css' %}" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.a399bc1a5519.css' %}">
+
+<link rel='preload stylesheet' href='https://av.sc.com/assets/global/css/lite/style-base-home.min.css?ver=14fc4a5' as='style' media='all'>
+
+{% endblock add_css %}
+
+
+{% block content %}
+<div id="myMenu" class="sidenav" style="border:1px dotted black;overflow: scroll;left:5px;" onclick="show_town(event)">
+   <input type="text" id="mySearch" onkeyup="search(event)" placeholder="Search.." title="Type in a category">
+
+    <li class="">
+        <a class="" title="Personal Banking" data-context="" href="">
+            <div class="sc-grid-tile sc-grid-tile--horizondal">
+                <div class="sc-grid-tile__image" style="width: 130px; margin-left:-10px; ">
+                    <img height="120" src="https://av.sc.com/ug/content/images/ug-personal-banking-banner-400x-400y-200x200.jpg" class="" alt="" loading="lazy">
+                </div>
+                <div class="" style="border-left: 5px solid lightgreen;">
+                        <h6 class="sc-heading">Personal Banking</h6>
+                        <p class="sc-text">Simple and smarter banking to help you save, spend and get rewarded.</p>
+                </div>
+                </div>
+        </a>
+    </li>
+    <li class="">
+        <a class="" title="Priority Banking" data-context="Segment List segment links" href="">
+            <div class="sc-grid-tile sc-grid-tile--horizondal">
+                <div class="sc-grid-tile__image" style="width: 130px; margin-left:-10px; ">
+                    <img height="120" src="https://av.sc.com/ug/content/images/ug-priority-banking-segment-400x-400y-200x200.jpg" class="" alt="" loading="lazy">
+                </div>
+                <div class="" style="border-left: 5px solid lightgreen;">
+                    <h6 class="sc-heading">Priority Banking</h6>
+                    <p class="sc-text">Your first challenge was creating wealth. The next is managing it.</p>
+                </div>
+            </div>
+        </a>
+    </li>
+    <li class="">
+        <a class="" title="Private Banking" data-context="Segment List segment links" href="">
+            <div class="sc-grid-tile sc-grid-tile--horizondal">
+                <div class="sc-grid-tile__image" style="width: 130px; margin-left:-10px; ">
+                    <img  height="200" src="https://av.sc.com/ug/content/images/ug-private-banking-400x-400y-200x200.jpg" class="" alt="" loading="lazy">
+                </div>
+                <div class="" style="border-left: 5px solid lightgreen;">
+                    <h6 class="sc-heading">Private Banking</h6>
+                    <p class="sc-text">Bespoke services that connect you to wealth opportunities in our footprint.</p>
+                </div>
+            </div>
+        </a>
+    </li>
+    <li class="">
+        <a class="" title="Digital Banking" data-context="Segment List segment links" href="">
+            <div class="sc-grid-tile sc-grid-tile--horizondal">
+                <div class="sc-grid-tile__image" style="width: 130px; margin-left:-10px; ">
+                    <img height="200" src="https://av.sc.com/ug/content/images/ug-digital-banking-ipad-computer-scaled-400x-400y-200x200.jpg" class="" alt="" loading="lazy">
+                </div>
+                 <div class="" style="border-left: 5px solid lightgreen;">
+                    <h3 class="sc-heading">Digital Banking</h3>
+                    <p class="sc-text">Bank Anywhere with the world’s best digital bank.</p>
+                </div>
+            </div>
+        </a>
+    </li>
+
+</div>
+
+<div id="town_title0" class="town_title0" style="margin-left: 20px">
+      <div class="row">
+          <div class="column_title" style="border-left: 0px solid lightgray;background-color:green; width:100px">
+              <h4 style="margin-top:50px; text-align:center">NEWS:</h4>
+          </div>
+          <div class="column_title" style="border-left: 0px solid lightgray;background-color:lightblue; width:1100px" onclick="menu_onclick(event, slug='{{town.slug}}')">
+              <marquee id="newannouncement_menus" behavior="scroll" direction="up" scrollamount="3" onmouseover="this.stop()" onmouseout="this.start()" >
+                            <a id="newannouncement_{{newannouncement_.slug}}" menu="newannouncements" item_slug="{{newannouncement_.slug}}" href="" style="font-size: 20px;">
+                                (1) “All our dreams can come true; if we have the courage to pursue them.” – Walt Disney
+                            </a><br>
+                           <a id="newannouncement_{{newannouncement_.slug}}" menu="newannouncements" item_slug="{{newannouncement_.slug}}" href="" style="font-size: 20px;">
+                               (2) “However difficult life may seem, there is always something you can do and succeed at.” – Stephen Hawking
+                            </a><br>
+                            <a id="newannouncement_{{newannouncement_.slug}}" menu="newannouncements" item_slug="{{newannouncement_.slug}}" href="" style="font-size: 20px;">
+                                (3) “People begin to become successful the minute they decide to be.” – Harvey MacKay
+                            </a><br>
+                            <a id="newannouncement_{{newannouncement_.slug}}" menu="newannouncements" item_slug="{{newannouncement_.slug}}" href="" style="font-size: 20px;">
+                                (4) “It always seems impossible until it’s done.” – Nelson Mandela
+                            </a><br>
+                           <a id="newannouncement_{{newannouncement_.slug}}" menu="newannouncements" item_slug="{{newannouncement_.slug}}" href="" style="font-size: 20px;">
+                                (5) “Nothing is impossible, the word itself says ‘I’m possible’!” – Audrey Hepburn
+                            </a>
+              </marquee>
+          </div>
+      </div>
+</div>
+{% for n in news %}
+{% render_placeholder n.description %}
+{% endfor %}
+<div id="" class="" style=""  onclick="show_town(event)">
+    <h6 style="margin-left:25px; color:red; text-align:center ">UPLOADED VIDEOS</h6>
+     <div id="home_1{{town_.slug}}" href="" style="margin-left:10px;">
+         <video id="my-video" class="video-js" controls preload="auto" width="400" height="150"  data-setup="{}" >
+          <source src="https://videos.ctfassets.net/hrltx12pl8hq/TGSzZa2En50mkWusMrs4A/408bf8b903d46c786f57746298d3ccf7/VHP_5-27.webm" type="video/mp4" />
+         </video>
+         <video id="my-video" class="video-js" controls preload="auto" width="400" height="150"  data-setup="{}" >
+          <source src="https://www.shutterstock.com/shutterstock/videos/1086556394/preview/stock-footage-cybersecurity-cybercrime-digital-wallet-vpn-internet-scam-businessman-mobile-phone-network.webm" type="video/mp4" />
+         </video>
+         <video id="my-video" class="video-js" controls preload="auto" width="400" height="150"  data-setup="{}" >
+          <source src="https://www.shutterstock.com/shutterstock/videos/1056029879/preview/stock-footage-smart-city-aerial-drone-footage-hologram-information-arches-forming-during-network-communication.webm" type="video/mp4" />
+         </video>
+         <video id="my-video" class="video-js" controls preload="auto" width="400" height="150"  data-setup="{}" >
+          <source src="https://www.shutterstock.com/shutterstock/videos/1055506715/preview/stock-footage-project-manager-walks-to-a-big-screen-with-neural-network-team-of-professional-computer-data.webm" type="video/mp4" />
+         </video>
+         <video id="my-video" class="video-js" controls preload="auto" width="400" height="150"  data-setup="{}" >
+          <source src="https://www.shutterstock.com/shutterstock/videos/1078120481/preview/stock-footage-global-business-concept-communication-network-management-strategy-digital-transformation.webm" type="video/mp4" />
+         </video>
+         <video id="my-video" class="video-js" controls preload="auto" width="400" height="150"  data-setup="{}" >
+          <source src="https://www.shutterstock.com/shutterstock/videos/1056217589/preview/stock-footage-aerial-drone-flight-hyperlapse-of-panoramic-skyline-of-metropolitan-city-business-network-formation.webm" type="video/mp4" />
+         </video>
+<!--         <video id="my-video" class="video-js" controls preload="auto" width="300" height="150"  data-setup="{}" >-->
+<!--          <source src="https://www.shutterstock.com/shutterstock/videos/1079285507/preview/stock-footage-financial-analyst-working-on-a-computer-with-multi-monitor-workstation-with-real-time-stocks.webm" type="video/mp4" />-->
+<!--         </video>-->
+     </div>
+
+ </div>
+
+{% endblock %}
+
+{% block add_js %} {% endblock add_js %}
+
+
+
+

@@ -1,0 +1,425 @@
+{% extends "elearning/base_sidenave.html" %}
+{% load static i18n cms_tags menu_tags sekizai_tags thumbnail %}
+
+ {% block add_css %}
+    <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"-->
+     <!--  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+    <link href="{% static 'css/sidenav.css' %}" rel="stylesheet">
+    <link href="{% static 'css/chat.css' %}" rel="stylesheet">
+    <!--<link href="{% static 'css/style2_bs.css' %}" rel='stylesheet'>-->
+    <link href="{% static 'css/site.css' %}" rel='stylesheet'>
+    <link href="{% static 'css/plugin.css' %}" rel="stylesheet">
+ {% endblock add_css %}
+
+
+{% block nav_bar %}
+        <!-- Navigation -->
+<!--        <nav style="height: 60px;" dir="LTR" class="navbar navbar-expand-sm navbar-white bg-light">-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-info static-top">
+        <ul style="margin-top:20px; text-align: center">
+            <a class="navbar-brand" href="/" style="top: 50px;">
+                <img style="border-radius:25px;" src="{% static "core/logo.pn" %}" alt="My image" height="100" width="100">
+            </a>
+        </ul>
+
+        <ul dir="LTR" class="navbar-nav mr-auto">
+
+        </ul>
+
+        <ul class="nav navbar-nav navbar-left">
+            {% if user.is_authenticated %}
+            <li style="font-size: 150%;">
+                    <a href="/">
+                          <span class="badge badge-pill badge-info" >  {% trans "Home" %}</span>
+                    </a>
+                </li>
+                <li style="font-size: 150%;">
+                    <a href="{% url 'users:my_account' %}">
+                          <span class="badge badge-pill badge-info" >  {% trans "My Account" %}</span>
+                    </a>
+                </li>
+                <li style="font-size: 100%;">
+                    <a href="{% url 'users:logout' %}">
+                         <span class="badge badge-pill badge-danger">{% trans "Log-out" %}</span>
+                    </a>
+                </li>
+                {% endif %}
+        </ul>
+    </nav>
+{% endblock %}
+
+{% block sidebar_nav %}
+  {% if LANGUAGE_CODE == "ar" %}
+    <div dir="RTL" class="list-group border-0 card text-center text-md-right float-right bg-info">
+  {% else %}
+    <div dir="LTR" class="list-group border-0 card text-center text-md-left bg-info">
+  {% endif%}
+
+    <div align="center" style="margin: 10px 0px 10px 0px;">
+    {% thumbnail course.image '200x136' crop subject_location=course.image.subject_location as course_photo %}
+        <img src="{{ course_photo.url }}" width="{{ course_photo.width }}" height="{{ course_photo.height }}"
+             alt="{{ course.name }}">
+    </div>
+
+    {% if user.is_staff %}
+        <h6>
+        <a href="/" class="add_section_sub badge badge-pill badge-primary"
+           data-mn="section" data-pmn="course" data-pmid="{{ course.id }}" data-on="Need to change" >
+            Add Section
+        </a>
+        </h6>
+    {% endif %}
+
+
+    <div><br/>
+
+    {% for section in course.course_sections.all|dictsort:"order" %}
+        <a id="section_{{ section.id }}" href="#menu1sub{{ section.id }}" data-id="{{ section.id }}"
+           class="list-group-item click_section" is_send="1" is_shrink="0" is_send_stop="0"
+           data-toggle="collapse" aria-expanded="false" style="background-color:gray;">
+            <span class="w3-badge w3-blue">{{ section.order }}</span>&nbsp;
+        {{ section.name }}
+        </a>
+
+        <div class="collapse" id="menu1sub{{ section.id }}">
+
+            {% if user.is_staff %}
+                <a href="/" class="add_section_sub badge badge-pill badge-primary" style="size:5"
+                   data-mn="subsection" data-pmn="section" data-pmid="{{ section.id }}" data-on="Need to change" >
+                    Add Sub Section
+                </a>
+            {% endif %}
+
+            {% for sub_section in section.section_sub_sections.all|dictsort:"order" %}
+                <a id="sub_section_{{ sub_section.id }}" href="/" data-id="{{ sub_section.id }}" class="plugin list-group-item"
+                   data-parent="#menu1sub{{ section.id }}" data-slug="{{ sub_section.slug }}" is_send = "1">
+                    <span class="w3-badge w3-small w3-red">{{ sub_section.order }}</span>&nbsp; {{ sub_section }}</a>
+
+                {% if user.is_staff %}
+                    <a href="{{ sub_section.get_absolute_url }}"> &nbsp; <i class="fa fa-user-circle" ></i></a>
+                {% endif %}
+            {% endfor %}
+            {% if user.is_staff %}
+            <!--
+                &nbsp;&nbsp;&nbsp;<a href="/" class="test badge badge-pill badge-primary" style="size:5"
+                   data-type="staff" data-id="{{ section.id }}" >
+                    Edit test questions
+                </a>
+            -->
+            &nbsp;&nbsp;&nbsp;<a href="{{ section.get_edit_test_url }}" style="size:5"
+                                 class="badge badge-pill badge-primary">Edit test questions</a>
+            {% else %}
+                &nbsp;&nbsp;&nbsp;<a href="/" class="test badge badge-pill badge-primary" style="size:15"
+                                     data-id="{{ section.id }}" >Take a test</a>
+            {% endif %}
+        </div>
+    {% endfor %}
+    </div>
+
+    <br/>
+    <br/>
+    <br/>
+    <!--    https://fontawesome.com/v4.7.0/examples/    -->
+</div>
+
+{% endblock sidebar_nav %}
+
+
+{% block sidebar_main %}
+
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+}
+
+.th {
+  border: 1px solid black;
+  text-align: center;
+  padding: 8px;
+  width:70px;
+}
+
+td {
+  border: 1px solid black;
+  text-align: left;
+  padding: 2px;
+}
+
+td.no_border {
+  border: 0px solid black;
+  text-align: left;
+  padding: 2px;
+}
+
+.border-lb {border: 1px solid black; border-width: 0 0 0 1px;}
+.border-rb {border: 1px solid black; border-width: 0 1px 0 0;}
+.border-bb {border: 1px solid black; border-width: 0 0 1px 0;}
+
+td.border_right {
+  border-left: 1px solid black;
+  text-align: left;
+  padding: 2px;
+}
+
+td.num {text-align: right;}
+
+input {
+  text-align: right;
+  width:70px;
+}
+
+thead {
+  background-color: lightblue;
+}
+
+tr:nth-child(even) {
+  background-color: lightblue;
+}
+</style>
+            <a id="course_sidenave_onoff" class="course_sidenave_onoff" href="#" data-target="#sidebar"
+               data-toggle="collapse" aria-expanded="false" style="color:black">
+                <i id="course_sidenave_onoff_icon" class="fa fa-navicon fa-2x py-2 p-1"></i>
+            </a>&nbsp;&nbsp;&nbsp;
+            <a href="{{ course.syllabus.get_absolute_url }}">
+                <span><font size="5" color="coral">
+                <i class="fa fa-shield fa-rotate-270"></i>
+                    {% trans "Syllabus" %}
+                </font></span></a>
+            </a>
+            &nbsp;&nbsp;
+            <a href="{{ course.get_blog_post_list_url }}">
+                <span><font size="5" color="lightblue">
+                <i class="fa fa-envelope"></i>
+                    {% trans "Blog" %}
+                </font></span></a>
+            </a>&nbsp;&nbsp;
+            <a href="{% url 'courses:home' %}">
+                <span><font size="5" color="lightblue">
+                 <img src="https://www.freeiconspng.com/uploads/courses-icon-6.png"
+                      width="30" alt="Courses.ico" />
+                    {% trans "Back to courses" %}
+                </font>
+                </span>
+            </a>
+
+
+        {% if LANGUAGE_CODE == "ar" %}
+            <div dir="RTL" class="page-header">
+        {% else %}
+            <div dir="LTR" class="page-header">
+        {% endif%}
+                <h3 style="font-family: 'Times New Roman', Times, serif;">
+                    {% render_model course "name" %}:
+                    <span style="color:lightblue">
+                    {% render_model section "name" %}
+                    </span>
+                </h3>
+                   {% render_placeholder course.description %}
+            </div>
+
+            <div>
+                {% if sub_section %}
+                <div class="col-md-6 col-sm-4 col-lg-12" id="plugin">
+                      <h4 style="color:lightblue">{% render_model sub_section "name" %}</h4>
+                      {% render_placeholder sub_section.description %}
+                </div>
+                {% else %}
+
+                &nbsp;&nbsp;&nbsp;<a href="{% url 'elearning:add_question' section.slug %}"
+                                     class="badge badge-pill badge-primary" style="size:15">
+                    Add Question
+                    </a>
+
+                    <div style="width: 100%; height: 600px; overflow-y: scroll;">
+                        {% get_current_language as LANGUAGE_CODE %}
+                      {% for question in questions %}
+                            {% if LANGUAGE_CODE == "ar" %}
+                              <div class="col-md-6 col-sm-4 col-lg-12" id="plugin"
+                                   style="text-align: right; margin: 0pt 20pt 0pt 0pt;">
+                            {% else %}
+                              <div class="col-md-6 col-sm-4 col-lg-12" id="plugin" >
+                            {% endif%}
+                            <h3><u>Question: {{ forloop.counter }}:
+                            (<a href="{% url 'elearning:delete_question' question.id %}"
+                                class="badge badge-pill badge-warning" style="size:15">
+                                Delete
+                            </a>)</u></h3>
+                          {% render_placeholder question.question_text %}
+                        &nbsp;&nbsp;&nbsp;<a href="{% url 'elearning:add_answer' question.id %}"
+                                             class="badge badge-pill badge-primary" style="size:15">
+                            Add answer
+                            </a><br/>
+                            {% for answer in question.answers.all %}
+                              {% if answer.correct %}
+                                <input class="correct" pkey="{{ answer.id }}" type="checkbox" checked />
+                              {% else %}
+                                <input class="correct" pkey="{{ answer.id }}" type="checkbox" />
+                              {% endif %}
+                              Answer: {{ forloop.counter }}:
+                              (<a href="{% url 'elearning:delete_answer' answer.id %}"
+                                  class="badge badge-pill badge-primary" style="size:15">Delete</a>)
+                              <br/>
+                              {% render_placeholder answer.answer_text %}
+                            {% endfor %}
+                        </div><br/>
+                      {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+<!--<span id="id_chat_room_name" chat_room_id="{{chat_room_id}}" chat_room_name="{{chat_room_name}}" userid="{{request.user.id}}"-->
+<!--      is_instructor="{{is_instructor}}"></span>-->
+{% endblock sidebar_main %}
+
+
+<!--  Good example
+https://www.techiediaries.com/python-django-ajax/
+https://api.jquery.com/category/ajax/
+-->
+{% block add_js_sub %}
+    <script src="{% static 'js/reconnecting-websocket.js' %}"></script>
+    <script src="{% static 'js/whiteboard_v1.js' %}"></script>
+    <script src="{% static 'js/openvidu/app.js' %}"></script>
+    <script src="{% static 'js/openvidu/openvidu-browser-2.16.0.js' %}"></script>
+	<link rel="shortcut icon" href="resources/images/favicon.ico" type="image/x-icon">
+{% endblock add_js_sub %}
+
+{% block domready %}
+
+
+
+function say()
+{
+ alert("say what")
+}
+
+  $('a.course_sidenave_onoff').click(function(e){
+     var elm01_id = e.target.getAttribute("id")
+     if(elm01_id == "course_sidenave_onoff_icon")
+     {
+        var elm_onoff = e.target.parentElement
+        var course_sidenave_onoff_is_expanded = elm_onoff.getAttribute("aria-expanded")
+        var dic_ = {'type': 'course_sidenave_onoff', 'message': course_sidenave_onoff_is_expanded, 'is_instructor':is_instructor}
+        if(is_in_session == "True"){socket.send(JSON.stringify(dic_));}
+     }
+  });
+
+  $('a.click_section').click(function(e){
+     var elm_click_section = e.target
+     var current_is_shrink = elm_click_section.getAttribute("is_shrink")
+     var is_send_ = elm_click_section.getAttribute("is_send")
+     var is_send_stop = elm_click_section.getAttribute("is_send_stop")
+     var section_id = elm_click_section.getAttribute("data-id")
+
+     last_section_id = section_id;
+     last_current_is_shrink = current_is_shrink;
+
+     var click_sections = document.querySelectorAll(".click_section");
+     for (var i = 0; i < click_sections.length; i++) {
+        var ea = click_sections[i]
+        var is_shrink_ = ea.getAttribute("is_shrink")
+        if (is_shrink_ == "1")
+        {
+            var event_click_section = new Event("click", {bubbles: true});
+            ea.setAttribute("is_send_stop", "1")
+            ea.setAttribute("is_shrink", "0")
+            ea.dispatchEvent(event_click_section)
+            ea.setAttribute("is_send_stop", "0")
+        }
+     }
+
+     if(is_send_ == "1")
+     {
+        if(is_send_stop == "0")
+        {
+           if (current_is_shrink == '0')
+           {elm_click_section.setAttribute("is_shrink", "1"); wm.setSectionId(section_id);}
+           var dic_ = {'type': 'change_section', 'message': section_id + "," + current_is_shrink, 'is_instructor':is_instructor}
+           if(is_in_session == "True"){socket.send(JSON.stringify(dic_));}
+        }
+     } else
+    {
+      var status = elm_click_section.getAttribute("status")
+      if (status == current_is_shrink)
+      {
+       if (current_is_shrink == '0')
+       {elm_click_section.setAttribute("is_shrink", "1");elm_click_section.setAttribute("is_send", "1");
+        wm.setSectionId(section_id);}
+      }
+    }
+  });
+
+  $('a.plugin').click(function(e){
+      e.preventDefault(); var elm_id = e.target.getAttribute("id"); var is_send = e.target.getAttribute("is_send")
+                last_sub_section_id = elm_id
+      $.post('{% url "courses:sub_section_detail" %}',
+        {
+          slug: $(this).data('slug')
+        },
+        function(data){
+            $('#plugin').empty().append(data)
+        }
+      );
+      if(is_send == "1")
+        {
+          var dic_ = {'type': 'change_sub_section', 'message': elm_id, 'is_instructor':is_instructor}
+          if(is_in_session == "True"){socket.send(JSON.stringify(dic_));}
+        }
+  });
+
+  $('a.add_section_sub').click(function(e){
+   e.preventDefault();
+   var ss = prompt('enter name', '')
+   e.target.setAttribute('data-on', ss)
+      $.post('{% url "courses:set_new_model_instance" %}',
+        {
+          mn: $(this).data('mn') ,
+          pmn: $(this).data('pmn') ,
+          pmid: $(this).data('pmid'),
+          on: $(this).data('on')
+        },
+        function(data){
+            alert(data['status'])
+        }
+      );
+  });
+
+  $('a.test').click(function(e){
+    e.preventDefault();
+   //alert(e.target.outerHTML)
+
+      $.post('',
+        {
+          id: $(this).data('id'),
+        },
+        function(data){
+            //alert(data)
+            $('#plugin').empty().append(data)
+        }
+      );
+  });
+
+  $('input.correct').click(function(event){
+        e = event.target
+        //alert(e.outerHTML)
+
+        pkey = e.getAttribute("pkey")
+        value = e.checked
+
+    $.post('',
+      {
+        pkey_ : pkey,
+        value_: value
+      },
+      function(data){
+          //alert(data['status'])
+      });
+  });
+
+  try{
+    get_user_swot()
+  } catch (err) { console.log("get_user_swot(): ", err.message)}
+
+{% endblock %}
+

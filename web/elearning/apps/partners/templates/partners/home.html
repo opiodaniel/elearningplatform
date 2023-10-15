@@ -1,0 +1,727 @@
+{% load static i18n cms_tags menu_tags sekizai_tags thumbnail %}
+<!doctype html>
+<html lang="en-US"><head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Modern Schooling &#8211; eCademy</title>
+    <meta name='robots' content='noindex, nofollow' />
+    <meta name="generator" content="WordPress 6.3.2" />
+    <meta name="generator" content="WooCommerce 8.2.0" />
+    <meta name="generator" content="Redux 4.3.20" />
+    <!--CSS For Red button  -->
+    <style id='ecademy-main-style-inline-css' type='text/css'>
+
+                    .ecademy-responsive-nav .ecademy-responsive-menu.mean-container .mean-nav ul .menu-item-new a::after {
+                        content: "New";
+                        position: absolute;
+                        font-size: 8px;
+                        line-height: 1;
+                        color: var(--whiteColor);
+                        background-color: red;
+                        z-index: 1;
+                        pointer-events: none;
+                        border-radius: 2px;
+                        padding: 5px 6px 4.2px;
+                        margin: 3px 0 0 5px;
+                    }
+
+                    .ecademy-nav .navbar .navbar-nav .nav-item.menu-item-new a::after {
+                        content: "New";
+                        position: absolute;
+                        font-size: 8px;
+                        line-height: 1;
+                        color: var(--whiteColor);
+                        background-color: red;
+                        z-index: 1;
+                        pointer-events: none;
+                        border-radius: 2px;
+                        padding: 5px 6px 4.2px;
+                        margin: 3px 0 0 5px;
+                    }
+                    .default-btn, .ecademy-nav .navbar .navbar-nav .nav-item.megamenu .dropdown-menu .single-category-widget:hover .icon, .ecademy-nav .navbar .others-option .cart-btn a span, .others-option-for-responsive .dot-menu:hover .inner .circle, .others-option-for-responsive .option-inner .others-option .cart-btn a span, .ecademy-responsive-nav .ecademy-responsive-menu.mean-container .navbar-nav .nav-item.megamenu .dropdown-menu .single-category-widget:hover .icon, .ecademy-responsive-nav .ecademy-responsive-menu.mean-container .others-option .cart-btn a span, .banner-wrapper-content form button, .home-banner-area, .about-video-box .video-btn, .single-courses-box .courses-image .price, .single-courses-item-box .courses-image .price, .courses-slides.owl-theme .owl-dots .owl-dot:hover span::before, .courses-slides.owl-theme .owl-dots .owl-dot.active span::before, .courses-slides.owl-theme .owl-nav [class*=owl-]:hover , .shorting-menu.shorting-menu-style-two .filter::before, .load-more-btn .load-more:hover, .courses-details-desc .nav .nav-item .nav-link::before, .courses-details-info .image .content i, .courses-details-info .courses-share .share-info .social-link li a:hover, .courses-details-desc-style-two .courses-author .author-profile-header, .courses-sidebar-information .courses-share .share-info .social-link li a:hover, .single-advisor-box .advisor-content .social-link li a:hover, .advisor-slides.owl-theme .owl-dots .owl-dot:hover span::before, .advisor-slides.owl-theme .owl-dots .owl-dot.active span::before, .single-advisor-item .advisor-image .social-link li a:hover, .advisor-slides-two.owl-theme .owl-dots .owl-dot:hover span::before, .advisor-slides-two.owl-theme .owl-dots .owl-dot.active span::before, .start-with-success-box .content .link-btn:hover, .single-feedback-item::after, .feedback-slides.owl-theme .owl-dots .owl-dot:hover span::before, .feedback-slides.owl-theme .owl-dots .owl-dot.active span::before, .testimonials-slides.owl-theme .owl-dots .owl-dot:hover span::before, .testimonials-slides.owl-theme .owl-dots .owl-dot.active span::before, .feedback-slides-two.owl-theme .owl-dots .owl-dot:hover span::before, .feedback-slides-two.owl-theme .owl-dots .owl-dot.active span::before, .profile-box .content .social-link li a:hover, .profile-courses-quizzes .nav .nav-item .nav-link::before, .profile-courses-quizzes .tab-content .nav .nav-item .nav-link:hover, .profile-courses-quizzes .tab-content .nav .nav-item .nav-link.active, .video-box .video-btn, .events-details-image #timer .countdown-section::before, .events-details-info .events-share .share-info .social-link li a:hover, .blog-slides.owl-theme .owl-dots .owl-dot:hover span::before, .blog-slides.owl-theme .owl-dots .owl-dot.active span::before, .blog-slides.owl-theme .owl-nav [class*=owl-]:hover, .blog-details .article-image-slides.owl-theme .owl-nav [class*=owl-]:hover, .blog-details .article-footer .article-share .social li a, .blog-details .article-author .author-profile-header, blockquote::after, .blockquote::after, .prev-link-wrapper .image-prev::after, .next-link-wrapper .image-next::after, .become-instructor-partner-content.bg-color, .teacher-register-box, .apply-instructor-content .nav .nav-item .nav-link::before, .single-products-box .products-image .products-button ul li a .tooltip-label, .single-products-box .products-image .products-button ul li a .tooltip-label::before, .single-products-box .products-image .products-button ul li a:hover, .membership-levels-table .table thead th, .membership-levels-table .table tbody tr td .select-btn:hover, .pagination-area .page-numbers:hover, .pagination-area .page-numbers.current, .faq-accordion-tab .tabs li a:hover, .faq-accordion-tab .tabs li.current a, .login-form form .lost-your-password-wrap a::after, .login-form form button, .register-form form button, .contact-info ul li:hover .icon, .contact-form, .single-footer-widget .social-link li a:hover, .go-top:hover, .wp-block-search .wp-block-search__button, .wp-block-tag-cloud a:hover, .wp-block-tag-cloud a:focus, .page-links .post-page-numbers:hover, .post-password-form input[type="submit"], .comment-navigation .nav-links .nav-previous a:hover, .comment-navigation .nav-links .nav-next a:hover, .footer-area .single-footer-widget ul li::before, .footer-area .tagcloud a:hover, .sidebar .widget .widget-title::before, .sidebar .widget_search form button:hover, .sidebar .widget_search form button:focus, .sidebar .tagcloud a:hover, .comments-area .comment-body .reply a:hover, #comments .comment-list .comment-body .reply a:hover, lp-profile-content button, #course-item-content-header .form-button.lp-button-back button, .login-content .login-form form button, .sidebar .tagcloud a:hover, .footer-area .widget_search form button, body.single-lp_course.course-item-popup .course-item-nav a:hover, .learnpress .become-teacher-form button, .learnpress #learn-press-checkout-login button, .learnpress #learn-press-user-profile button, .no-results form button, .single-course-sidebar .widget ul li::before, .single-course-sidebar .widget_lp-widget-popular-courses .widget-footer a:hover::before, .single-course-sidebar .widget_lp-widget-featured-courses .widget-footer a:hover::before, .single-course-sidebar .widget_lp-widget-recent-courses .widget-footer a:hover::before, .sidebar .widget_lp-widget-popular-courses .widget-footer a:hover::before, .sidebar .widget_lp-widget-featured-courses .widget-footer a:hover::before, .sidebar .widget_lp-widget-recent-courses .widget-footer a:hover::before, .wp-block-button__link, .single-language-courses-box:hover .default-btn, .single-language-courses-box .default-btn span, .feedback-slides-style-two.feedback-slides.owl-theme::before, .information-content .apply-details li .icon, .products_details div.product .woocommerce-tabs ul#tabs .nav-item .nav-link::before, .newsletter-modal .newsletter-modal-content .modal-inner-content form button, .free-trial-form form button, button#bbp_reply_submit, .bg-fe4a55, .experience-content .features-list li:hover i, .single-pricing-box .default-btn span, .experience-image .title, .experience-image .video-btn:hover, .experience-image::before, #fep-menu .fep-button, .fep-button, .fep-button-active, #event-lightbox .event_auth_button, .event-auth-form  input#wp-submit, .about-content .about-list li span:hover i, .feedback-slides-three.owl-theme .owl-nav [class*=owl-]:hover::before, .courses-slides-two.owl-theme .owl-nav [class*=owl-]:hover::before, .owl-item:nth-child(2) .single-kindergarten-courses-box, .services-slides.owl-theme .owl-nav [class*=owl-]:hover::before, .about-content .about-list li span:hover i, .default-btn-style-two::before, .experience-img::before, .single-pricing-box .default-btn span, .tutor-form-group.tutor-reg-form-btn-wrap .tutor-button, .tutor-login-form-wrap input[type="submit"], .pmpro_login_wrap #content-item-quiz button, input[type=submit], #popup_ok { background-color: #FE4A55; }
+
+                    .ecademy-grid-sorting .ordering .nice-select .list .option:hover, .ecademy-grid-sorting .ordering .nice-select .list .option.selected:hover, .page-links .current, .wp-block-file .wp-block-file__button, .learnpress-page .lp-button, #learn-press-course-curriculum.courses-curriculum ul li.current a, .elementor-1114 .elementor-element.elementor-element-59893a7:not(.elementor-motion-effects-element-type-background), .download-syllabus-form form .form-group .nice-select .list .option.selected:hover, .download-syllabus-form form .form-group .nice-select .list .option:hover, .fep-button:hover, .learn-press-pmpro-buy-membership .purchase-button, .single-courses-box .courses-image .price, .single-courses-box .courses-image .free { background-color: #FE4A55 !important; }
+
+                    .comments-area .form-submit input, .coming-soon-content form .form-group .label-title::before, .login-form form .remember-me-wrap [type="checkbox"]:checked + label:after, .login-form form .remember-me-wrap [type="checkbox"]:not(:checked) + label:after, .footer-area .widget_search form button, .sidebar .widget .widget-title::after, .sidebar .widget ul li::before, .sidebar .widget_search form button, learn-press-pagination .page-numbers > li a:hover, .learn-press-pagination .page-numbers > li a.current, .learn-press-pagination .page-numbers > li a:hover, .learn-press [type=button], .learn-press [type=reset], .learn-press [type=submit], .learn-press button, body.single-lp_course.course-item-popup .curriculum-sections .section .section-content .course-item.current, .learnpress .become-teacher-form .learn-press-message:before, .learnpress #learn-press-checkout-login .learn-press-message:before, #user-submit, #bbp_search_submit, .owl-item:nth-child(2) .single-kindergarten-courses-box .price, .tutor-button.tutor-success, .pmpro-has-access a.pmpro_btn, .pmpro-has-access input.pmpro_btn, .learnpress #learn-press-checkout-register button { background: #FE4A55;}
+
+                    .learn-press-message:before, .guest-and-class a { background: #FE4A55 !important;}
+
+                    a:hover, .section-title .sub-title, .ecademy-nav .navbar .search-box button, .ecademy-nav .navbar .navbar-nav .nav-item a:hover, .ecademy-nav .navbar .navbar-nav .nav-item a:focus, .ecademy-nav .navbar .navbar-nav .nav-item a.active, .ecademy-nav .navbar .navbar-nav .nav-item:hover a, .ecademy-nav .navbar .navbar-nav .nav-item.active a, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu li a:hover, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu li a:focus, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu li a.active, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li a:hover, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li a:focus, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li a.active, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li a:hover, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li a:focus, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li a.active, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a:hover, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a:focus, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a.active, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a:hover, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a:focus, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a.active, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a:hover, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a:focus, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a.active, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a:hover, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a:focus, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a.active, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li.active a, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li.active a, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li.active a, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li.active a, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li.active a, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu li.active a, .ecademy-nav .navbar .navbar-nav .nav-item.megamenu .dropdown-menu .megamenu-submenu li a:hover, .ecademy-nav .navbar .navbar-nav .nav-item.megamenu .dropdown-menu .megamenu-submenu li a.active, .ecademy-nav .navbar .navbar-nav .nav-item.megamenu .dropdown-menu .single-category-widget .sub-title, .ecademy-nav .navbar .others-option .cart-btn a:hover, .others-option-for-responsive .option-inner .search-box button, .others-option-for-responsive .option-inner .others-option .cart-btn a:hover, .ecademy-responsive-nav .ecademy-responsive-menu.mean-container .mean-nav ul li a.active, .ecademy-responsive-nav .ecademy-responsive-menu.mean-container .navbar-nav .nav-item.megamenu .dropdown-menu .megamenu-submenu li a:hover, .ecademy-responsive-nav .ecademy-responsive-menu.mean-container .navbar-nav .nav-item.megamenu .dropdown-menu .megamenu-submenu li a.active, .ecademy-responsive-nav .ecademy-responsive-menu.mean-container .navbar-nav .nav-item.megamenu .dropdown-menu .single-category-widget .sub-title, .ecademy-responsive-nav .ecademy-responsive-menu.mean-container .search-box button, .ecademy-responsive-nav .ecademy-responsive-menu.mean-container .others-option .cart-btn a:hover, .banner-wrapper-content form label, .banner-wrapper-content .popular-search-list li a:hover, .single-banner-box:hover .icon, .single-box-item .link-btn, .single-features-box .link-btn, .about-content .sub-title, .about-content .features-list li span i, .about-content-box .sub-title, .about-content-box .link-btn, .single-courses-box .courses-image .fav:hover, .single-courses-box .courses-content .course-author span a, .single-courses-box .courses-content .courses-box-footer li i, .single-courses-item .courses-content .fav:hover, .single-courses-item .courses-content .price, .single-courses-item .courses-content .courses-content-footer li i, .single-courses-item-box .courses-image .fav:hover, .single-courses-item-box .courses-content .course-author span, .courses-info p a, .shorting-menu .filter.active, .shorting-menu .filter:hover, .ecademy-grid-sorting .ordering .nice-select .list .option::before, .load-more-btn .load-more, .courses-details-desc .tab-content .courses-curriculum ul li a::before, .courses-details-desc .tab-content .courses-curriculum ul li a .courses-meta .duration, .courses-details-desc .tab-content .courses-curriculum ul li a:hover, .courses-details-info .info li span i, .courses-details-info .info li.price, .courses-details-info .courses-share .share-info span, .courses-details-header .courses-meta ul li span, .courses-details-header .courses-meta ul li a:hover, .courses-details-header .courses-meta ul li a:focus, .courses-details-desc-style-two .why-you-learn ul li span i, .courses-details-desc-style-two .courses-curriculum ul li a::before, .courses-details-desc-style-two .courses-curriculum ul li a .courses-meta .duration, .courses-details-desc-style-two .courses-curriculum ul li a:hover, .courses-sidebar-information .info li span i, .courses-sidebar-information .info li.price, .courses-sidebar-information .courses-share .share-info span, .slogan-content span, .single-advisor-box .advisor-content .sub-title, .single-advisor-item .advisor-content span, .start-with-success-box .content .link-btn, .start-with-success-box .content span, .single-funfacts-box h3, .single-funfacts-item h3, .single-funfacts h3, .feedback-content .sub-title, .feedback-content .feedback-info p a, .single-feedback-item .client-info .title h3, .single-testimonials-item h3, .single-feedback-box .client-info .title h3, .single-testimonials-box h3, .profile-box .content .sub-title, .profile-courses-quizzes .tab-content .table tbody tr td a:hover, .get-instant-courses-content .sub-title, .single-events-box .image .date, .single-events-box .content .location i, .events-details-header ul li i, .events-details-info .info li.price, .events-details-info .btn-box p a, .events-details-info .events-share .share-info span, .single-blog-post .post-content .category:hover, .single-blog-post .post-content .post-content-footer li i, .single-blog-post-item .post-content .category:hover, .single-blog-post-item .post-content .post-content-footer li .post-author span, .single-blog-post-item .post-content .post-content-footer li i, .blog-post-info p a, .single-blog-post-box .post-content .category:hover, .single-blog-post-box .post-content .post-content-footer li .post-author span, .single-blog-post-box .post-content .post-content-footer li i, .blog-details .article-content .entry-meta ul li span, .blog-details .article-content .features-list li i, .blog-details .article-footer .article-share .social li a:hover, .blog-details .article-footer .article-share .social li a:focus, .prev-link-wrapper a:hover .prev-link-info-wrapper, .next-link-wrapper a:hover .next-link-info-wrapper, .view-all-courses-content .sub-title, .teacher-register-box form .default-btn:hover, .premium-access-content .sub-title, .page-title-content ul li a:hover, .subscribe-content .sub-title, .single-products-box .products-content .add-to-cart:hover, .products-details-desc .price, .contact-info .sub-title, .contact-info ul li .icon, .contact-form form .default-btn:hover, .single-footer-widget .footer-links-list li a:hover, .single-footer-widget .footer-contact-info li a:hover, .footer-bottom-area p a, .footer-bottom-area ul li a:hover, .footer-area .calendar_wrap .wp-calendar-nav-prev a:hover, .footer-area .single-footer-widget ul li a:hover, body.single-lp_course.course-item-popup .curriculum-sections .section .section-content .course-item .section-item-link::before, body.single-lp_course.course-item-popup .curriculum-sections .section .section-content .course-item .course-item-meta .item-meta.course-item-status, .learnpress .become-teacher-form .message-info::before, .learnpress #learn-press-checkout-login #checkout-form-login .row a:hover, .learnpress #learn-press-user-profile .learn-press-form-login .row a:hover, .learnpress #learn-press-user-profile .learn-press-form-register .row a:hover, .learnpress .become-teacher-form .form-fields .form-field label span, .single-course-sidebar .widget_lp-widget-popular-courses .course-entry .course-detail a:hover, .single-course-sidebar .widget_lp-widget-popular-courses .course-entry .course-detail h3:hover, .single-course-sidebar .widget_lp-widget-featured-courses .course-entry .course-detail a:hover, .single-course-sidebar .widget_lp-widget-featured-courses .course-entry .course-detail h3:hover, .single-course-sidebar .widget_lp-widget-recent-courses .course-entry .course-detail a:hover, .single-course-sidebar .widget_lp-widget-recent-courses .course-entry .course-detail h3:hover, .sidebar .widget_lp-widget-popular-courses .course-entry .course-detail a:hover, .sidebar .widget_lp-widget-popular-courses .course-entry .course-detail h3:hover, .sidebar .widget_lp-widget-featured-courses .course-entry .course-detail a:hover, .sidebar .widget_lp-widget-featured-courses .course-entry .course-detail h3:hover, .sidebar .widget_lp-widget-recent-courses .course-entry .course-detail a:hover, .sidebar .widget_lp-widget-recent-courses .course-entry .course-detail h3:hover, .lp-user-profile #learn-press-profile-content .learn-press-subtab-content .lp-sub-menu li span, #learn-press-course-curriculum.courses-curriculum ul li a::before, .sidebar .calendar_wrap table #today a, .footer-area .calendar_wrap table #today, .footer-area .single-footer-widget .wp-calendar-nav .wp-calendar-nav-next a:hover, .sidebar .widget_rss ul li .rsswidget:hover, .sidebar .calendar_wrap table th a, .sidebar .calendar_wrap table #today, .wp-block-calendar a, .wp-block-image figcaption a, blockquote a, table td a, dd a, p a, .page-main-content .wp-caption .wp-caption-text a, .blog-details .wp-caption .wp-caption-text a, .blog-details table a, .blog-details .blog-details-content ul li a, .sticky .single-blog-post .post-content .post-content-footer li a:hover, .sticky .single-blog-post .post-content h3 a:hover, .blog-details .blog-details-content .entry-meta li a:hover, .blog-details .blog-details-content ol li a, .wp-block-file a, .blog-details .blog-details-content ol li a, #comments .comment-metadata a:hover, .page-main-content table a, .products_details div.product .woocommerce-product-rating a.woocommerce-review-link:hover, .products_details div.product .product_meta span.sku_wrapper span, .single-language-courses-box .default-btn, .information-content .sub-title, .bbpress-wrapper a, #bbpress-forums div.bbp-topic-author a.bbp-author-name, #bbpress-forums div.bbp-reply-author a.bbp-author-name, #bbpress-forums #bbp-single-user-details #bbp-user-navigation a:hover, a.bbp-register-link, a.bbp-lostpass-link, .right-sidebar ul li a:hover, .bbp-author-name:hover, .download-syllabus-form form span.wpcf7-list-item-label a:hover, .preloader .loader .sbl-half-circle-spin, .boxes-info p a, .overview-box .overview-content .sub-title, .single-training-box .link-btn, .experience-content .sub-title, .download-syllabus-form form .form-group .nice-select .list .option::before, #fep-content a, .fep-error a, .about-content .about-list li span:hover i, .single-kindergarten-services-box .content .icon, .single-kindergarten-courses-box .courses-image .fav:hover, .single-blog-item .post-content .category:hover, .events-box .content .location i, .col-lg-3:nth-child(2) .single-selected-ages-box h3, .col-lg-3:nth-child(2) .single-selected-ages-box .ages-number, .tutor-container .tutor-course-loop-title h2 a:hover, .lp-pmpro-membership-list .item-td.item-desc, .lp-pmpro-membership-list .item-td.item-check, .lp-pmpro-membership-list .item-td a:hover, #pmpro_account-profile a, a.ld-enroll-btn { color: #FE4A55; }
+
+                    .single-footer-widget .footer-contact-info li a:hover, .footer-area .single-footer-widget ul li a:hover, span.bbp-admin-links a { color: #FE4A55 !important; }
+
+                    .form-control:focus, .ecademy-nav .navbar .search-box .input-search:focus, .others-option-for-responsive .option-inner .search-box .input-search:focus, .ecademy-responsive-nav .ecademy-responsive-menu.mean-container .search-box .input-search:focus, .banner-wrapper-content form .input-search:focus, .courses-slides.owl-theme .owl-dots .owl-dot:hover span, .courses-slides.owl-theme .owl-dots .owl-dot.active span, .ecademy-grid-sorting .ordering .nice-select:hover, .advisor-slides.owl-theme .owl-dots .owl-dot:hover span, .advisor-slides.owl-theme .owl-dots .owl-dot.active span, .advisor-slides-two.owl-theme .owl-dots .owl-dot:hover span, .advisor-slides-two.owl-theme .owl-dots .owl-dot.active span, .funfacts-list .row .col-lg-6:nth-child(2) .single-funfacts-box, .single-funfacts-box:hover, .feedback-slides.owl-theme .owl-dots .owl-dot:hover span, .feedback-slides.owl-theme .owl-dots .owl-dot.active span, .testimonials-slides.owl-theme .owl-dots .owl-dot:hover span, .testimonials-slides.owl-theme .owl-dots .owl-dot.active span, .feedback-slides-two.owl-theme .owl-dots .owl-dot:hover span, .feedback-slides-two.owl-theme .owl-dots .owl-dot.active span, .blog-slides.owl-theme .owl-dots .owl-dot:hover span, .blog-slides.owl-theme .owl-dots .owl-dot.active span, .blog-details .article-image-slides.owl-theme .owl-nav [class*=owl-]:hover, .login-form form .remember-me-wrap [type="checkbox"]:hover + label:before, .login-form form .remember-me-wrap [type="checkbox"]:checked + label:before, .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu, .about-video-box .video-btn::after, .about-video-box .video-btn::before, .video-box .video-btn::after, .video-box .video-btn::before, .blog-details .article-footer .article-share .social li a, .products-details-desc .products-share .social li a, .user-actions, .is-style-outline .wp-block-button__link, #comments .comment-list .comment-body .reply a:hover, .products_details div.product .woocommerce-product-rating a.woocommerce-review-link:hover, .single-language-courses-box .default-btn, .services-slides.owl-theme .owl-nav [class*=owl-], .courses-slides-two.owl-theme .owl-nav [class*=owl-], .default-btn-style-two, .tutor-form-group.tutor-reg-form-btn-wrap .tutor-button, .tutor-login-form-wrap input[type="submit"] { border-color: #FE4A55; }
+
+                    .navbar-area { background-color: #FFFFFF !important; }
+                    .footer-area .single-footer-widget p, .footer-area .single-footer-widget ul li, .single-footer-widget .footer-contact-info li a, .footer-area .single-footer-widget ul li a { color: #e4e4e4 !important; }
+                    .footer-area { background-color: #100F1F; }
+                    .single-footer-widget .social-link li .d-block:hover { color: var(--whiteColor) !important;}
+
+                    .single-products .sale-btn, .single-products .products-image ul li a:hover, .productsQuickView .modal-dialog .modal-content .products-content form button, .productsQuickView .modal-dialog .modal-content button.close:hover, .productsQuickView .modal-dialog .modal-content button.close:hover, .woocommerce ul.products li.product:hover .add-to-cart-btn, .shop-sidebar .widget_product_search form button, .shop-sidebar a.button, .shop-sidebar .woocommerce-widget-layered-nav-dropdown__submit, .shop-sidebar .woocommerce button.button, .woocommerce .widget_price_filter .ui-slider .ui-slider-range, .woocommerce .widget_price_filter .ui-slider .ui-slider-handle, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .products_details div.product .woocommerce-tabs .panel #respond input#submit, .products_details div.product .product_title::before, .woocommerce #respond input#submit.alt.disabled, .woocommerce #respond input#submit.alt.disabled:hover, .woocommerce #respond input#submit.alt:disabled, .woocommerce #respond input#submit.alt:disabled:hover, .woocommerce #respond input#submit.alt:disabled[disabled], .woocommerce #respond input#submit.alt:disabled[disabled]:hover, .woocommerce a.button.alt.disabled, .woocommerce a.button.alt.disabled:hover, .woocommerce a.button.alt:disabled, .woocommerce a.button.alt:disabled:hover, .woocommerce a.button.alt:disabled[disabled], .woocommerce a.button.alt:disabled[disabled]:hover, .woocommerce button.button.alt.disabled, .woocommerce button.button.alt.disabled:hover, .woocommerce button.button.alt:disabled, .woocommerce button.button.alt:disabled:hover, .woocommerce button.button.alt:disabled[disabled], .woocommerce button.button.alt:disabled[disabled]:hover, .woocommerce input.button.alt.disabled, .woocommerce input.button.alt.disabled:hover, .woocommerce input.button.alt:disabled, .woocommerce input.button.alt:disabled:hover, .woocommerce input.button.alt:disabled[disabled], .woocommerce input.button.alt:disabled[disabled]:hover, .btn-primary:hover, .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button, .woocommerce .woocommerce-MyAccount-navigation ul .is-active a, .woocommerce .woocommerce-MyAccount-navigation ul li a:hover, .products_details div.product span.sale-btn, .shop-sidebar .tagcloud a:focus, .shop-sidebar .widget_search form button, .shop-sidebar .widget .widget-title::before, .shop-sidebar .widget ul li::before, .shop-sidebar .tagcloud a:hover, .shop-sidebar .tagcloud a:focus { background-color: #FE4A55; }
+                    .btn-primary, .btn-primary.disabled, .btn-primary:disabled { background-color: #FE4A55; }
+
+                    .productsQuickView .modal-dialog .modal-content .products-content .product-meta span a:hover, .woocommerce ul.products li.product h3 a:hover, .woocommerce ul.products li.product .add-to-cart-btn, .woocommerce div.product .woocommerce-tabs ul.tabs li.active a, .products_details div.product .woocommerce-tabs ul.tabs li a:hover, .products_details div.product .woocommerce-tabs ul.tabs li.active, .products_details div.product .woocommerce-tabs ul.tabs li.active a:hover, .products_details div.product .product_meta span.posted_in a:hover, .products_details div.product .product_meta span.tagged_as a:hover, .products_details div.product span.price, .cart-table table tbody tr td.product-name a, .woocommerce-message::before, .woocommerce-info::before, .shop-sidebar .widget ul li a:hover, .shop-sidebar .widget_rss .widget-title .rsswidget { color: #FE4A55; }
+
+                    .woocommerce-info, .woocommerce-message { border-top-color: #FE4A55; }
+                    .shop-sidebar .widget_shopping_cart .cart_list li a:hover, .shop-sidebar ul li a:hover { color: #FE4A55 !important; }
+                    .woocommerce ul.products li.product:hover .add-to-cart-btn, .form-control:focus, .woocommerce .form-control:focus, .shop-sidebar .tagcloud a:hover, .shop-sidebar .tagcloud a:focus, .tutor-button.tutor-success { border-color: #FE4A55; }
+
+                    .navbar-area.no-sticky.is-sticky {display:none !important;}
+                    .courses-curriculum .scroll-wrapper > .scroll-content { overflow: inherit !important; }
+                    .courses-curriculum .scroll-wrapper { overflow: initial !important; }
+
+
+                    :root {
+                        --mainColor: #FE4A55;
+                        --SparklingAppleColor: #72AE44;
+                    }
+
+                    .single-blog-post .post-image a img {
+        width: 100%;
+    }
+
+    .pmpro-has-access .entry-content ul {
+        list-style-type: none;
+    }
+
+    .lp-profile-content button, #course-item-content-header .form-button.lp-button-back button {
+        background: #fe4a55;
+    }
+
+    .lp-profile-content button:hover, .lp-profile-content button:focus, #course-item-content-header .form-button.lp-button-back button:hover, #course-item-content-header .form-button.lp-button-back button:focus {
+        color: #ffffff !important;
+    }
+    @media only screen and (max-width: 767px) {
+       #learn-press-profile .lp-content-area {
+        display: unset !important;
+    }
+    }
+
+    .courses-details-info .btn-box form {
+        display: block !important;
+    }
+
+    .ecademy-nav .navbar .navbar-nav .nav-item:hover .dropdown-menu {
+        z-index: 999999 !important;
+    }
+    .ecademy-nav .navbar .navbar-nav .nav-item .dropdown-menu {
+        z-index: 999999 !important;
+    }
+    </style>
+    <!-- page design link-->
+    <link rel='stylesheet' id='vendor-css' href='https://themes.envytheme.com/ecademy/wp-content/themes/ecademy/assets/css/vendor.min.css?ver=1697189650' type='text/css' media='all' />
+    <link rel='stylesheet' id='ecademy-main-style-css' href='https://themes.envytheme.com/ecademy/wp-content/themes/ecademy/assets/css/style.css?ver=1697189650' type='text/css' media='all' />
+    <!-- moving ball -->
+    <link rel='stylesheet' id='elementor-frontend-css' href='https://themes.envytheme.com/ecademy/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=3.16.5' type='text/css' media='all' />
+    <link rel='stylesheet' id='elementor-post-1324-css' href='https://themes.envytheme.com/ecademy/wp-content/uploads/elementor/css/post-1324.css?ver=1697026207' type='text/css' media='all' />
+    <!-- page display-->
+    <script type='text/javascript' src='https://themes.envytheme.com/ecademy/wp-includes/js/jquery/jquery.min.js?ver=3.7.0' id='jquery-core-js'></script>
+    <script type='text/javascript' src='https://themes.envytheme.com/ecademy/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1' id='jquery-migrate-js'></script>
+    <script type='text/javascript' src='https://themes.envytheme.com/ecademy/wp-content/themes/ecademy/assets/js/main.js?ver=1697189650' id='ecademy-main-js'></script>
+    <!-- testimonial link-->
+    <script type='text/javascript' src='https://themes.envytheme.com/ecademy/wp-content/themes/ecademy/assets/js/vendor.min.js?ver=1697189650' id='vendor-js'></script>
+
+    <!--design for the nav bar(the nav tab must include bg-info in the class)-->
+    <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+    <!--Link for font-awesome-->
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">-->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--    End -->
+
+
+<body class="page-template-default page page-id-1324 theme-ecademy woocommerce-no-js elementor-default elementor-kit-17 elementor-page elementor-page-1324">
+<!-- preloader/ loading icon -->
+<div class="preloader">
+    <div class="loader">
+        <div class="sbl-half-circle-spin">
+            <div></div>
+        </div>
+    </div>
+</div>
+<div class="navbar-area ">
+    <div class="ecademy-responsive-nav">
+        <div class="container">
+            <div class="ecademy-responsive-menu">
+                <div class="logo">
+                    <a href="https://themes.envytheme.com/ecademy/">
+                        <img src="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/06/eCademy.png" alt="eCademy">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ecademy-nav">
+        <div class="container-flui">
+            <nav class="navbar navbar-expand-lg bg-info">
+                <a class="navbar-brand" href="" style="position:absolute;left:50px">
+                    <img src="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/06/eCademy.png" alt="eCademy">
+                </a>
+                <div class="collapse navbar-collapse mean-menu">
+                    <ul id="menu-primary-menu" class="navbar-nav ml-auto">
+                        <li id="menu-item-976" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children dropdown active menu-item-976 nav-item">
+                            <a title="Home" href="/" data-hover="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle nav-link" id="menu-item-dropdown-976"><span class="badge badge-pill badge-info" >  {% trans "Home" %}</span></a>
+                        </li>
+                        <li id="menu-item-27" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown menu-item-27 nav-item">
+                            <a title="Courses" href="#" data-hover="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle nav-link" id="menu-item-dropdown-27"><span class="badge badge-pill badge-info" >  {% trans "Courses" %}</span></a>
+                        </li>
+                        <li id="menu-item-406" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown menu-item-406 nav-item">
+                            <a title="Events" href="#" data-hover="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle nav-link" id="menu-item-dropdown-406"><span class="badge badge-pill badge-info" >{% trans "Events" %}</span></a>
+                        </li>
+                        <li id="menu-item-403" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown menu-item-403 nav-item">
+                            <a title="Blog" href="#" data-hover="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle nav-link" id="menu-item-dropdown-403"><span class="badge badge-pill badge-info" >{% trans "Blog" %}</span></a>
+                        </li>
+                        <li id="menu-item-485" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-485 nav-item">
+                            <a title="Contact" href="{% url 'users:contact_us' %}" class="nav-link"><span class="badge badge-pill badge-info" >{% trans "Contact Us" %}</span></a>
+                        </li>
+                    </ul>
+                    {% if user.is_authenticated %}
+                    <div class="others-option d-flex align-items-center">
+                        <div class="option-item">
+                            <a href="{% url 'users:logout' %}" class="default-btn" style="right:8px;font-size:12px;border-radius:100px;top:5px;padding:2px;width:100px">
+                               <i class="flaticon-user"></i>{% trans "Log-Out" %}<span></span>
+                           </a>
+                        </div>
+                        <div class="option-item">
+                            <a href="{% url 'users:my_account' %}" class="default-btn" style="right:10px; border-radius:50px;padding:10px;width:200px">
+                               <i class="fa fa-user" style='font-size:20px;'></i>{% trans "My Account" %}<span></span>
+                           </a>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="others-option d-flex align-items-center">
+                        <div class="option-item ">
+                            <a href="{% url 'users:login' %}" class="default-btn" style="right:10px;border-radius:50px;font-size:15px;">
+                                <i class="fa fa-user"></i>Login/Register<span></span>
+                            </a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="others-option-for-responsive">
+        <div class="container">
+            <div class="dot-menu">
+                <div class="inner">
+                    <div class="circle circle-one"></div>
+                    <div class="circle circle-two"></div>
+                    <div class="circle circle-three"></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="option-inner">
+                    {% if user.is_authenticated %}
+                    <div class="others-option d-flex align-items-center">
+                        <div class="option-item">
+                            <a href="{% url 'users:logout' %}" class="default-btn" style="right:-200px;top:20px;font-size:12px;border-radius:100px;padding:2px;width:100px">
+                               <i class="flaticon-user"></i>{% trans "Log-Out" %}<span></span>
+                           </a>
+                        </div>
+                        <div class="option-item">
+                            <a href="{% url 'users:my_account' %}" class="default-btn" style="right:25px;top:-25px;border-radius:50px;padding:10px;width:200px">
+                               <i class="fa fa-user" style='font-size:20px;'></i>{% trans "My Account" %}<span></span>
+                           </a>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="others-option d-flex align-items-center">
+                        <div class="option-item ">
+                            <a href="{% url 'users:login' %}" class="default-btn" style="right:10px;border-radius:50px;font-size:15px;">
+                                <i class="fa fa-user"></i>Login/Register<span></span>
+                            </a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-area">
+    <div id="post-1324" class="post-1324 page type-page status-publish hentry">
+        <div class="entry-content ecademy-Modern Schooling-un">
+            <div data-elementor-type="wp-page" data-elementor-id="1324" class="elementor elementor-1324">
+                <section class="elementor-section elementor-top-section elementor-element elementor-element-39f2324 elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="39f2324" data-element_type="section">
+                    <div class="elementor-container elementor-column-gap-no">
+                        <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-bc040ef" data-id="bc040ef" data-element_type="column">
+                            <div class="elementor-widget-wrap elementor-element-populated">
+                                <div class="elementor-element elementor-element-bde68a7 elementor-widget elementor-widget-Modern_Schooling_Hero" data-id="bde68a7" data-element_type="widget" data-widget_type="Modern_Schooling_Hero.default">
+                                    <div class="elementor-widget-container">
+                                        <div class="hero-banner-area">
+                                            <div class="container-fluid">
+                                                <div class="row align-items-center">
+                                                    <div class="col-lg-6 col-md-12">
+                                                        <div class="hero-banner-content">
+                                                            <h1 >
+                                                                Build Development Skills With eCademy Any Time, Anywhere
+                                                            </h1>
+                                                            <p >Welcome to eCademy, where incredible opportunities await. I am excited about our collaboration and the boundless potential it holds. At eCademy, we believe in unlocking the unlimited possibilities within each student. Our institute is a hub of innovation, fostering excellence, and cherishing every student's role in our close-knit community. Your journey here will be transformative, enabling you to achieve remarkable heights.</p>
+                                                            <a href="{% url 'users:login' %}" class="default-btn"><i class="flaticon-user"></i>Join US Now<span></span></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-12">
+                                                        <div class="hero-banner-image">
+                                                            <img decoding="async" src="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/06/main-banner3.png" alt="Build Development Skills With eCademy Any Time, Anywhere">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="banner-shape19">
+                                                <img decoding="async" src="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/06/banner-shape20.png" alt="shape image">
+                                            </div>
+                                            <div class="divider"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="elementor-section elementor-top-section elementor-element elementor-element-3d84e66 elementor-section-full_width boxes-area boxes-style-two bg-f5f7fa elementor-section-height-default elementor-section-height-default" data-id="3d84e66" data-element_type="section">
+                    <div class="elementor-container elementor-column-gap-no">
+                        <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-ba406c4" data-id="ba406c4" data-element_type="column">
+                            <div class="elementor-widget-wrap elementor-element-populated">
+                                <div class="elementor-element elementor-element-c2296a8 elementor-widget elementor-widget-eCademy_Features_Boxe" data-id="c2296a8" data-element_type="widget" data-widget_type="eCademy_Features_Boxe.default">
+                                    <div class="elementor-widget-container">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-lg-4 col-sm-6 col-md-6 ">
+                                                    <div class="single-box-item">
+                                                        <div class="image">
+                                                            <img decoding="async" src="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/06/boxes-img1.png" alt="Web Development">
+                                                        </div>
+                                                        <h3>Web Development</h3>
+                                                        <p>Lorem ipsum dolor sit amet, consecteur adipiscing elit, sed do eiusmod tempor.</p>
+                                                        <a target="_self" href ="#" class="link-btn">Start Now!</a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-6 col-md-6 ">
+                                                    <div class="single-box-item">
+                                                        <div class="image">
+                                                            <img decoding="async" src="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/06/boxes-img2.png" alt="UX/UI Design">
+                                                        </div>
+                                                        <h3>Machine Learning</h3>
+                                                        <p>Lorem ipsum dolor sit amet, consecteur adipiscing elit, sed do eiusmod tempor.</p>
+                                                        <a target="_self" href ="#" class="link-btn">Start Now!</a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-6 col-md-6 ">
+                                                    <div class="single-box-item">
+                                                        <div class="image">
+                                                            <img decoding="async" src="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/06/boxes-img3.png" alt="App Development">
+                                                        </div>
+                                                        <h3>App Development</h3>
+                                                        <p>Lorem ipsum dolor sit amet, consecteur adipiscing elit, sed do eiusmod tempor.</p>
+                                                        <a target="_self" href ="#" class="link-btn">Start Now!</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="boxes-info">
+                                                <p>If you want more?​ <a target="_self" href ="#">View More Courses</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="elementor-section elementor-top-section elementor-element elementor-element-ffe95bd elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="ffe95bd" data-element_type="section">
+                    <div class="elementor-container elementor-column-gap-no">
+                        <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-6abb8e6" data-id="6abb8e6" data-element_type="column">
+                            <div class="elementor-widget-wrap elementor-element-populated">
+                                <div class="elementor-element elementor-element-016542e animated-slow elementor-widget__width-inherit elementor-absolute elementor-widget-mobile__width-inherit elementor-hidden-phone elementor-invisible elementor-widget elementor-widget-image" data-id="016542e" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;,&quot;_animation_delay&quot;:0,&quot;_position&quot;:&quot;absolute&quot;}" data-widget_type="image.default">
+                                    <div class="elementor-widget-container">
+                                        <img decoding="async" width="60" height="60" src="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/06/section-shape-image-1.png" class="attachment-full size-full wp-image-1356" alt="" />
+                                    </div>
+                                </div>
+                                <div class="elementor-element elementor-element-5d2b219 elementor-widget elementor-widget-Distance_Learning" data-id="5d2b219" data-element_type="widget" data-widget_type="Distance_Learning.default">
+                                    <div class="elementor-widget-container">
+                                        <div class="about-area ptb-100">
+                                            <div class="container">
+                                                <div class="row align-items-center">
+                                                    <div class="col-lg-6 col-md-12">
+                                                        <div class="about-image text-center">
+                                                            <img decoding="async" src="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/06/about-img10.png" alt="About Us">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-12">
+                                                        <div class="about-content">
+                                                            <span class="sub-title">Online Learning</span>
+                                                            <h2 >Develop Your Skills, Learn Something New, and Grow Your Skills From Anywhere in the World!</h2>
+                                                            <p >We understand better that online-based learning can make a significant change to reach students from all over the world! Giving options to learn better always can offer the best outcomes!</p>
+                                                            <ul class="features-list">
+                                                                <li><span><i class="fa fa-trophy"></i>Skilled Teachers</span></li>
+                                                                <li><span><i class="fa fa-thumbs-up"></i>Affordable Courses</span></li>
+                                                                <li><span><i class="fa fa-wifi"></i> Efficient &amp; Flexible</span></li>
+                                                                <li><span><i class="fa fa-universal-access"></i> Lifetime Access</span></li>
+                                                            </ul>
+                                                            <a href="{% url 'users:login' %}" class="default-btn"><i class="flaticon-user"></i>Join Us Now<span></span></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="elementor-section elementor-top-section elementor-element elementor-element-406ea18 elementor-section-full_width courses-area ptb-100 elementor-section-height-default elementor-section-height-default" data-id="406ea18" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+        <div class="elementor-container elementor-column-gap-no">
+            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-5940680" data-id="5940680" data-element_type="column">
+                <div class="elementor-widget-wrap elementor-element-populated">
+                    <div class="elementor-element elementor-element-c309a7b elementor-widget elementor-widget-Section" data-id="c309a7b" data-element_type="widget" data-widget_type="Section.default">
+                        <div class="elementor-widget-container">
+                            <div class="section-title">
+                                <span class="sub-title">Go at your own pace</span>
+                                <h2 >The World’s Largest Selection Of Courses</h2>
+                                <p >Explore all of our courses and pick your suitable ones to enroll and start learning with us! We ensure that you will never regret it!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="elementor-element elementor-element-5f08c58 elementor-widget elementor-widget-eCademy_Courses" data-id="5f08c58" data-element_type="widget" data-widget_type="eCademy_Courses.default">
+                        <div class="elementor-widget-container">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="single-courses-item without-box-shadow">
+                                            <div class="row align-items-center">
+                                                <div class="col-lg-4 col-md-4">
+                                                    <div class="courses-image">
+                                                        <img decoding="async" src="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/05/course-img13-400x400.jpg" alt="">
+                                                        <a href="#" class="link-btn"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-8 col-md-8">
+                                                    <div class="courses-content">
+                                                        <span class="course-item-price"><span class="free">Free</span></span>
+                                                        <h3><a href="#">Python Django Web Development: To-Do App</a></h3>
+                                                        <ul class="courses-content-footer d-flex justify-content-between align-items-center">
+                                                            <li>
+                                                                <i class='flaticon-agenda'></i>
+                                                                2 Lessons
+                                                            </li>
+                                                            <li>
+                                                                <i class='flaticon-people'></i>
+                                                                171 Students
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="single-courses-item without-box-shadow">
+                                            <div class="row align-items-center">
+                                                <div class="col-lg-4 col-md-4">
+                                                    <div class="courses-image">
+                                                        <img decoding="async" src="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/05/course-img14-400x400.jpg" alt="">
+                                                        <a href="#" class="link-btn"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-8 col-md-8">
+                                                    <div class="courses-content">
+                                                        <span class="course-item-price"><span class="price">&#36;59</span></span>
+                                                        <h3><a href="#">Django CMS Developer : Essentials, Tips and Tricks</a></h3>
+                                                        <ul class="courses-content-footer d-flex justify-content-between align-items-center">
+                                                            <li>
+                                                                <i class='flaticon-people'></i>
+                                                                29 Students
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="single-courses-item without-box-shadow">
+                                            <div class="row align-items-center">
+                                                <div class="col-lg-4 col-md-4">
+                                                    <div class="courses-image">
+                                                        <img decoding="async" src="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/05/course-img15-400x400.jpg" alt="">
+                                                        <a href="#" class="link-btn"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-8 col-md-8">
+                                                    <div class="courses-content">
+                                                        <span class="course-item-price"><span class="price">&#36;99</span></span>
+                                                        <h3><a href="#">Learning A-Z™: Hands-On Python In Data Science</a></h3>
+                                                        <ul class="courses-content-footer d-flex justify-content-between align-items-center">
+                                                            <li>
+                                                                <i class='flaticon-people'></i>
+                                                                26 Students
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="single-courses-item without-box-shadow">
+                                            <div class="row align-items-center">
+                                                <div class="col-lg-4 col-md-4">
+                                                    <div class="courses-image">
+                                                        <img decoding="async" src="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/05/course-img3-400x400.jpg" alt="">
+                                                        <a href="#" class="link-btn"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-8 col-md-8">
+                                                    <div class="courses-content">
+                                                        <span class="course-item-price"><span class="price">&#36;59</span></span>
+                                                        <h3><a href="#">Deep Learning a-z™: Hands-on Artificial Neural Networks</a></h3>
+                                                        <ul class="courses-content-footer d-flex justify-content-between align-items-center">
+                                                            <li>
+                                                                <i class='flaticon-people'></i>
+                                                                26 Students
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="elementor-section elementor-top-section elementor-element elementor-element-8e5dc45 elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="8e5dc45" data-element_type="section">
+        <div class="elementor-container elementor-column-gap-no">
+            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-f107d1b" data-id="f107d1b" data-element_type="column">
+                <div class="elementor-widget-wrap elementor-element-populated">
+                    <div class="elementor-element elementor-element-5f0d824 elementor-widget elementor-widget-Feedback Slider" data-id="5f0d824" data-element_type="widget" data-widget_type="Feedback Slider.default">
+                        <div class="elementor-widget-container">
+                            <div class="feedback-area bg-fffaf3 ptb-100">
+                                <div class="container">
+                                    <div class="feedback-slides-two owl-carousel owl-theme">
+                                        <div class="single-feedback-box">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum  ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed tempor incididunt ut labore et dolore.</p>
+                                            <div class="client-info d-flex align-items-center">
+                                                <img decoding="async" class="rounded-circle" src="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/05/user1-2.jpg" alt="John Smith">
+                                                <div class="title">
+                                                    <h3>John Smith</h3>
+                                                    <span>Designer</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="single-feedback-box">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum  ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed tempor incididunt ut labore et dolore.</p>
+                                            <div class="client-info d-flex align-items-center">
+                                                <img decoding="async" class="rounded-circle" src="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/05/user2-2.jpg" alt="Sarah Taylor">
+                                                <div class="title">
+                                                    <h3>Sarah Taylor</h3>
+                                                    <span>PHP Developer</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="single-feedback-box">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum  ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed tempor incididunt ut labore et dolore.</p>
+                                            <div class="client-info d-flex align-items-center">
+                                                <img decoding="async" class="rounded-circle" src="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/05/user3-2.jpg" alt="John Smith">
+                                                <div class="title">
+                                                    <h3>John Smith</h3>
+                                                    <span>Python Developer</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="divider2"></div>
+                                <div class="divider3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="elementor-section elementor-top-section elementor-element elementor-element-d3b7ad1 elementor-section-full_width categories-area ptb-100 elementor-section-height-default elementor-section-height-default" data-id="d3b7ad1" data-element_type="section">
+        <div class="elementor-container elementor-column-gap-no">
+            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-cdde7ba" data-id="cdde7ba" data-element_type="column">
+                <div class="elementor-widget-wrap elementor-element-populated">
+                    <div class="elementor-element elementor-element-64b43cf elementor-widget elementor-widget-Section" data-id="64b43cf" data-element_type="widget" data-widget_type="Section.default">
+                        <div class="elementor-widget-container">
+                            <div class="section-title">
+                                <span class="sub-title">Categories</span>
+                                <h2 >Top Categories</h2>
+                                <p >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="elementor-element elementor-element-88d3784 elementor-widget elementor-widget-eCademy_Courses_Categories" data-id="88d3784" data-element_type="widget" data-widget_type="eCademy_Courses_Categories.default">
+                        <div class="elementor-widget-container">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-3 col-sm-6 col-md-6">
+                                        <div class="single-categories-box">
+                                            <img decoding="async" src="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/05/categorie-img1.jpg" alt="Data Science">
+                                            <div class="content">
+                                                <h3>Data Science</h3>
+                                                <span>2 Courses</span>
+                                            </div>
+                                            <a href="#" class="link-btn"></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-sm-6 col-md-6">
+                                        <div class="single-categories-box">
+                                            <img decoding="async" src="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/05/categorie-img4.jpg" alt="Web Development">
+                                            <div class="content">
+                                                <h3>Web Development</h3>
+                                                <span>3 Courses</span>
+                                            </div>
+                                            <a href="#" class="link-btn"></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-sm-6 col-md-6">
+                                        <div class="single-categories-box">
+                                            <img decoding="async" src="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/05/categorie-img5.jpg" alt="Photo &amp; Flim">
+                                            <div class="content">
+                                                <h3>Django CMS &amp; CMF</h3>
+                                                <span>1 Courses</span>
+                                            </div>
+                                            <a href="#" class="link-btn"></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-sm-6 col-md-6">
+                                        <div class="single-categories-box">
+                                            <img decoding="async" src="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/05/categorie-img7.jpg" alt="Machine Learning">
+                                            <div class="content">
+                                                <h3>Machine Learning</h3>
+                                                <span>1 Courses</span>
+                                            </div>
+                                            <a href="#" class="link-btn"></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-sm-12 col-md-12">
+                                        <div class="categories-btn-box">
+                                            <a href="#" class="default-btn">
+                                                <i class="flaticon-user"></i>View All Categories<span></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="elementor-section elementor-top-section elementor-element elementor-element-e1214bf elementor-section-full_width overview-area ptb-100 elementor-section-height-default elementor-section-height-default" data-id="e1214bf" data-element_type="section">
+        <div class="elementor-container elementor-column-gap-no">
+            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-8420352" data-id="8420352" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+                <div class="elementor-element elementor-element-5f00e87 elementor-widget elementor-widget-Overview_Area " data-id="5f00e87" data-element_type="widget" data-widget_type="Overview_Area .default">
+                    <div class="elementor-widget-container">
+                        <div class="container">
+                            <div class="overview-box">
+                                <div class="overview-content">
+                                    <span class="sub-title">Distance Learning</span>
+                                    <h2 >Feel Like You Are Attending Your Classes Physically!</h2>
+                                    <p >eCademy training programs can bring you a super exciting experience of learning through online! You never face any negative experience while enjoying your classes virtually by sitting in your comfort zone. Our flexible learning initiatives will help you to learn better and quicker than the traditional ways of learning skills.</p>
+                                    <a href="#" class="default-btn"><i class="flaticon-user"></i>Get Started Now<span></span></a>
+                                </div>
+                                <div class="overview-image">
+                                    <img decoding="async" src="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/06/overview-img1.png" alt="h2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+	<section class="elementor-section elementor-top-section elementor-element elementor-element-9d8f01a elementor-section-full_width events-area bg-fffaf3 pt-100 pb-70 elementor-section-height-default elementor-section-height-default" data-id="9d8f01a" data-element_type="section">
+        <div class="elementor-container elementor-column-gap-no">
+            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-17b06fa" data-id="17b06fa" data-element_type="column">
+                <div class="elementor-widget-wrap elementor-element-populated">
+                    <div class="elementor-element elementor-element-628f0dd elementor-widget elementor-widget-Section" data-id="628f0dd" data-element_type="widget" data-widget_type="Section.default">
+                        <div class="elementor-widget-container">
+                            <div class="section-title">
+                                <span class="sub-title">Events</span>
+                                <h2 >Our Upcoming Events</h2>
+                                <p >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="elementor-element elementor-element-e1a33f2 elementor-widget elementor-widget-eCademy_Events" data-id="e1a33f2" data-element_type="widget" data-widget_type="eCademy_Events.default">
+                        <div class="elementor-widget-container">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-4 col-sm-6 col-md-6">
+                                        <div class="single-events-box">
+                                            <div class="image">
+                                                <a href="#" class="d-block">
+                                                    <img fetchpriority="high" width="750" height="500" src="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/05/course-img17.jpg" class="attachment-ecademy_default_thumb size-ecademy_default_thumb wp-post-image" alt="" decoding="async" srcset="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/05/course-img17.jpg 750w, https://themes.envytheme.com/ecademy/wp-content/uploads/2020/05/course-img17-600x400.jpg 600w, https://themes.envytheme.com/ecademy/wp-content/uploads/2020/05/course-img17-300x200.jpg 300w" sizes="(max-width: 750px) 100vw, 750px" />
+                                                </a>
+                                                <span class="date">December 1, 2020</span>
+                                            </div>
+                                            <div class="content">
+                                                <h3><a href="#">International Conference on Educational Administration</a></h3>
+                                                <span class="location"><i class="bx bx-map"></i>Rome, Italy</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6 col-md-6">
+                                        <div class="single-events-box">
+                                            <div class="image">
+                                                <a href="#" class="d-block">
+                                                    <img width="750" height="500" src="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/05/course-img1.jpg" class="attachment-ecademy_default_thumb size-ecademy_default_thumb wp-post-image" alt="" decoding="async" srcset="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/05/course-img1.jpg 750w, https://themes.envytheme.com/ecademy/wp-content/uploads/2020/05/course-img1-600x400.jpg 600w, https://themes.envytheme.com/ecademy/wp-content/uploads/2020/05/course-img1-300x200.jpg 300w" sizes="(max-width: 750px) 100vw, 750px" />
+                                                </a>
+                                                <span class="date">December 1, 2020</span>
+                                            </div>
+                                            <div class="content">
+                                                <h3><a href="#">International Conference on Teacher Education</a></h3>
+                                                <span class="location"><i class="bx bx-map"></i>Sydney, Australia</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6 col-md-6">
+                                        <div class="single-events-box">
+                                            <div class="image">
+                                                <a href="#" class="d-block">
+                                                    <img loading="lazy" width="650" height="433" src="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/05/course-img6.jpg" class="attachment-ecademy_default_thumb size-ecademy_default_thumb wp-post-image" alt="" decoding="async" srcset="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/05/course-img6.jpg 650w, https://themes.envytheme.com/ecademy/wp-content/uploads/2020/05/course-img6-600x400.jpg 600w, https://themes.envytheme.com/ecademy/wp-content/uploads/2020/05/course-img6-300x200.jpg 300w" sizes="(max-width: 650px) 100vw, 650px" />
+                                                </a>
+                                                <span class="date">December 1, 2020</span>
+                                            </div>
+                                            <div class="content">
+                                                <h3><a href="#">Research Conference Aims and Objectives</a></h3>
+                                                <span class="location"><i class="bx bx-map"></i>Tokyo, Japan</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<script type='text/javascript' src='https://themes.envytheme.com/ecademy/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=3.16.5' id='elementor-webpack-runtime-js'></script>
+<script type='text/javascript' src='https://themes.envytheme.com/ecademy/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.16.5' id='elementor-frontend-modules-js'></script>
+<script id="elementor-frontend-js-before" type="text/javascript">
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Share on Facebook","shareOnTwitter":"Share on Twitter","pinIt":"Pin it","download":"Download","downloadImage":"Download image","fullscreen":"Fullscreen","zoom":"Zoom","share":"Share","playVideo":"Play Video","previous":"Previous","next":"Next","close":"Close","a11yCarouselWrapperAriaLabel":"Carousel | Horizontal scrolling: Arrow Left & Right","a11yCarouselPrevSlideMessage":"Previous slide","a11yCarouselNextSlideMessage":"Next slide","a11yCarouselFirstSlideMessage":"This is the first slide","a11yCarouselLastSlideMessage":"This is the last slide","a11yCarouselPaginationBulletMessage":"Go to slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile Portrait","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Landscape","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}}},"version":"3.16.5","is_static":false,"experimentalFeatures":{"e_dom_optimization":true,"e_optimized_assets_loading":true,"additional_custom_breakpoints":true,"landing-pages":true},"urls":{"assets":"https:\/\/themes.envytheme.com\/ecademy\/wp-content\/plugins\/elementor\/assets\/"},"swiperClass":"swiper-container","settings":{"page":[],"editorPreferences":[]},"kit":{"global_image_lightbox":"yes","active_breakpoints":["viewport_mobile","viewport_tablet"],"lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":1324,"title":"Modern%20Schooling%20%E2%80%93%20eCademy","excerpt":"","featuredImage":false}};
+</script>
+<script type='text/javascript' src='https://themes.envytheme.com/ecademy/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.16.5' id='elementor-frontend-js'></script>
+
+</body>
+</html>
