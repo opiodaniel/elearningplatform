@@ -4,6 +4,8 @@ from taggit.models import Tag
 from django.shortcuts import get_object_or_404
 from django.conf import settings
 from redis import StrictRedis
+from .models import Course, Program, PersonsPhrase, Category, Event, WhyUS, InstitutionWeb
+from ..courses.models import CourseSchedule
 from django.contrib.auth.models import User
 # from allauth.account.forms import LoginForm, SignupForm
 from django.contrib.sites.shortcuts import get_current_site
@@ -22,6 +24,14 @@ from django.urls import reverse
 def home(request):
     # return render(request, 'partners/home_test.html', {})
     print('partners home0: ')
+    courses = Course.objects.all()
+    programs = Program.objects.all()
+    persons_phrase = PersonsPhrase.objects.all()
+    categories = Category.objects.all()
+    events = Event.objects.all()
+    why_us_ = WhyUS.objects.all()
+    institution = InstitutionWeb.objects.get(id=1)
+    course_schedule = CourseSchedule.objects.get(id=1)
     # log_debug('partners home_0: ')
     host = request.META["HTTP_HOST"]
     # log_debug('partners host_1: ' + host)
@@ -105,7 +115,15 @@ def home(request):
                                                   'user_counter': user_counter,
                                                   # 'form' : form_class,
                                                   # 'form_signup': form_signup,
-                                                  'redirect_field_name': redirect_field_name
+                                                  'redirect_field_name': redirect_field_name,
+                                                  'courses': courses,
+                                                  'programs': programs,
+                                                  'persons_phrase_': persons_phrase,
+                                                  'categories': categories,
+                                                  'events': events,
+                                                  'why_us': why_us_,
+                                                  'institution': institution,
+                                                  'course_schedule': course_schedule,
                                                   # 'user_ranking': user_ranking
                                                   }
                   )
@@ -155,5 +173,37 @@ def partner_detail(request, slug):
     return render(request, 'partners/partner.html', {'partner': partner})
 
 
+def course_description(request, pk):
+    institution = InstitutionWeb.objects.get(id=1)
+    course = Course.objects.get(id=pk)
+    return render(request, 'partners/course_description.html',
+                  {'course': course,
+                   'institution_obj': institution,
+                   })
 
 
+def program_description(request, pk):
+    institution = InstitutionWeb.objects.get(id=1)
+    program = Program.objects.get(id=pk)
+    return render(request, 'partners/program_description.html',
+                  {'program': program,
+                   'institution_obj': institution,
+                   })
+
+
+def category_description(request, pk):
+    institution = InstitutionWeb.objects.get(id=1)
+    category = Category.objects.get(id=pk)
+    return render(request, 'partners/category_description.html',
+                  {'category': category,
+                   'institution_obj': institution,
+                   })
+
+
+def event_description(request, pk):
+    institution = InstitutionWeb.objects.get(id=1)
+    event = Event.objects.get(id=pk)
+    return render(request, 'partners/event_description.html',
+                  {'event': event,
+                   'institution_obj': institution,
+                   })

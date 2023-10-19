@@ -1,0 +1,168 @@
+{% extends "base_education.html" %}
+{% load static i18n cms_tags menu_tags sekizai_tags thumbnail %}
+
+{% block title %}
+<title>{{ course.course_name }}</title>
+{% endblock%}
+
+
+{% block add_css %}
+{% endblock add_css %}
+
+{% block nav_bar %}
+<!-- preloader/ loading icon -->
+<div class="preloader">
+    <div class="loader">
+        <div class="sbl-half-circle-spin">
+            <div></div>
+        </div>
+    </div>
+</div>
+<div class="navbar-area ">
+    <div class="ecademy-responsive-nav">
+        <div class="container">
+            <div class="ecademy-responsive-menu">
+                <div class="logo">
+                    <a href="https://themes.envytheme.com/ecademy/">
+                        <img src="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/06/eCademy.png" alt="eCademy">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ecademy-nav">
+        <div class="container-flui">
+            <nav class="navbar navbar-expand-lg bg-info">
+                <a class="navbar-brand" href="" style="position:absolute;left:50px">
+                    <img src="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/06/eCademy.png" alt="eCademy">
+                </a>
+                <div class="collapse navbar-collapse mean-menu">
+                    <ul id="menu-primary-menu" class="navbar-nav ml-auto">
+                        <li id="menu-item-976" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children dropdown active menu-item-976 nav-item">
+                            <a title="Home" href="/" data-hover="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle nav-link" id="menu-item-dropdown-976"><span class="badge badge-pill badge-info" >  {% trans "Home" %}</span></a>
+                        </li>
+                        <li id="menu-item-27" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown menu-item-27 nav-item">
+                            <a title="Courses" href="#" data-hover="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle nav-link" id="menu-item-dropdown-27"><span class="badge badge-pill badge-info" >  {% trans "Courses" %}</span></a>
+                        </li>
+                        <li id="menu-item-406" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown menu-item-406 nav-item">
+                            <a title="Events" href="#" data-hover="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle nav-link" id="menu-item-dropdown-406"><span class="badge badge-pill badge-info" >{% trans "Events" %}</span></a>
+                        </li>
+                        <li id="menu-item-403" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown menu-item-403 nav-item">
+                            <a title="Blog" href="#" data-hover="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle nav-link" id="menu-item-dropdown-403"><span class="badge badge-pill badge-info" >{% trans "Blog" %}</span></a>
+                        </li>
+                        <li id="menu-item-485" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-485 nav-item">
+                            <a title="Contact" href="{% url 'users:contact_us' %}" class="nav-link"><span class="badge badge-pill badge-info" >{% trans "Contact Us" %}</span></a>
+                        </li>
+                    </ul>
+                    {% if user.is_authenticated %}
+                    <div class="others-option d-flex align-items-center">
+                        <div class="option-item">
+                            <a href="{% url 'users:logout' %}" class="default-btn" style="right:8px;font-size:12px;border-radius:100px;top:5px;padding:2px;width:100px">
+                               <i class="flaticon-user"></i>{% trans "Log-Out" %}<span></span>
+                           </a>
+                        </div>
+                        <div class="option-item">
+                            <a href="{% url 'users:my_account' %}" class="default-btn" style="right:10px; border-radius:50px;padding:10px;width:200px">
+                               <i class="fa fa-user" style='font-size:20px;'></i>{% trans "My Account" %}<span></span>
+                           </a>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="others-option d-flex align-items-center">
+                        <div class="option-item ">
+                            <a href="{% url 'users:login' %}" class="default-btn" style="right:10px;border-radius:50px;font-size:15px;">
+                                <i class="fa fa-user"></i>Login/Register<span></span>
+                            </a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="others-option-for-responsive">
+        <div class="container">
+            <div class="dot-menu">
+                <div class="inner">
+                    <div class="circle circle-one"></div>
+                    <div class="circle circle-two"></div>
+                    <div class="circle circle-three"></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="option-inner">
+                    {% if user.is_authenticated %}
+                    <div class="others-option d-flex align-items-center">
+                        <div class="option-item">
+                            <a href="{% url 'users:logout' %}" class="default-btn" style="right:-200px;top:20px;font-size:12px;border-radius:100px;padding:2px;width:100px">
+                               <i class="flaticon-user"></i>{% trans "Log-Out" %}<span></span>
+                           </a>
+                        </div>
+                        <div class="option-item">
+                            <a href="{% url 'users:my_account' %}" class="default-btn" style="right:25px;top:-25px;border-radius:50px;padding:10px;width:200px">
+                               <i class="fa fa-user" style='font-size:20px;'></i>{% trans "My Account" %}<span></span>
+                           </a>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="others-option d-flex align-items-center">
+                        <div class="option-item ">
+                            <a href="{% url 'users:login' %}" class="default-btn" style="right:10px;border-radius:50px;font-size:15px;">
+                                <i class="fa fa-user"></i>Login/Register<span></span>
+                            </a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block body_content %}
+
+<style>
+.button_courses {
+  border: none;
+  color: white;
+  padding:15px 30px 10px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  height: 50px;
+  border-radius: 25px;
+}
+</style>
+
+
+<div class="container">
+
+<div class="subheader">
+    <div class="subheader__container">
+        <h1 class="subheader__title" style="color:blue; font-size:25px">COURSE: {% render_model course "course_name" %}</h1>
+    </div>
+</div>
+
+{% render_placeholder course.description %}
+
+<button style="background-color:black">
+  <a href="{{ course.course.get_schedule_url }}" class="button_courses">
+                    {% trans "Register for the course." %}
+  </a>
+</button>
+
+
+</div>
+
+
+{% endblock %}
+
+
+
+
+
