@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404
 from django.conf import settings
 from redis import StrictRedis
 from .models import Course, Program, PersonsPhrase, Category, Event, WhyUS, InstitutionWeb
-from ..courses.models import CourseSchedule
+from ..courses.models import CourseSchedule, CourseScheduleUser
 from django.contrib.auth.models import User
 # from allauth.account.forms import LoginForm, SignupForm
 from django.contrib.sites.shortcuts import get_current_site

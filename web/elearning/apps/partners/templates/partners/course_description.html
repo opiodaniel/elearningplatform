@@ -150,16 +150,38 @@
 
 {% render_placeholder course.description %}
 
+{% if user.is_authenticated %}
 <button style="background-color:black">
   <a href="{{ course.course.get_schedule_url }}" class="button_courses">
                     {% trans "Register for the course." %}
   </a>
 </button>
-
+{% else %}
+<button style="background-color:black" onclick="help(event)">
+  <a href="" class="button_courses">
+                    {% trans "Register for the course." %}
+  </a>
+</button>
+<div style="display: inline;">
+    <span id="message" style="color:red" class="a"></span>
+    <a title="Contact" id="contact_us_link" href="{% url 'users:contact_us' %}" style="color:blue"></a>
+</div>
+{% endif %}
 
 </div>
 
 
+<script>
+    function help(event)
+    {
+     event.preventDefault()
+     var msg = document.getElementById("message")
+     var contact_us_link = document.getElementById("contact_us_link")
+     msg.innerHTML = "Contact us to help you register for this Course ----> "
+     contact_us_link.innerHTML="Click on this link to contact us."
+
+    }
+</script>
 {% endblock %}
 
 

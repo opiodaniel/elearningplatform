@@ -8,8 +8,7 @@ from django.utils.text import slugify
 from taggit.managers import TaggableManager
 from django.utils.translation import ugettext_lazy as _
 from ..courses.models import Course
-from ..courses.models import CourseScheduleUser
-
+from ..courses.models import CourseSchedule
 class Partners(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
                               related_name='partners')
@@ -133,6 +132,7 @@ class Course(models.Model):
 
     institution_web = models.ForeignKey(InstitutionWeb, on_delete=models.CASCADE, default=1, related_name='courses')
     course = models.ForeignKey(Course, on_delete=models.CASCADE, default=21, related_name='course_courses')
+    course_schedule = models.ForeignKey(CourseSchedule, on_delete=models.CASCADE, default=1, related_name='course_course_schedule')
     order = models.IntegerField(default=1000, blank=True)
     fee = models.CharField(max_length=30, default='0', null=True)
     course_name = models.CharField(max_length=100, null=True)
