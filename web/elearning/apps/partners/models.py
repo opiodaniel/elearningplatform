@@ -91,6 +91,7 @@ class InstitutionWeb(models.Model):
     institution_name = models.CharField(max_length=100, null=True, blank=True)
     welcome_phrase_title = models.CharField(max_length=200, null=True, blank=True)
     welcome_phrase_title_description = models.CharField(max_length=1000, null=True, blank=True)
+    email = models.CharField(max_length=40, null=True)
     institution_image = models.ImageField(upload_to='institution/', blank=True, null=True)
     institution_motion_image = models.ImageField(upload_to='institution/', blank=True, null=True)
     institution_logo_image = models.ImageField(upload_to='institution/', blank=True, null=True)
@@ -108,6 +109,16 @@ class InstitutionWeb(models.Model):
     event_description_one = models.CharField(max_length=1000, null=True, blank=True)
     event_description_two = models.CharField(max_length=1000, null=True, blank=True)
 
+    about_us_header_one = models.CharField(max_length=50, null=True, blank=True)
+    about_us_header_two = models.CharField(max_length=50, null=True, blank=True)
+    about_us_description_one = models.CharField(max_length=1000, null=True, blank=True)
+    about_us_description_two = models.CharField(max_length=1000, null=True, blank=True)
+    about_us_image = models.ImageField(upload_to='institution/about/', blank=True, null=True)
+
+    standalone_section_description_one = models.CharField(max_length=1000, null=True, blank=True)
+    standalone_section_description_two = models.CharField(max_length=1000, null=True, blank=True)
+    standalone_section_image = models.ImageField(upload_to='institution/', blank=True, null=True)
+
     section_two_header = models.CharField(max_length=100, null=True, blank=True)
     section_two_description_one = models.CharField(max_length=1000, null=True, blank=True)
     section_two_description_two = models.CharField(max_length=1000, null=True, blank=True)
@@ -118,6 +129,8 @@ class InstitutionWeb(models.Model):
     section_three_description_one = models.CharField(max_length=1000, null=True, blank=True)
     section_three_description_two = models.CharField(max_length=1000, null=True, blank=True)
     section_three_image = models.ImageField(upload_to='institution/', blank=True, null=True)
+
+    description = PlaceholderField('description', related_name='partner_institution_web_description')
 
     def __str__(self):
         return self.institution_name
@@ -135,6 +148,7 @@ class Course(models.Model):
     course_schedule = models.ForeignKey(CourseSchedule, on_delete=models.CASCADE, default=1, related_name='course_course_schedule')
     order = models.IntegerField(default=1000, blank=True)
     fee = models.CharField(max_length=30, default='0', null=True)
+    course_description = models.CharField(max_length=500, null=True)
     course_name = models.CharField(max_length=100, null=True)
     number_of_registered_students_for_the_course = models.IntegerField(default=0, blank=True)
     course_image = models.ImageField(upload_to='courses/', blank=True, null=True)
@@ -163,6 +177,42 @@ class Program(models.Model):
     description = PlaceholderField('description', related_name='program_description')
 
 
+class Services(models.Model):
+
+    class Meta:
+        verbose_name = _('Service')
+        verbose_name_plural = _('Services')
+        ordering = ['order']
+
+    institution_web = models.ForeignKey(InstitutionWeb, on_delete=models.CASCADE,  default=1, related_name='services')
+    order = models.IntegerField(default=1000, blank=True)
+    service_image = models.ImageField(upload_to='service/', blank=True, null=True)
+    service_name = models.CharField(max_length=100, null=True)
+    service_description = models.CharField(max_length=500, null=True)
+    is_active = models.BooleanField(default=True)
+    is_links = models.BooleanField(default=True)
+    description = PlaceholderField('description', related_name='service_description')
+
+
+class Event(models.Model):
+
+    class Meta:
+        verbose_name = _('event')
+        verbose_name_plural = _('events')
+        ordering = ['order']
+
+    institution_web = models.ForeignKey(InstitutionWeb, on_delete=models.CASCADE, default=1, related_name='events')
+    order = models.IntegerField(default=1000, blank=True)
+    event_image = models.ImageField(upload_to='event/', blank=True, null=True)
+    event_date = models.DateField(blank=True, null=True)
+    event_name = models.CharField(max_length=50, blank=True, null=True)
+    event_location = models.CharField(max_length=50, blank=True, null=True)
+    event_description = models.CharField(max_length=500, null=True)
+    is_active = models.BooleanField(default=True)
+    is_links = models.BooleanField(default=True)
+    description = PlaceholderField('description', related_name='event_description')
+
+
 class PersonsPhrase(models.Model):
 
     class Meta:
@@ -178,6 +228,21 @@ class PersonsPhrase(models.Model):
     persons_job_title = models.CharField(max_length=500, null=True)
     is_active = models.BooleanField(default=True)
     is_links = models.BooleanField(default=True)
+
+
+# about us continuation as a forloop
+class WhyUS(models.Model):
+
+    class Meta:
+        verbose_name = _('whyus')
+        verbose_name_plural = _('whyuses')
+        ordering = ['order']
+
+    institution_web = models.ForeignKey(InstitutionWeb, on_delete=models.CASCADE, default=1, related_name='whyuses')
+    order = models.IntegerField(default=1000, blank=True)
+    title = models.CharField(max_length=50, blank=True, null=True)
+    description = models.CharField(max_length=200, blank=True, null=True)
+    icon_name = models.CharField(max_length=50, blank=True, null=True)
 
 
 class Category(models.Model):
@@ -197,32 +262,14 @@ class Category(models.Model):
     description = PlaceholderField('description', related_name='category_description')
 
 
-class Event(models.Model):
-
+class ReceivedMessages(models.Model):
     class Meta:
-        verbose_name = _('event')
-        verbose_name_plural = _('events')
-        ordering = ['order']
+        verbose_name = 'received_message'
+        verbose_name_plural = 'received_messages'
 
-    institution_web = models.ForeignKey(InstitutionWeb, on_delete=models.CASCADE, default=1, related_name='events')
-    order = models.IntegerField(default=1000, blank=True)
-    event_image = models.ImageField(upload_to='event/', blank=True, null=True)
-    event_date = models.DateField(blank=True, null=True)
-    event_name = models.CharField(max_length=50, blank=True, null=True)
-    event_location = models.CharField(max_length=50, blank=True, null=True)
-    is_active = models.BooleanField(default=True)
-    is_links = models.BooleanField(default=True)
-    description = PlaceholderField('description', related_name='event_description')
-
-
-class WhyUS(models.Model):
-
-    class Meta:
-        verbose_name = _('whyus')
-        verbose_name_plural = _('whyuses')
-        ordering = ['order']
-
-    institution_web = models.ForeignKey(InstitutionWeb, on_delete=models.CASCADE, default=1, related_name='whyuses')
-    order = models.IntegerField(default=1000, blank=True)
-    description = models.CharField(max_length=50, blank=True, null=True)
-    icon_name = models.CharField(max_length=50, blank=True, null=True)
+    institution_web = models.ForeignKey(InstitutionWeb, on_delete=models.CASCADE, default=1,
+                                        related_name='received_messages')
+    name = models.CharField(max_length=100, default='', blank=True)
+    email = models.CharField(max_length=100, default='', blank=True)
+    subject = models.CharField(max_length=100, default='', blank=True)
+    message = models.CharField(max_length=2000, default='', blank=True)

@@ -1,0 +1,33 @@
+{% extends "base_education.html" %}
+{% load static i18n cms_tags menu_tags sekizai_tags thumbnail %}
+
+{% block title %}
+<title>{{ event.event_name }}</title>
+{% endblock%}
+
+{% block add_css %}
+    <!-- CSS that pushes down your navbar when the CMS toolbar is opened.-->
+    <style>
+        .cms-toolbar-expanded body, .cms-toolbar-expanded .fixed-top{ top:40px;}
+    </style>
+{% endblock add_css %}
+
+{% block nav_bar %}
+<!-- Navigation -->
+   {% include 'partners/includes/home_nav_bar.html' %}
+{% endblock %}
+
+
+
+{% block body_content %}
+<div class="container" style="margin-top:50px">
+    <div class="subheader">
+        <div class="subheader__container">
+            <img src='{{ event.event_image.url }}' alt="event_image" width="354" height="254"><br><br>
+            <h1 class="subheader__title" style="color:blue; font-size:25px">Event: {% render_model event "event_name" %}</h1>
+        </div>
+    </div>
+    {% render_placeholder event.description %}
+</div>
+{% endblock %}
+

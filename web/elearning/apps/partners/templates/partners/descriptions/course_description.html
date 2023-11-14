@@ -1,0 +1,112 @@
+{% extends "base_education.html" %}
+{% load static i18n cms_tags menu_tags sekizai_tags thumbnail %}
+
+{% block title %}
+<title>{{ course.course_name }}</title>
+{% endblock%}
+
+
+{% block add_css %}
+    <!-- CSS that pushes down your navbar when the CMS toolbar is opened.-->
+    <style>
+        .cms-toolbar-expanded body, .cms-toolbar-expanded .fixed-top{ top:40px;}
+    </style>
+{% endblock add_css %}
+
+{% block nav_bar %}
+<!-- Navigation -->
+   {% include 'partners/includes/home_nav_bar.html' %}
+{% endblock %}
+
+
+{% block body_content %}
+
+<style>
+.button_courses {
+  border: none;
+  color: white;
+  padding:15px 30px 10px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  height: 50px;
+  border-radius: 25px;
+}
+</style>
+<style>
+    .btn{
+
+        height:50px;
+        padding:5px;
+        border-radius:25px;
+        border-style: solid;
+        border-width: thin;
+        transition: background-color 1s, transform 1s;
+        margin-right:18px;
+        box-shadow: 5px 5px 5px grey;
+    }
+    .btn:hover{
+           transform: scale(1.1);
+           background-color:grey;
+           color:black;
+           box-shadow: 5px 5px 5px grey;
+           text-decoration:underline;
+    }
+    .btn_course{
+      color: black;
+      font-size:15px;
+      font-weight:bold;
+      font-family:Arial;
+      text-decoration:underline;
+
+    }
+</style>
+
+<div class="container" style="margin-top:50px">
+
+    <div class="subheader">
+        <div class="subheader__container">
+            <img src='{{ course.course_image.url }}' alt="course_image" width="354" height="254"><br><br>
+            <h1 class="subheader__title" style="color:blue; font-size:25px">COURSE: {% render_model course "course_name" %}</h1>
+        </div>
+    </div>
+
+    {% render_placeholder course.description %}
+
+    {% if user.is_authenticated %}
+    <button class="btn" >
+      <a href="{{ course.course.get_schedule_url }}"  class="btn_course">&#9733;{% trans "Register for the course." %}&#9996;</a>
+    </button>
+    {% else %}
+    <button class="btn"  onclick="help(event)">
+      <a href="" class="btn_course">&#9733;{% trans "Register for the course" %}&#9996;</a>
+    </button>
+    <div style="display: inline;">
+        <span id="message" style="color:red" class="a"></span>
+        <a title="Contact" id="contact_us_link" href="{% url 'users:contact_us' %}" style="color:blue"></a>
+    </div>
+    {% endif %}
+
+</div>
+
+
+<script>
+    function help(event)
+    {
+     event.preventDefault()
+     var msg = document.getElementById("message")
+     var contact_us_link = document.getElementById("contact_us_link")
+     msg.innerHTML = "Contact us to help you register for this Course &#10139;&#10139;&#10139; "
+     contact_us_link.innerHTML="Click on this link to contact us."
+
+    }
+</script>
+{% endblock %}
+
+
+
+
+

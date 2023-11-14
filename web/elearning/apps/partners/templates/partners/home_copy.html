@@ -1,0 +1,328 @@
+{% extends "base_education.html" %}
+{% load static i18n cms_tags menu_tags sekizai_tags thumbnail %}
+
+{% block title %}
+<title>{{ institution.institution_name }}</title>
+{% endblock %}
+
+{% block nav_bar %}
+{% include 'partners/includes/home_nav_bar.html' %}
+{% endblock %}
+
+{% block body_content %}
+<div class="page-area">
+    <div id="post-1324" class="post-1324 page type-page status-publish hentry">
+        <div class="entry-content ecademy-Modern Schooling-un">
+            <div data-elementor-type="wp-page" data-elementor-id="1324" class="elementor elementor-1324">
+                <section class="elementor-section elementor-top-section elementor-element elementor-element-39f2324 elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="39f2324" data-element_type="section">
+                    <div class="elementor-container elementor-column-gap-no">
+                        <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-bc040ef" data-id="bc040ef" data-element_type="column">
+                            <div class="elementor-widget-wrap elementor-element-populated">
+                                <div class="elementor-element elementor-element-bde68a7 elementor-widget elementor-widget-Modern_Schooling_Hero" data-id="bde68a7" data-element_type="widget" data-widget_type="Modern_Schooling_Hero.default">
+                                    <div class="elementor-widget-container">
+                                        <div class="hero-banner-area">
+                                            <div class="container-fluid">
+                                                <div class="row align-items-center">
+                                                    <div class="col-lg-6 col-md-12">
+                                                        <div class="hero-banner-content">
+                                                            <h1 >
+                                                                {{institution.welcome_phrase_title}}
+                                                            </h1>
+                                                            <p >{{institution.welcome_phrase_title_description}}</p>
+                                                            <a href="{% url 'users:login' %}" class="default-btn"><i class="flaticon-user"></i>{{institution.join_us_title}}<span></span></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-12">
+                                                        <div class="hero-banner-image">
+                                                            <img decoding="async" src="{{institution.institution_image.url }}" alt="Build Development Skills With eCademy Any Time, Anywhere">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="banner-shape19">
+                                                <img decoding="async" src="{{institution.institution_motion_image.url }}" alt="shape image">
+                                            </div>
+                                            <div class="divider"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="elementor-section elementor-top-section elementor-element elementor-element-3d84e66 elementor-section-full_width boxes-area boxes-style-two bg-f5f7fa elementor-section-height-default elementor-section-height-default" data-id="3d84e66" data-element_type="section">
+                    <div class="elementor-container elementor-column-gap-no">
+                        <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-ba406c4" data-id="ba406c4" data-element_type="column">
+                            <div class="elementor-widget-wrap elementor-element-populated">
+                                <div class="elementor-element elementor-element-c2296a8 elementor-widget elementor-widget-eCademy_Features_Boxe" data-id="c2296a8" data-element_type="widget" data-widget_type="eCademy_Features_Boxe.default">
+                                    <div class="elementor-widget-container">
+                                        <div class="container">
+                                            <div class="row">
+                                               {% for program in programs %}
+                                                <div class="col-lg-4 col-sm-6 col-md-6 ">
+                                                    <div class="single-box-item">
+                                                        <div class="image">
+                                                            <img decoding="async" src="{{program.program_image.url}}" alt="{{program.program_name}}">
+                                                        </div>
+                                                        <h3>{{program.program_name}}</h3>
+                                                        <p>{{program.program_description}}</p>
+                                                        <a {% if program.is_links %} href ="{% url 'partners:program_description' program.id %}" target="_blank" class="link-btn" {% endif %} >{{program.program_link_title }}</a>
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                            <div class="boxes-info">
+                                                <p>If you want more?​ <a target="_self" href ="#">View More Courses</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="elementor-section elementor-top-section elementor-element elementor-element-ffe95bd elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="ffe95bd" data-element_type="section">
+                    <div class="elementor-container elementor-column-gap-no">
+                        <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-6abb8e6" data-id="6abb8e6" data-element_type="column">
+                            <div class="elementor-widget-wrap elementor-element-populated">
+                                <div class="elementor-element elementor-element-016542e animated-slow elementor-widget__width-inherit elementor-absolute elementor-widget-mobile__width-inherit elementor-hidden-phone elementor-invisible elementor-widget elementor-widget-image" data-id="016542e" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;,&quot;_animation_delay&quot;:0,&quot;_position&quot;:&quot;absolute&quot;}" data-widget_type="image.default">
+                                    <div class="elementor-widget-container">
+                                        <img decoding="async" width="60" height="60" src="{{institution.section_two_motion_image.url}}" class="attachment-full size-full wp-image-1356" alt="" />
+                                    </div>
+                                </div>
+                                <div class="elementor-element elementor-element-5d2b219 elementor-widget elementor-widget-Distance_Learning" data-id="5d2b219" data-element_type="widget" data-widget_type="Distance_Learning.default">
+                                    <div class="elementor-widget-container">
+                                        <div class="about-area ptb-100">
+                                            <div class="container">
+                                                <div class="row align-items-center">
+                                                    <div class="col-lg-6 col-md-12">
+                                                        <div class="about-image text-center">
+                                                            <img decoding="async" src="{{institution.section_two_image.url}}" alt="About Us">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-12">
+                                                        <div class="about-content">
+                                                            <span class="sub-title">{{institution.section_two_header}}</span>
+                                                            <h2 >{{institution.section_two_description_one}}</h2>
+                                                            <p >{{institution.section_two_description_two}}</p>
+                                                            <ul class="features-list">
+                                                                {% for ws in  why_us %}
+                                                                <li><span><i class="{{ws.icon_name}}"></i>{{ws.description}}</span></li>
+                                                                {% endfor %}
+                                                            </ul>
+                                                            <a href="{% url 'users:login' %}" class="default-btn"><i class="flaticon-user"></i>{{institution.join_us_title}}<span></span></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="elementor-section elementor-top-section elementor-element elementor-element-406ea18 elementor-section-full_width courses-area ptb-100 elementor-section-height-default elementor-section-height-default" data-id="406ea18" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+        <div class="elementor-container elementor-column-gap-no">
+            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-5940680" data-id="5940680" data-element_type="column">
+                <div class="elementor-widget-wrap elementor-element-populated">
+                    <div class="elementor-element elementor-element-c309a7b elementor-widget elementor-widget-Section" data-id="c309a7b" data-element_type="widget" data-widget_type="Section.default">
+                        <div class="elementor-widget-container">
+                            <div class="section-title">
+                                <span class="sub-title">{{institution.course_header}}</span>
+                                <h2 >{{institution.course_description_one}}</h2>
+                                <p >{{institution.course_description_two}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="elementor-element elementor-element-5f08c58 elementor-widget elementor-widget-eCademy_Courses" data-id="5f08c58" data-element_type="widget" data-widget_type="eCademy_Courses.default">
+                        <div class="elementor-widget-container">
+                            <div class="container">
+                                <div class="row">
+                                    {% for course in courses %}
+                                      <div class="col-lg-6 col-md-12">
+                                        <div class="single-courses-item without-box-shadow">
+                                            <div class="row align-items-center">
+                                                <div class="col-lg-4 col-md-4">
+                                                    <div class="courses-image">
+                                                        <img decoding="async" src="{{course.course_image.url}}" alt="">
+                                                        <a {% if course.is_links %} href="{% url 'partners:course_description' course.id %}" target="_blank" class="link-btn" {% endif %} ></a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-8 col-md-8">
+                                                    <div class="courses-content">
+                                                        <span class="course-item-price"><span class="price">&#36;{{course.fee}}</span></span>
+                                                        <h3><a {% if course.is_links %} href="{% url 'partners:course_description' course.id %}" target="_blank" {% endif %} >{{course.course_name}}</a></h3>
+                                                        <ul class="courses-content-footer d-flex justify-content-between align-items-center">
+                                                            <li>
+                                                                <i class='flaticon-people'></i>
+                                                                {{course.course_schedule.number_of_students_enrolled}} Students
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="elementor-section elementor-top-section elementor-element elementor-element-8e5dc45 elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="8e5dc45" data-element_type="section">
+        <div class="elementor-container elementor-column-gap-no">
+            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-f107d1b" data-id="f107d1b" data-element_type="column">
+                <div class="elementor-widget-wrap elementor-element-populated">
+                    <div class="elementor-element elementor-element-5f0d824 elementor-widget elementor-widget-Feedback Slider" data-id="5f0d824" data-element_type="widget" data-widget_type="Feedback Slider.default">
+                        <div class="elementor-widget-container">
+                            <div class="feedback-area bg-fffaf3 ptb-100">
+                                <div class="container">
+                                    <div class="feedback-slides-two owl-carousel owl-theme">
+                                        {% for pp in persons_phrase_ %}
+                                        <div class="single-feedback-box">
+                                            <p>{{pp.persons_phrase}}</p>
+                                            <div class="client-info d-flex align-items-center">
+                                                <img decoding="async" class="rounded-circle" src="{{pp.persons_phrase_image.url}}" alt="{{pp.persons_name}}">
+                                                <div class="title">
+                                                    <h3>{{pp.persons_name}}</h3>
+                                                    <span>{{pp.persons_job_title}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="divider2"></div>
+                                <div class="divider3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="elementor-section elementor-top-section elementor-element elementor-element-d3b7ad1 elementor-section-full_width categories-area ptb-100 elementor-section-height-default elementor-section-height-default" data-id="d3b7ad1" data-element_type="section">
+        <div class="elementor-container elementor-column-gap-no">
+            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-cdde7ba" data-id="cdde7ba" data-element_type="column">
+                <div class="elementor-widget-wrap elementor-element-populated">
+                    <div class="elementor-element elementor-element-64b43cf elementor-widget elementor-widget-Section" data-id="64b43cf" data-element_type="widget" data-widget_type="Section.default">
+                        <div class="elementor-widget-container">
+                            <div class="section-title">
+                                <span class="sub-title">{{institution.category_header}}</span>
+                                <h2 >{{institution.category_description_one}}</h2>
+                                <p >{{institution.category_description_two}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="elementor-element elementor-element-88d3784 elementor-widget elementor-widget-eCademy_Courses_Categories" data-id="88d3784" data-element_type="widget" data-widget_type="eCademy_Courses_Categories.default">
+                        <div class="elementor-widget-container">
+                            <div class="container">
+                                <div class="row">
+                                   {% for category in categories %}
+                                   <div class="col-lg-3 col-sm-6 col-md-6">
+                                        <div class="single-categories-box">
+                                            <img decoding="async" src="{{category.category_image.url}}" alt="{{category.category_name}}">
+                                            <div class="content">
+                                                <h3>{{category.category_name}}</h3>
+                                                <span>{{category.number_of_courses}}</span>
+                                            </div>
+                                            <a {% if category.is_links %} href="{% url 'partners:category_description' category.id %}" target="_blank" class="link-btn" {% endif %} ></a>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    <div class="col-lg-12 col-sm-12 col-md-12">
+                                        <div class="categories-btn-box">
+                                            <a href="#" class="default-btn">
+                                                <i class="flaticon-user"></i>View All Categories<span></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="elementor-section elementor-top-section elementor-element elementor-element-e1214bf elementor-section-full_width overview-area ptb-100 elementor-section-height-default elementor-section-height-default" data-id="e1214bf" data-element_type="section">
+        <div class="elementor-container elementor-column-gap-no">
+            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-8420352" data-id="8420352" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+                <div class="elementor-element elementor-element-5f00e87 elementor-widget elementor-widget-Overview_Area " data-id="5f00e87" data-element_type="widget" data-widget_type="Overview_Area .default">
+                    <div class="elementor-widget-container">
+                        <div class="container">
+                            <div class="overview-box">
+                                <div class="overview-content">
+                                    <span class="sub-title">{{institution.section_three_header}}</span>
+                                    <h2 >{{institution.section_three_description_one}}</h2>
+                                    <p > {{institution.section_three_description_two}} </p>
+                                    <a href="{% url 'users:login' %}" class="default-btn"><i class="flaticon-user"></i>{{institution.join_us_title}}<span></span></a>
+                                </div>
+                                <div class="overview-image">
+                                    <img decoding="async" src="{{institution.section_three_image.url}}" alt="h2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+	<section class="elementor-section elementor-top-section elementor-element elementor-element-9d8f01a elementor-section-full_width events-area bg-fffaf3 pt-100 pb-70 elementor-section-height-default elementor-section-height-default" data-id="9d8f01a" data-element_type="section">
+        <div class="elementor-container elementor-column-gap-no">
+            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-17b06fa" data-id="17b06fa" data-element_type="column">
+                <div class="elementor-widget-wrap elementor-element-populated">
+                    <div class="elementor-element elementor-element-628f0dd elementor-widget elementor-widget-Section" data-id="628f0dd" data-element_type="widget" data-widget_type="Section.default">
+                        <div class="elementor-widget-container">
+                            <div class="section-title">
+                                <span class="sub-title">{{institution.event_header}}</span>
+                                <h2 >{{institution.event_description_one}}</h2>
+                                <p >{{institution.event_description_two}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="elementor-element elementor-element-e1a33f2 elementor-widget elementor-widget-eCademy_Events" data-id="e1a33f2" data-element_type="widget" data-widget_type="eCademy_Events.default">
+                        <div class="elementor-widget-container">
+                            <div class="container">
+                                <div class="row">
+                                   {% for event in events %}
+                                    <div class="col-lg-4 col-sm-6 col-md-6">
+                                        <div class="single-events-box">
+                                            <div class="image">
+                                                <a {% if event.is_links %} href="{% url 'partners:event_description' event.id %}" target="_blank" {% endif %} class="d-block">
+                                                    <img fetchpriority="high" width="750" height="500" src="{{event.event_image.url}}" class="attachment-ecademy_default_thumb size-ecademy_default_thumb wp-post-image" alt="" decoding="async" srcset="{{event.event_image.url}}" sizes="(max-width: 750px) 100vw, 750px" />
+                                                </a>
+                                                <span class="date">{{event.event_date}}</span>
+                                            </div>
+                                            <div class="content">
+                                                <h3><a {% if event.is_links %} href="{% url 'partners:event_description' event.id %}" target="_blank" {% endif %}>{{event.event_name}}</a></h3>
+                                                <span class="location"><i class="bx bx-map"></i>{{event.event_location}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+

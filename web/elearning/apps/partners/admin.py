@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 from django.contrib import admin
-from .models import (InstitutionWeb, Course, Program, PersonsPhrase, Category, Event, WhyUS)
+from .models import (InstitutionWeb, Course, Program, PersonsPhrase, Category, Event, WhyUS, Services)
 from django.utils.translation import ugettext_lazy as _
 
 from cms.admin.placeholderadmin import PlaceholderAdminMixin
@@ -10,7 +10,7 @@ from .models import (Partners, Instructors, Publications)
 
 
 @admin.register(InstitutionWeb)
-class InstitutionWebAdmin(admin.ModelAdmin):
+class InstitutionWebAdmin(PlaceholderAdminMixin, admin.ModelAdmin):
     list_display = ('id', 'order', 'institution_name', )
 
 
@@ -24,6 +24,12 @@ class CourseAdmin(PlaceholderAdminMixin, admin.ModelAdmin):
 class ProgramAdmin(PlaceholderAdminMixin, admin.ModelAdmin):
     list_display = ('id', 'order', 'program_name', 'program_description', 'is_popular', )
     list_filter = ('is_active', 'is_popular', )
+
+
+@admin.register(Services)
+class ServicesAdmin(PlaceholderAdminMixin, admin.ModelAdmin):
+    list_display = ('id', 'order', 'service_name', 'service_description',)
+    list_filter = ('is_active',)
 
 
 @admin.register(PersonsPhrase)
@@ -45,7 +51,7 @@ class EventAdmin(admin.ModelAdmin):
 
 @admin.register(WhyUS)
 class WhyUSAdmin(admin.ModelAdmin):
-    list_display = ('id', 'order', 'description', 'icon_name')
+    list_display = ('id', 'order', 'description', 'title', 'icon_name')
 
 
 class PartnersAdmin(PlaceholderAdminMixin, admin.ModelAdmin):

@@ -4,12 +4,15 @@ from taggit.models import Tag
 from django.shortcuts import get_object_or_404
 from django.conf import settings
 from redis import StrictRedis
-from .models import Course, Program, PersonsPhrase, Category, Event, WhyUS, InstitutionWeb
+from .models import Course, Program, PersonsPhrase, Category, Event, WhyUS, Services, InstitutionWeb
 from ..courses.models import CourseSchedule, CourseScheduleUser
 from django.contrib.auth.models import User
 # from allauth.account.forms import LoginForm, SignupForm
 from django.contrib.sites.shortcuts import get_current_site
 from ..core.utils import log_debug
+from .models import ReceivedMessages
+from django.core.mail import EmailMessage
+from django.http import JsonResponse
 
 try:
     r = StrictRedis(host=settings.REDIS_HOST, port=settings.REDIS_PORT, db=settings.REDIS_DB)
@@ -18,113 +21,28 @@ except Exception:
 
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-# from ..webcompanies.WebCompanies import WebSiteCompany
 
 
 def home(request):
-    # return render(request, 'partners/home_test.html', {})
     print('partners home0: ')
     courses = Course.objects.all()
     programs = Program.objects.all()
+    services = Services.objects.all()
     persons_phrase = PersonsPhrase.objects.all()
     categories = Category.objects.all()
     events = Event.objects.all()
     why_us_ = WhyUS.objects.all()
     institution = InstitutionWeb.objects.get(id=1)
-    course_schedule = CourseSchedule.objects.get(id=1)
-    # log_debug('partners home_0: ')
-    host = request.META["HTTP_HOST"]
-    # log_debug('partners host_1: ' + host)
-    host = host.split(':')[0]
-    # log_debug('partners host_2: ' + host)
-    host_s = host.split('.')
-    town = None
-    host_ = None
-
-    # print('partners host__s: ' + str(host_s))
-    # log_debug('partners host__s: ' + str(host_s))
-
-    # print('partners host_21')
-    # print(host_)
-    # print('partners host_22')
-    # print(host_s)
-    # print('partners host_33')
-
-    if len(host_s) > 2:
-        host_ = host_s[1]
-        town = host_s[0]
-        # log_debug('partners town: ' + town)
-    else:
-        host_ = host_s[0]
-    # log_debug('partners host__3: ' + host_)
-
-    # print('host_4')
-    # print(host_)
-    # print('host_4')
-
-    # print('partners home1: ')
-    try:
-        # print('try1: ' + host_)
-        # log_debug('try1: ' + host_)
-        # wsc = WebSiteCompany(request, domain=host_)
-        wsc = 15
-        if wsc.is_registered_domain():
-            # print('wsc.is_registered_domain():wsc.is_registered_domain()')
-            kk = wsc.get_redirect_link()
-            # log_debug(kk)
-            return wsc.get_redirect_link()
-    except Exception as ex:
-        # log_debug('exception Partners:home error: ' + str(ex))
-        pass
-
-    # if host_ == "ugandatowns":
-    #     if town:
-    #         return HttpResponseRedirect(reverse('ugandatowns:town', kwargs={'town': town}))
-    #     return HttpResponseRedirect(reverse('ugandatowns:ut_login_page'))
-
-    try:
-        user_counter = 100
-        user_counter = r.incr('user:{}:views'.format(request.user.id))
-        # print('='*100)
-        # print(request.user.id, user_counter)
-        # print('='*100)
-        # r.zincrby('user_ranking', request.user.id, 2)
-    except Exception as ex:
-        pass
-        # print("e0-"*50)
-        # print(ex)
-        # print("e1-"*50)
-
-    # print('partners home2: ')
-
-    partners = Partners.objects.all().order_by('order')
-    partners_ = Partners.objects.all()
-    # user_ranking = ranking()
-    # print('partners home21: ')
-
-    # form_class = LoginForm
-    # form_signup = SignupForm
-    redirect_field_name = "next"
-    current_site = get_current_site(request)
-
-    # print('partners home3: ')
-    return render(request, 'partners/home.html', {'host': host, 'host_': host_, 'town': town,
-                                                  'current_site': current_site,
-                                                  'partners': partners,
-                                                  'partners_': partners_,
-                                                  'user_counter': user_counter,
-                                                  # 'form' : form_class,
-                                                  # 'form_signup': form_signup,
-                                                  'redirect_field_name': redirect_field_name,
+    print('partners home3: ', persons_phrase)
+    return render(request, 'partners/home.html', {
                                                   'courses': courses,
                                                   'programs': programs,
+                                                  'services': services,
                                                   'persons_phrase_': persons_phrase,
                                                   'categories': categories,
                                                   'events': events,
                                                   'why_us': why_us_,
                                                   'institution': institution,
-                                                  'course_schedule': course_schedule,
-                                                  # 'user_ranking': user_ranking
                                                   }
                   )
 
@@ -176,7 +94,7 @@ def partner_detail(request, slug):
 def course_description(request, pk):
     institution = InstitutionWeb.objects.get(id=1)
     course = Course.objects.get(id=pk)
-    return render(request, 'partners/course_description.html',
+    return render(request, 'partners/descriptions/course_description.html',
                   {'course': course,
                    'institution_obj': institution,
                    })
@@ -185,8 +103,17 @@ def course_description(request, pk):
 def program_description(request, pk):
     institution = InstitutionWeb.objects.get(id=1)
     program = Program.objects.get(id=pk)
-    return render(request, 'partners/program_description.html',
+    return render(request, 'partners/descriptions/program_description.html',
                   {'program': program,
+                   'institution_obj': institution,
+                   })
+
+
+def service_description(request, pk):
+    institution = InstitutionWeb.objects.get(id=1)
+    service = Services.objects.get(id=pk)
+    return render(request, 'partners/descriptions/service_description.html',
+                  {'service': service,
                    'institution_obj': institution,
                    })
 
@@ -194,7 +121,7 @@ def program_description(request, pk):
 def category_description(request, pk):
     institution = InstitutionWeb.objects.get(id=1)
     category = Category.objects.get(id=pk)
-    return render(request, 'partners/category_description.html',
+    return render(request, 'partners/descriptions/category_description.html',
                   {'category': category,
                    'institution_obj': institution,
                    })
@@ -203,7 +130,40 @@ def category_description(request, pk):
 def event_description(request, pk):
     institution = InstitutionWeb.objects.get(id=1)
     event = Event.objects.get(id=pk)
-    return render(request, 'partners/event_description.html',
+    return render(request, 'partners/descriptions/event_description.html',
                   {'event': event,
                    'institution_obj': institution,
                    })
+
+
+def contact_us(request):
+    company_obj = InstitutionWeb.objects.get(id=1)
+    if request.method == 'POST':
+        contact_us_name_ = request.POST.get('name')
+        contact_us_name = contact_us_name_.upper()
+        contact_us_email = request.POST.get('email')
+        contact_us_subject = request.POST.get('subject')
+        contact_us_message = request.POST.get('message')
+        print(121222222222222222222222222222)
+        if contact_us_subject == '' or contact_us_message == '':
+            rr = {'status': 'Must enter subject and a message!'}
+        else:
+            try:
+                ReceivedMessages.objects.create(institution_web=company_obj,
+                                                name=contact_us_name,
+                                                email=contact_us_email,
+                                                subject=contact_us_subject,
+                                                message=contact_us_message)
+                contact_us_message = 'Message received from ' + contact_us_name + ' \nEmail:' + contact_us_email + ' \nMessage:\n' + contact_us_message
+                print(22222222222222222222222)
+                email = EmailMessage(contact_us_subject, contact_us_message, contact_us_email, [company_obj.email])
+                print(contact_us_message)
+                email.send()
+                print(contact_us_email)
+                print(company_obj.email)
+                rr = {'status': " "+contact_us_name+" "+'Your message was received.\n\nThank you.'}
+            except Exception as ee:
+                print(ee)
+                return_message = 'Error in sending your message.\n\nPlease try again.'
+                rr = {'status': 'ko', 'return_message':return_message}
+    return JsonResponse(rr)

@@ -31,7 +31,7 @@
   {% block links %} {% endblock %}
   {% block add_links %} {% endblock %}
 
-    {% block add_css_base %}
+
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
         <link href="{% static 'css/django_cms_original.css' %}" rel="stylesheet">
@@ -41,11 +41,16 @@
         <!-- Bootstrap core CSS
         <link href="css/bootstrap.min.css" rel="stylesheet">
         -->
-        <!-- Material Design Bootstrap Nav bar -->
-        <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
-        <link href="{% static 'css/style_mdb.css' %}" rel="stylesheet">
 
-    {% endblock add_css_base %}
+        <!-- Bootstrap css nav bar design-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+        <!-- CSS that pushes down your navbar when the CMS toolbar is opened.-->
+        <style>
+            .cms-toolbar-expanded body, .cms-toolbar-expanded .fixed-top{ top:40px;}
+        </style>
+
+    {% block add_css_base %}{% endblock add_css_base %}
 
     {{ ALDRYN_SNAKE.render_head }}
 
@@ -73,41 +78,9 @@
 <div id="modal-exclude">
 <!--    beginning of top nav -->
     {% block nav_bar %}
-    <!-- Navigation -->
-    <!--        <nav style="height: 60px;" dir="LTR" class="navbar navbar-expand-sm navbar-white bg-light">-->
-     <nav class="navbar navbar-expand-lg navbar-dark bg-info static-top">
-        <ul style="margin-top:20px; text-align: center">
-            <a class="navbar-brand" href="/" style="top: 50px;">
-                <img style="border-radius:25px;" src="{% static "core/logo.pn" %}" alt="My image" height="100" width="100">
-            </a>
-        </ul>
-
-        <ul dir="LTR" class="navbar-nav mr-auto">
-
-        </ul>
-
-        <ul class="nav navbar-nav navbar-left">
-            {% if user.is_authenticated %}
-            <li style="font-size: 150%;">
-                    <a href="/">
-                          <span class="badge badge-pill badge-info" >  {% trans "Home" %}</span>
-                    </a>
-                </li>
-                <li style="font-size: 150%;">
-                    <a href="{% url 'users:my_account' %}">
-                          <span class="badge badge-pill badge-info" >  {% trans "My Account" %}</span>
-                    </a>
-                </li>
-                <li style="font-size: 100%;">
-                    <a href="{% url 'users:logout' %}">
-                         <span class="badge badge-pill badge-danger">{% trans "Log-out" %}</span>
-                    </a>
-                </li>
-                {% endif %}
-        </ul>
-    </nav>
+       <!-- Navigation -->
+       {% include 'partners/includes/home_nav_bar.html' %}
     {% endblock %}
-
 <!--    end of top nav  -->
     <div class="body-content">
         <div class="homepage">

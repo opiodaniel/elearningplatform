@@ -1,0 +1,32 @@
+{% extends "base_education.html" %}
+{% load static i18n cms_tags menu_tags sekizai_tags thumbnail %}
+
+{% block title %}
+<title>{{ category.category_name }}</title>
+{% endblock%}
+
+{% block add_css %}
+    <!-- CSS that pushes down your navbar when the CMS toolbar is opened.-->
+    <style>
+        .cms-toolbar-expanded body, .cms-toolbar-expanded .fixed-top{ top:40px;}
+    </style>
+{% endblock add_css %}
+
+{% block nav_bar %}
+<!-- Navigation -->
+   {% include 'partners/includes/home_nav_bar.html' %}
+{% endblock %}
+
+
+
+{% block body_content %}
+<div class="container">
+    <div class="subheader">
+        <div class="subheader__container">
+            <h1 class="subheader__title" style="color:blue; font-size:25px">CATEGORY: {% render_model category "category_name" %}</h1>
+        </div>
+    </div>
+    {% render_placeholder category.description %}
+</div>
+{% endblock %}
+

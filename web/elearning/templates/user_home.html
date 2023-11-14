@@ -6,42 +6,20 @@
 <!-- https://mdbootstrap.com/snippets/jquery/mdbootstrap/670810 -->
 {% block add_css %}
         <link href="{% static 'css/user_home.css' %}" rel="stylesheet">
-        <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+        <!-- CSS that pushes down your navbar when the CMS toolbar is opened.-->
+        <style>
+            .cms-toolbar-expanded body, .cms-toolbar-expanded .fixed-top{ top:40px;}
+        </style>
 {% endblock add_css %}
 
 {% block nav_bar %}
-    <!-- Navigation -->
-   <nav class="navbar navbar-expand-lg navbar-dark bg-info static-top">
-        <ul style="margin-top:20px; text-align: center">
-            <a class="navbar-brand" href="/" style="top: 50px;">
-                <img style="border-radius:25px;" src="{% static "core/logo.pn" %}" alt="My image" height="100" width="100">
-            </a>
-        </ul>
-
-        <ul dir="LTR" class="navbar-nav mr-auto">
-
-        </ul>
-
-        <ul class="nav navbar-nav navbar-left">
-            {% if user.is_authenticated %}
-            <li style="font-size: 150%;">
-                    <a href="/">
-                          <span class="badge badge-pill badge-info" >  {% trans "Home" %}</span>
-                    </a>
-                </li>
-                <li style="font-size: 100%;">
-                    <a href="{% url 'users:logout' %}">
-                         <span class="badge badge-pill badge-danger">{% trans "Log-out" %}</span>
-                    </a>
-                </li>
-                {% endif %}
-        </ul>
-    </nav>
+<!-- Navigation -->
+   {% include 'partners/includes/home_nav_bar.html' %}
 {% endblock %}
 
 {% block body_content %}
-<div>
-    <div id="mySidenav" class="sidenav bg-info" style="width:300px">
+<div style="margin-top:48px">
+    <div id="mySidenav" class="sidenav" style="width:300px">
         <div class="logo-wrapper sn-ad-avatar-wrapper">
             <a href="#">
                 <img src="
@@ -92,9 +70,10 @@
     </div>
 
 <!--    <div class="main_" style="background-color: rgba(0,0,0,0.4); margin-left:15px">-->
-    <div class="main_" style="margin-left:15px">
-        <h2 style="color:blue">{% trans "My Dashboard" %}</h2>
-        <span style="font-size:30px;cursor:pointer;color:blue" onclick="openNav()">&#9776;</span>
+    <div style="position:absolute">
+    <span style="font-size:35px;cursor:pointer;color:blue;" onclick="openNav()">&#9776;</span></div>
+    <div class="main_" style="margin-left:30px">
+<!--        <h2 style="color:blue">{% trans "My Dashboard" %}</h2>-->
         <div id="page_content">
         </div>
     </div>

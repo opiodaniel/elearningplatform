@@ -508,7 +508,7 @@ def contact_us(request):
                 contact_us_message = 'Message received from ' + contact_us_name + ' \nEmail:' + contact_us_email + ' \nMessage:\n' + contact_us_message
                 email = EmailMessage(contact_us_subject, contact_us_message, contact_us_email, [company_obj.email])
                 email.send()
-                return_message = 'Your message was received.\n\nThank you.'
+                return_message = contact_us_name+' '+'Your message was received.\n\nThank you.'
             except Exception as ee:
                 print(ee)
                 return_message = 'Error in sending your message.\n\nPlease try again.'

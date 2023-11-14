@@ -7,32 +7,17 @@
 {% endblock title %}
 
 {% block add_css %}
-     <link href="{% static 'css/user_home.css' %}" rel="stylesheet">
-     <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
-{% endblock add_css %}
-
+    <link href="{% static 'css/user_home.css' %}" rel="stylesheet">
+    <!-- CSS that pushes down your navbar when the CMS toolbar is opened.-->
+    <style>
+        .cms-toolbar-expanded body, .cms-toolbar-expanded .fixed-top{ top:40px;}
+    </style>
+{% endblock  %}
 {% block nav_bar %}
 <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-info static-top">
-        <ul style="margin-top:20px; text-align: center">
-            <a class="navbar-brand" href="/" style="top: 50px;">
-                <img style="border-radius:25px;" src="{% static "core/logo.pn" %}" alt="My image" height="100" width="100">
-            </a>
-        </ul>
-
-        <ul dir="LTR" class="navbar-nav mr-auto">
-
-        </ul>
-        <ul class="nav navbar-nav navbar-left">
-
-            <li style="font-size: 150%;">
-                    <a href="/">
-                          <span class="badge badge-pill badge-info" >  {% trans "Home" %}</span>
-                    </a>
-            </li>
-        </ul>
-    </nav>
+<!--   {% include 'partners/includes/home_nav_bar.html' %}-->
 {% endblock %}
+
 
 {% block add_links %}
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>

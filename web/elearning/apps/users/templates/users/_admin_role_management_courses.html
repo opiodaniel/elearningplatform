@@ -1,7 +1,15 @@
+{% extends "courses/course_schedule/formset_base.html" %}
 {% load static i18n cms_tags menu_tags sekizai_tags thumbnail %}
 <!--
 https://fontawesome.com/icons?d=gallery&c=editors,education,users-people&m=free
 -->
+{% block base_js %}
+ <!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+{% endblock base_js %}
+
+
+{% block content %}
 
 <style>
 div.ex1 {
@@ -113,7 +121,6 @@ tr {
 
   </div>
 </div>
-
 
 <script>
 
@@ -432,5 +439,9 @@ function onchange_target(event)
 
 
 </script>
+
+{% endblock %}
+
+
 
 

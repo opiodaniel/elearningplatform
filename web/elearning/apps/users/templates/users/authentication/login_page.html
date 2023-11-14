@@ -2,6 +2,7 @@
 {% load static i18n cms_tags menu_tags sekizai_tags thumbnail %}
 {% load core_tags %}
 {% load user_agents %}
+
 {% block title %}
     <title>Login</title>
 {% endblock title %}
@@ -9,31 +10,19 @@
 <!-- SideNav slide-out button -->
 <!-- https://mdbootstrap.com/snippets/jquery/mdbootstrap/670810 -->
 {% block add_css %}
-     <link href="{% static 'css/user_home.css' %}" rel="stylesheet">
-     <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+    <!-- CSS that pushes down your navbar when the CMS toolbar is opened.-->
+    <style>
+        .cms-toolbar-expanded body, .cms-toolbar-expanded .fixed-top{ top:40px;}
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+          crossorigin="anonymous">
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
 {% endblock add_css %}
 
 {% block nav_bar %}
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-info static-top">
-        <ul style="margin-top:20px; text-align: center">
-            <a class="navbar-brand" href="/" style="top: 50px;">
-                <img style="border-radius:25px;" src="{% static "core/logo.pn" %}" alt="My image" height="100" width="100">
-            </a>
-        </ul>
-
-        <ul dir="LTR" class="navbar-nav mr-auto">
-
-        </ul>
-        <ul class="nav navbar-nav navbar-left">
-
-            <li style="font-size: 150%;">
-                    <a href="/">
-                          <span class="badge badge-pill badge-info" >  {% trans "Home" %}</span>
-                    </a>
-            </li>
-        </ul>
-    </nav>
+<!-- Navigation -->
+   {% include 'partners/includes/home_nav_bar.html' %}
 {% endblock %}
 
 {% block body_content %}
@@ -153,9 +142,9 @@ body, html {
 </style>
 <br/>
     {% if request|is_mobile %}
-    <div style="display: flex;justify-content: center;color:red">
+    <div style="display: flex;justify-content: center;color:red;margin-top:30px; " >
     {% else %}
-    <div style="display: flex;justify-content: center;color:red;margin-right:-800px">
+    <div style="display: flex;justify-content: center;color:red;margin-right:-800px; margin-top:50px;">
     {% endif %}
       <strong>
       <ul>
@@ -171,12 +160,11 @@ body, html {
       </ul>
       </strong>
     </div>
-<br/>
 <!--margin-top:-105px-->
 {% if request|is_mobile %}
-<div class="flip-container" style="display: flex;justify-content: center;margin-top:-80px;">
+<div class="flip-container" style="display: flex;justify-content: center;margin-top:30px;">
 {% else %}
-<div class="flip-container" style="display: flex;justify-content: center;margin-top:-80px;margin-right:-1030px;">
+<div class="flip-container" style="display: flex;justify-content: center;margin-top:30px;margin-right:-1030px;">
 {% endif %}
   <div class="flipper container py-5 h-100" id="flipper">
 <!--  Front signin page    -->

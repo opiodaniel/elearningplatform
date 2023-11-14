@@ -1,10 +1,13 @@
+{% extends "courses/course_schedule/formset_base.html" %}
+{% load static i18n cms_tags menu_tags sekizai_tags thumbnail %}
 
+
+{% block content %}
 <style>
-body {margin:0;font-family:Arial}
 
 .topnav_ {
   overflow: hidden;
-  background-color: #333;
+  background-color: red;
 }
 
 .topnav_ a {
@@ -108,20 +111,20 @@ body {margin:0;font-family:Arial}
 <div class="w3-responsive topnav_" id="myTopnav" onclick="btnClickFunction(event)">
     <a href="#home" class="active" id="a1">Home</a>
     <a href="#" sub_page="admin_role_management_courses" report="courses" id="a20">Courses</a>
-    <a href="#" sub_page="admin_role_management_clean_accounting_registrations"
-       report="clean_accounting_registrations" id="a21">Clean Accounting Registrations</a>
+<!--    <a href="#" sub_page="admin_role_management_clean_accounting_registrations"-->
+<!--       report="clean_accounting_registrations" id="a21">Clean Accounting Registrations</a>-->
 
 
-  <div class="dropdown_">
-    <button class="dropbtn" onclick="event.stopPropagation()">Maintenance
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown_-content">
-      <a href="#" sub_page="admin_role_management_maintenance" report="maintenance" id="a25">GeneralMaintenance</a>
-      <a href="#" sub_page="admin_role_management_file_system" report="file_system" id="a27">File System</a>
-      <a href="#" sub_page="admin_role_management_file_system" report="backup" id="a28">Backup</a>
-    </div>
-  </div>
+<!--  <div class="dropdown_">-->
+<!--    <button class="dropbtn" onclick="event.stopPropagation()">Maintenance-->
+<!--      <i class="fa fa-caret-down"></i>-->
+<!--    </button>-->
+<!--    <div class="dropdown_-content">-->
+<!--      <a href="#" sub_page="admin_role_management_maintenance" report="maintenance" id="a25">GeneralMaintenance</a>-->
+<!--      <a href="#" sub_page="admin_role_management_file_system" report="file_system" id="a27">File System</a>-->
+<!--      <a href="#" sub_page="admin_role_management_file_system" report="backup" id="a28">Backup</a>-->
+<!--    </div>-->
+<!--  </div>-->
 
   <div class="dropdown_">
     <button class="dropbtn" onclick="event.stopPropagation()">Manage Users
@@ -135,7 +138,7 @@ body {margin:0;font-family:Arial}
     </div>
   </div>
 <!--    url 'trades:home'-->
-  <a href="#" id="a40" onclick="event.stopPropagation()">Trades</a>
+<!--  <a href="#" id="a40" onclick="event.stopPropagation()">Trades</a>-->
 
   <a href="#" sub_page="admin_role_management_research" report="all" id="a50">
           Research</a>
@@ -169,3 +172,4 @@ function btnClickFunction(event){
   }
 </script>
 
+{% endblock %}

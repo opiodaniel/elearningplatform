@@ -1,0 +1,221 @@
+{% extends "base_education.html" %}
+{% load static i18n cms_tags menu_tags sekizai_tags thumbnail %}
+
+{% block title %}
+<title>{{ institution.institution_name }}</title>
+{% endblock %}
+
+{% block nav_bar %}
+{% include 'partners/includes/home_nav_bar.html' %}
+{% endblock %}
+
+{% block body_content %}
+<div id="outer_div" class="outer_div">
+
+                <section class="section1">
+                    <div class="container">
+                        <div class="col-lg-6 col-md-12">
+                            <div>
+                                <h1>{{institution.welcome_phrase_title}}</h1>
+                                <p style="font-size:18px" >{{institution.welcome_phrase_title_description}}</p>
+                                <a href="{% url 'users:login' %}" class="default-btn" ><i class="flaticon-user"></i>{{institution.join_us_title}}<span></span></a>
+
+                            </div>
+                            <div style="margin-top:25px;">
+                                <div style="color:blue; font-size:18px">
+                                    <p><span class="typed" id="typed-element" data-typed-items="&#9755; 99.9% Hands-on skills, and 0.1% theory."></span></p>
+                                    <p><span class="typed" id="typed-element_" data-typed-items="&#9755; Sky Is The Limit, Join us now to start your Journey.&#9757;"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12" style="margin-top:25px;">
+                            <div>
+                                <img decoding="async" src="{{institution.institution_image.url }}" alt="Build Development Skills With eCademy Any Time, Anywhere">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="program">
+                    <div class="outerDiv">
+                        <div class="bottom">
+                            <div class="container">
+                                {% for program in programs %}
+                                <div class="col-lg-4 col-sm-6 col-md-6" >
+                                    <div class="single-box-item">
+                                        <div class="image">
+                                            <img decoding="async" src="{{program.program_image.url}}" alt="{{program.program_name}}" >
+                                        </div>
+                                        <div class="program_text">
+                                            <h3>{{program.program_name}}</h3>
+                                            <p>{{program.program_description}}</p>
+                                        </div>
+                                        <a {% if program.is_links %} href ="{% url 'partners:program_description' program.id %}" target="_blank" class="link-btn" {% endif %}>{{program.program_link_title }}</a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section_2">
+                    <div class="container">
+                        <div class="col-lg-6 col-md-12">
+                            <div >
+                                <img decoding="async" src="{{institution.section_two_image.url}}" alt="About Us" width="400px" height="400px">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 section2">
+                            <span class="sub-title" style="color:red; font-size:18px">{{institution.section_two_header}}</span>
+                            <h2 >{{institution.section_two_description_one}}</h2>
+                            <p style="font-size:20px" >{{institution.section_two_description_two}}</p>
+                            <ul class="features-list" style="list-style-type: none; font-size:15px;">
+                                {% for ws in  why_us %}
+                                <li><span style="display:inline; float: left;">&nbsp&nbsp&nbsp<i class="{{ws.icon_name}}" style="color:red;">&nbsp&nbsp</i>{{ws.description}}</span></li>
+                                {% endfor %}
+                            </ul><br><br><br>
+                            <div style="text-align:center;">
+                                <a href="{% url 'users:login' %}" class="default-btn" style="color:red"><i class="flaticon-user"></i>{{institution.join_us_title}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="course">
+                    <div class="container">
+                        <div style="text-align:center" >
+                            <span style="color:red">{{institution.course_header}}</span>
+                            <h2 >{{institution.course_description_one}}</h2>
+                            <p >{{institution.course_description_two}}</p>
+                        </div>
+                        <div class="row">
+                            {% for course in courses %}
+                            <div class="col-lg-6 col-md-12" style="padding:5px">
+                                <div class="col-lg-4 col-md-4" >
+                                    <div class="courses-image" >
+                                        <img decoding="async" src="{{course.course_image.url}}" alt="" width="150px"; height="150px" >
+                                        <a {% if course.is_links %} href="{% url 'partners:course_description' course.id %}" target="_blank" class="link-btn" {% endif %} ></a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-md-8">
+                                    <div>
+                                        <span class="course-item-price"><span class="price">&#36;{{course.fee}}</span></span>
+                                        <h4><a {% if course.is_links %} href="{% url 'partners:course_description' course.id %}" target="_blank" {% endif %} >{{course.course_name}}</a></h4>
+                                        <ul style="list-style-type: none;">
+                                            <li>
+                                                <i class="fa fa-user" style="font-size:20px;color:red"></i>
+                                                {{course.course_schedule.number_of_students_enrolled}} Students enrolled
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ======= Testimonials Section ======= -->
+                <section id="testimonials" class="testimonials">
+                    <div style="text-align:center" >
+                        <span style="color:red">{{institution.course_header}}</span>
+                        <h2 >{{institution.course_description_one}}</h2>
+                        <p >{{institution.course_description_two}}</p>
+                    </div>
+                  <div class="container" data-aos="zoom-in" >
+                    <div class="testimonials-slider swiper-container" data-aos="fade-up" data-aos-delay="100" style="background-color:yellow;border-radius:10px;opacity: 0.5;">
+                      <div class="swiper-wrapper">
+                        {% for pp in persons_phrase_ %}
+                        <div class="swiper-slide">
+                          <div class="testimonial-item" style="text-align:center;padding:20px;">
+                            <img src="{{ MEDIA_URL }}{{pp.persons_phrase_image.url}}" class="testimonial-img" alt="{{pp.persons_name}}"  width="100px" height="100px" style="border-radius:50px">
+                            <h3>{{pp.persons_name}}</h3>
+                            <h4>{{pp.persons_job_title}}</h4>
+                            <p>
+                              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                              {{pp.persons_phrase}}
+                              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                            </p>
+                          </div>
+                        </div><!-- End testimonial item -->
+                         {% endfor %}
+                      </div>
+                      <div class="swiper-pagination"></div>
+                    </div>
+                  </div>
+                </section>
+                   <!-- End Testimonials Section -->
+
+                <section class="category">
+                    <div class="container" >
+                        <div>
+                            <div style="text-align:center">
+                                <span style="color:red">{{institution.category_header}}</span>
+                                <h2>{{institution.category_description_one}}</h2>
+                                <p>{{institution.category_description_two}}</p>
+                             </div>
+                        </div>
+                        {% for category in categories %}
+                        <div class="col-lg-3 col-sm-6 col-md-6">
+                            <div>
+                                <a {% if category.is_links %} href="{% url 'partners:category_description' category.id %}" target="_blank" class="link-btn" {% endif %}>
+                                    <img decoding="async" style="border-radius:5px;" src="{{category.category_image.url}}" alt="{{category.category_name}}" width="250px" height="250px">
+                                    <div class="content">
+                                        <h4>{{category.category_name}}</h4>
+                                        <span>{{category.number_of_courses}}</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </section>
+
+                <section class="section3">
+                    <div class="container" >
+                        <div>
+                            <span class="sub-title" style="color:red;">{{institution.section_three_header}}</span>
+                            <h2>{{institution.section_three_description_one}}</h2>
+                            <p> {{institution.section_three_description_two}} </p>
+                            <a href="{% url 'users:login' %}" class="default-btn"><i class="flaticon-user"></i>{{institution.join_us_title}}<span></span></a>
+                        </div>
+                        <div class="overview-image">
+                            <img decoding="async"  src="{{institution.section_three_image.url}}" width="800" height="400" alt="h2">
+                        </div>
+                    </div>
+                </section>
+
+    	        <section class="event">
+                    <div class="container">
+                        <div class="section-title" style="text-align:center;">
+                            <span class="sub-title" style="color:red">{{institution.event_header}}</span>
+                            <h2 >{{institution.event_description_one}}</h2>
+                            <p >{{institution.event_description_two}}</p>
+                        </div>
+                        <div>
+                            <div class="event_row">
+                                {% for event in events %}
+                                <div class="col-lg-4 col-sm-6 col-md-6" style="">
+                                    <div class="single-events-box_" >
+                                        <div class="image_" >
+                                            <a {% if event.is_links %} href="{% url 'partners:event_description' event.id %}" target="_blank" {% endif %} class="d-block">
+                                                <img  width="200" height="200" src="{{event.event_image.url}}"  alt=""  style="border-radius:10px" />
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <span class="date">{{event.event_date}}</span>
+                                            <h3><a {% if event.is_links %} href="{% url 'partners:event_description' event.id %}" target="_blank" {% endif %}>{{event.event_name}}</a></h3>
+                                            <span class="location"><i class="bx bx-map"></i>{{event.event_location}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+    </div>
+{% endblock %}
+

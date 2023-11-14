@@ -1,3 +1,19 @@
+{% extends "courses/course_schedule/formset_base.html" %}
 {% load static i18n cms_tags menu_tags sekizai_tags thumbnail %}
+
+
+
+{% block base_js %}
+ <!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+{% endblock base_js %}
+
+{% block content %}
 <hr/>
-<h1 >{{ page }}</h1>
+<div style="background-color:blue">
+
+<h1 style="color:red">{{ page }}</h1>
+
+</div>
+{% endblock %}
+
