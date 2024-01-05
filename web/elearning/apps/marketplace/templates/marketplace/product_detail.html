@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{{ product.image.url }}" alt="{{ product.name }} Image" class="img-fluid" width="500px" height="500px">
+            </div>
+            <div class="col-md-6">
+                <h2>{{ product.name }}</h2>
+                <p>Price: ${{ product.price }}</p>
+                <p>Description: {{ product.description }}</p>
+                <p>Quantity Available: {{ product.quantity_available }}</p>
+
+                <form method="post" action="{% url 'add_to_cart' product_id=product.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                </form>
+            </div>
+            <div>
+                <h2>Product Reviews</h2>
+                {% if reviews %}
+                    <ul>
+                        {% for review in reviews %}
+                            <li>
+                                <p>Rating: {{ review.rating }}</p>
+                                <p>Comment: {{ review.comment }}</p>
+                                <p>By: {{ review.user.username }}</p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No reviews yet.</p>
+                {% endif %}
+
+                <h2>Leave a Review</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Submit Review</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<!-- templates/marketplace/product_detail.html -->
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Product Detail</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>{{ product.name }}</h1>-->
+<!--    <p>Description: {{ product.description }}</p>-->
+<!--    <p>Price: ${{ product.price }}</p>-->
+
+<!--    <h2>Reviews</h2>-->
+<!--    {% for review in reviews %}-->
+<!--        <div>-->
+<!--            <p>User: {{ review.user.username }}</p>-->
+<!--            <p>Rating: {{ review.rating }}/5</p>-->
+<!--            <p>Comment: {{ review.comment }}</p>-->
+<!--            <p>Posted at: {{ review.created_at }}</p>-->
+<!--        </div>-->
+<!--    {% endfor %}-->
+
+<!--    <h3>Average Rating: {{ average_rating|default:"No ratings yet" }}</h3>-->
+
+<!--    <form method="post" action="{% url 'leave_review' product.id %}">-->
+<!--        {% csrf_token %}-->
+<!--        <label for="rating">Rating:</label>-->
+<!--        <select name="rating" id="rating">-->
+<!--            <option value="1">1</option>-->
+<!--            <option value="2">2</option>-->
+<!--            <option value="3">3</option>-->
+<!--            <option value="4">4</option>-->
+<!--            <option value="5">5</option>-->
+<!--        </select>-->
+<!--        <br>-->
+<!--        <label for="comment">Comment:</label>-->
+<!--        <textarea name="comment" id="comment" cols="30" rows="5"></textarea>-->
+<!--        <br>-->
+<!--        <button type="submit">Submit Review</button>-->
+<!--    </form>-->
+<!--</body>-->
+<!--</html>-->
+
+

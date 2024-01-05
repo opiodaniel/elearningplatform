@@ -1,0 +1,35 @@
+<!-- templates/marketplace/order_history.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History</title>
+</head>
+<body>
+    <h1>Your Order History</h1>
+
+    {% if orders %}
+        <ul>
+            {% for order in orders %}
+                <li>
+                    <p>Order Number: {{ order.id }}</p>
+                    <p>Total Amount: ${{ order.total_amount }}</p>
+                    <p>Ordered on: {{ order.created_at }}</p>
+                    <ul>
+                        {% for item in order.items.all %}
+                            <li>
+                                {{ item.product.name }} - ${{ item.product.price }} - Quantity: {{ item.quantity }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No orders found.</p>
+    {% endif %}
+</body>
+</html>

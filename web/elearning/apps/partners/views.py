@@ -33,7 +33,6 @@ def home(request):
     events = Event.objects.all()
     why_us_ = WhyUS.objects.all()
     institution = InstitutionWeb.objects.get(id=1)
-    print('partners home3: ', persons_phrase)
     return render(request, 'partners/home.html', {
                                                   'courses': courses,
                                                   'programs': programs,
@@ -45,16 +44,6 @@ def home(request):
                                                   'institution': institution,
                                                   }
                   )
-
-
-# def ranking():
-#     # get user_ranking dictionary
-#     user_ranking = r.zrange('user_ranking', 0, 1, desc=True)[:10]
-#     user_ranking_ids = [int(id_) for id_ in user_ranking]
-#     # get most viewed users
-#     most_viewed = list(User.objects.filter(id__in=user_ranking_ids))
-#     most_viewed.sort(key=lambda x: user_ranking_ids.index(x.id))
-#     return most_viewed
 
 
 def instructors(request, slug=None):

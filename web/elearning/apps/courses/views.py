@@ -867,14 +867,14 @@ def set_new_model_instance(request):
             if parent_model_name == 'department':
                 # print(100)
                 model_name_section = 'section'
-                obj_name_section = 'intro for ' + obj_name
+                obj_name_section = 'Intro For ' + obj_name
                 parent_model_name_section = model_name
                 count, new_obj_en_section = create_translated_obj(parent_model_name_section,
                                                                   new_obj_en, model_name_section, obj_name_section)
                 create_action(request.user, 'create section', new_obj_en_section)
                 # --
                 model_name_sub_section = 'subsection'
-                obj_name_sub_section = 'Topics for ' + obj_name
+                obj_name_sub_section = 'Topics For ' + obj_name
                 parent_model_name = model_name_section
                 count, new_obj_en_sub_section = create_translated_obj(parent_model_name, new_obj_en_section,
                                                                       model_name_sub_section, obj_name_sub_section)

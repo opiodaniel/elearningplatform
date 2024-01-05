@@ -1,0 +1,86 @@
+/* marketplace/static/css/styles.css */
+
+/* Navbar Styles */
+.navbar {
+    background-color: #fff; /* Set your desired background color */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+}
+
+.navbar-brand {
+    font-size: 1.5rem; /* Adjust the font size of the brand/logo */
+}
+
+.navbar-nav .nav-link {
+    color: #333; /* Set the color of the navigation links */
+    font-weight: bold; /* Make the links bold */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #007bff; /* Change the color on hover */
+}
+
+/* Hero Section Styles */
+.hero-section {
+    position: relative;
+    height: 400px; /* Adjust the height based on your design */
+    overflow: hidden;
+}
+
+.hero-section img {
+    width: 100%;
+    height: auto;
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+}
+
+.hero-text h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+}
+
+/* Featured Products Section Styles */
+.section-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.product-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+}
+
+.price {
+    font-size: 1.2rem;
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+/* Category Section Styles */
+.category-card {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.category-card img {
+    width: 80px; /* Adjust the size based on your design */
+    height: auto;
+}

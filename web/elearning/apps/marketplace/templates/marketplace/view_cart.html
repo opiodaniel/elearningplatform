@@ -1,0 +1,33 @@
+<!-- templates/marketplace/view_cart.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+</head>
+<body>
+    <h1>Your Shopping Cart</h1>
+
+    {% for cart_item in cart_items %}
+        <div>
+            <h2>{{ cart_item.product.name }}</h2>
+            <p>Quantity: {{ cart_item.quantity }}</p>
+            <p>Price: ${{ cart_item.product.price }}</p>
+            <form method="post" action="{% url 'remove_from_cart' cart_item.id %}">
+                {% csrf_token %}
+                <button type="submit">Remove from Cart</button>
+            </form>
+        </div>
+    {% endfor %}
+
+    <p>Total Amount: ${{ total_amount }}</p>
+
+    <form method="post" action="{% url 'checkout' %}">
+        {% csrf_token %}
+        <button type="submit">Proceed to Checkout</button>
+    </form>
+</body>
+</html>

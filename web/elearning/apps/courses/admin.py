@@ -15,7 +15,7 @@ from .models import (Department, Course, Syllabus, Section, SubSection, CourseSc
 
 
 class DepartmentAdmin(TranslatableAdmin, PlaceholderAdminMixin, admin.ModelAdmin):
-    list_display = ('language_column', 'name', 'active',)
+    list_display = ('language_column', 'order', 'id', 'name', 'active',)
     fieldsets = (
         (None, {
          'fields': (
@@ -141,7 +141,7 @@ class SubSectionAdmin(TranslatableAdmin, PlaceholderAdminMixin, admin.ModelAdmin
 
 
 class CourseScheduleAdmin(PlaceholderAdminMixin, admin.ModelAdmin):
-    list_display = ('name', 'active', )
+    list_display = ('id', 'name', 'active', )
 
     def get_prepopulated_fields(self, request, obj=None):
         return {'slug': ('name',)}

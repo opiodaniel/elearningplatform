@@ -26,6 +26,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+
+
     path(r'sitemap\.xml', sitemap, {'sitemaps': {'cmspages': CMSSitemap}}),
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
@@ -33,6 +35,8 @@ urlpatterns = [
     path(r'core/', include('elearning.apps.core.urls')),
     path(r'actions/', include('elearning.apps.actions.urls')),
     path(r'research/', include('elearning.apps.research.urls')),
+    path('marketplace/', include('elearning.apps.marketplace.urls')),
+    path(r'vid', include('elearning.apps.videocall.urls')),
     path(r'allauth/', include('allauth.urls')),
     path(r'', include('cms.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 # https://vegibit.com/how-to-use-third-party-applications-and-libraries-in-django/#:~:text=Configuring%20settings%3A%20Some%20third%2Dparty,as%20API%20keys%20or%20middleware.
 
 import os
+import dotenv
+dotenv.load_dotenv()
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -54,6 +56,8 @@ DJANGO_APPS = [
 
     # mobile user
     'django_user_agents',
+
+    'corsheaders',
 ]
 
 # ========== Mobile user settings================
@@ -141,6 +145,8 @@ LOCAL_APPS = [
     'elearning.apps.actions',
     'elearning.apps.partners',
     'elearning.apps.research',
+    'elearning.apps.marketplace',
+    'elearning.apps.videocall',
 
 
 ]
@@ -159,6 +165,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+
+    'corsheaders.middleware.CorsMiddleware',
 
     # django-cms
     'django.middleware.locale.LocaleMiddleware',
@@ -191,6 +200,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'elearning.wsgi.application'
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",  # Add your frontend URL here
+    # "https://yourproductionurl.com",
+]
 
 
 # Database
@@ -317,3 +332,19 @@ EMAIL_HOST_USER = 'danielopio540@gmail.com'
 EMAIL_HOST_PASSWORD = 'hcusjvmuupklpbvy'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+
+AGORA = {
+        'AGORA_APP_ID': 'c57597094d5b4e0f8f799565b97764f5',
+        'AGORA_APP_CERTIFICATE': 'ad2b852df3af46a4ba99db8b55bbad09',
+}
+#
+#
+PUSHER = {
+          'PUSHER_APP_ID': '1710405',
+          'PUSHER_KEY': '9c7201a7d112211d5259',
+          'PUSHER_SECRET': '42fd8d843b634cf7f358',
+          'PUSHER_CLUSTER': 'ap2',
+}
+
+
