@@ -1,96 +1,208 @@
 {% load static i18n cms_tags menu_tags sekizai_tags thumbnail %}
 
-
 <style>
-    .nav-item.active{ background-color:red;border-radius:5px; }
-    .nav-item:hover{text-decoration:underline;color:red; }
+  /* src/components/Header.css */
+  /*
+    .header {
+      background-color: #272d33;
+      padding: 20px 0;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    */
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .nav-logo {
+      color: #ecf0f1;
+      text-decoration: none;
+      font-size: 1.8em;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .nav-logo:hover {
+      color: #3498db;
+    }
+
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-item {
+      margin: 0;
+    }
+
+    .nav-link {
+      color: #ecf0f1;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      background-color: green;
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        flex-direction: column;
+        align-items: center;
+        background-color: #34495e;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        padding-top: 20px;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease;
+      }
+
+      .nav-menu.active {
+        transform: translateY(0);
+      }
+
+      .nav-item {
+        margin: 10px 0;
+      }
+
+      .nav-link {
+        padding: 15px 20px;
+      }
+
+      .menu-toggle {
+        display: block;
+        color: #ecf0f1;
+        font-size: 1.5em;
+        cursor: pointer;
+      }
+    }
 </style>
 
-<script>
-function openCity(evt){
-  var nav_item = document.getElementsByClassName("nav-item");
-  for (i = 0; i < nav_item.length; i++) {
-    nav_item[i].className = nav_item[i].className.replace(" active", "");
-  }
-  evt.currentTarget.className += " active";
-}
-</script>
+<header class="header">
+      <nav class="navbar navbar-expand-lg navbar-info bg-info fixed-top">
+        <div class="container">
+             <a href="#home" class="nav-logo"> <img src="{{institution.institution_image.url}}" width='50' /> </a>
+          <button class="navbar-toggler" type="button" onClick={toggleMenu}>
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class={`collapse navbar-collapse ${menuActive ? 'show' : ''}`}>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">@AcDantez</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          {% if user.is_authenticated %}
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item active" onclick="openCity(event)"><a class="nav-link" aria-current="page" href="/">Home</a></li>
-            <li class="nav-item" onclick="openCity(event)"> <a class="nav-link " aria-current="page" href="#about">About</a></li>
-            <li class="nav-item" onclick="openCity(event)"> <a class="nav-link " aria-current="page" href="#programs">Programs</a></li>
-            <li class="nav-item" onclick="openCity(event)"><a class="nav-link" aria-current="page" href="#courses">Courses</a> </li>
-            <li class="nav-item" onclick="openCity(event)"><a class="nav-link " aria-current="page" href="#services">Services</a></li>
-            <li class="nav-item" onclick="openCity(event)"><a class="nav-link " aria-current="page" href="#events">Events</a></li>
-            <li class="nav-item" onclick="openCity(event)"><a class="nav-link " aria-current="page" href="#testimonial">Testimonial</a></li>
-            <li class="nav-item" onclick="openCity(event)"><a class="nav-link " aria-current="page" href="#contact" >{% trans "Contact Us" %}</a></li>
-            <li class="nav-item" onclick="openCity(event)"><a class="nav-link  text-success" href="{% url 'users:my_account' %}"><i class="fa fa-user" style='font-size:20px;'></i>&nbsp;{% trans "My Account" %}</a></li>
-            <li class="nav-item" onclick="openCity(event)"><a class="nav-link" href="{% url 'users:logout' %}"  style="color:green;">Log Out</a></li>
-          </ul>
-          {% else %}
-              <!-- Logging -->
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item active" onclick="openCity(event)"><a class="nav-link" aria-current="page" href="/">Home</a></li>
-              <li class="nav-item" onclick="openCity(event)"><a class="nav-link " aria-current="page" href="#about">About</a></li>
-              <li class="nav-item" onclick="openCity(event)"><a class="nav-link " aria-current="page" href="#programs">Programs</a></li>
-              <li class="nav-item" onclick="openCity(event)"><a class="nav-link" aria-current="page" href="#courses">Courses</a></li>
-              <li class="nav-item" onclick="openCity(event)"><a class="nav-link " aria-current="page" href="#services">Services</a></li>
-              <li class="nav-item" onclick="openCity(event)"><a class="nav-link " aria-current="page" href="#events">Events</a> </li>
-              <li class="nav-item" onclick="openCity(event)"><a class="nav-link " aria-current="page" href="#testimonial">Testimonial</a></li>
-              <li class="nav-item" onclick="openCity(event)"><a class="nav-link " aria-current="page" href="#contact">{% trans "Contact Us" %}</a></li>
-              <li class="nav-item" onclick="openCity(event)"><a class="nav-link "  href="{% url 'users:login' %}" style="font-size:15px;text-align:center;color:green;"><i class="fa fa-user" style='font-size:20px;'></i>&nbsp;Log in/Register</a></li>
-              <li class="nav-item" onclick="openCity(event)"><a class="nav-link " href="{% url 'users:change_password' %}" style="color:green;">{% trans "Reset Password" %}</a></li>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active" onclick="openCity(event)">
+                <a class="nav-link" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                   <a href="#about" class="nav-link">About</a>
+              </li>
+              <li class="nav-item">
+                 <a href="#programs" class="nav-link">Programs</a>
+              </li>
+              <li class="nav-item">
+                  <a href="#courses" class="nav-link">Courses</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link "  href="#services">Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="#events">Events</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="#testimonial">Testimonial</a>
+              </li>
+              <li class="nav-item">
+                 <a href="#contact" class="nav-link">Contact Us</a>
+              </li>
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link  text-warning" href="{% url 'users:my_account' %}">
+                  <i class="fa fa-user" style='font-size:20px;'></i>&nbsp;{% trans "My Account" %}</a>
+              </li>
+               {% else %}
+              <li class="nav-item">
+                <a class="nav-link text-warning"  href="{% url 'users:login' %}">
+                  <i class="fa fa-user" style='font-size:20px;'></i>&nbsp;Log in/Register</a>
+              </li>
+              {% endif %}
+              <li class="nav-item" >
+                <a class="nav-link text-danger" href="{% url 'users:logout' %}">Log Out</a>
+              </li>
             </ul>
-            {% endif %}
+
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
 
-<!-- ToolBar -->
-<!--<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top" >-->
-<!--          <div class="container-fluid">-->
-<!--           <ul class="nav navbar-nav"  style="margin-bottom:15px; text-align:center">-->
-<!--                <a class="navbar-brand" href="/">-->
-<!--                    <img style="border-radius:25px;" src="{% static "core/logo.pn" %}" alt="My image" height="100" width="100">-->
-<!--                </a>-->
-<!--           </ul>-->
+<!--<style>-->
+<!--    .nav-item.active{ background-color:red;border-radius:5px; }-->
+<!--    .nav-item:hover{text-decoration:underline;color:red; }-->
+<!--</style>-->
 
-<!--           <ul dir="LTR" class="navbar-nav mr-auto">-->
+<!--<script>-->
+<!--function openCity(evt){-->
+<!--  var nav_item = document.getElementsByClassName("nav-item");-->
+<!--  for (i = 0; i < nav_item.length; i++) {-->
+<!--    nav_item[i].className = nav_item[i].className.replace(" active", "");-->
+<!--  }-->
+<!--  evt.currentTarget.className += " active";-->
+<!--}-->
+<!--</script>-->
 
-<!--           </ul>-->
-
-<!--            &lt;!&ndash; Login;  Log off &ndash;&gt;-->
-<!--            {% if user.is_authenticated %}-->
-<!--            <ul class="nav navbar-nav navbar-left">-->
-<!--                {% block app_toolbar %}-->
-<!--                {% endblock app_toolbar %}-->
-<!--                {% block sub_app_toolbar %}-->
-<!--                {% endblock sub_app_toolbar %}-->
-<!--              <li><a title="Courses" href="#" > {% trans "Courses" %}</a></li>-->
-<!--              <li><a title="Events" href="#" >{% trans "Events" %}</a></li>-->
-<!--              <li ><a title="Blog" href="#">{% trans "Blog" %}</a></li>-->
-<!--              <li><a title="Contact" href="{% url 'users:contact_us' %}">{% trans "Contact Us" %}</a></li>-->
-<!--              <li><a href="{% url 'users:my_account' %}"><i class="fa fa-user" style='font-size:20px;'></i>&nbsp;{% trans "My Account" %}</a></li>-->
-<!--              <li><a title="Home" href="/" > {% trans "Home" %}</a> </li>-->
-<!--              <li><a class="nav-link" href="{% url 'users:logout' %}"  style="font-size:15px;text-align:center;color:red;border-radius:100px;width:100px">Log Out</a></li>-->
-<!--            </ul>-->
-<!--            {% else %}-->
-<!--            </ul>-->
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">-->
+<!--      <div class="container-fluid">-->
+<!--        <a class="navbar-brand" href="#">@AcDantez</a>-->
+<!--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--          <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
+<!--        <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--          {% if user.is_authenticated %}-->
+<!--          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">-->
+<!--            <li class="nav-item active" onclick="openCity(event)"><a class="nav-link" aria-current="page" href="/">Home</a></li>-->
+<!--            <li class="nav-item" onclick="openCity(event)"> <a class="nav-link " aria-current="page" href="#about">About</a></li>-->
+<!--            <li class="nav-item" onclick="openCity(event)"> <a class="nav-link " aria-current="page" href="#programs">Programs</a></li>-->
+<!--            <li class="nav-item" onclick="openCity(event)"><a class="nav-link" aria-current="page" href="#courses">Courses</a> </li>-->
+<!--            <li class="nav-item" onclick="openCity(event)"><a class="nav-link " aria-current="page" href="#services">Services</a></li>-->
+<!--            <li class="nav-item" onclick="openCity(event)"><a class="nav-link " aria-current="page" href="#events">Events</a></li>-->
+<!--            <li class="nav-item" onclick="openCity(event)"><a class="nav-link " aria-current="page" href="#testimonial">Testimonial</a></li>-->
+<!--            <li class="nav-item" onclick="openCity(event)"><a class="nav-link " aria-current="page" href="#contact" >{% trans "Contact Us" %}</a></li>-->
+<!--            <li class="nav-item" onclick="openCity(event)"><a class="nav-link  text-success" href="{% url 'users:my_account' %}"><i class="fa fa-user" style='font-size:20px;'></i>&nbsp;{% trans "My Account" %}</a></li>-->
+<!--            <li class="nav-item" onclick="openCity(event)"><a class="nav-link" href="{% url 'users:logout' %}"  style="color:green;">Log Out</a></li>-->
+<!--          </ul>-->
+<!--          {% else %}-->
 <!--              &lt;!&ndash; Logging &ndash;&gt;-->
-<!--            <ul class="nav navbar-nav navbar-left">-->
-<!--              <li><a  href="{% url 'users:login' %}" style="font-size:15px;text-align:center;color:red;"><i class="fa fa-user" style='font-size:20px;'></i>&nbsp;Log in/Register</a></li>-->
-<!--&lt;!&ndash;              <li><a  href="{% url 'users:edit_user_profile_new' %}">{% trans "Edit profile" %}</a></li>&ndash;&gt;-->
-<!--              <li><a  href="{% url 'users:change_password' %}">{% trans "Reset Password" %}</a></li>-->
+<!--            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">-->
+<!--              <li class="nav-item active" onclick="openCity(event)"><a class="nav-link" aria-current="page" href="/">Home</a></li>-->
+<!--              <li class="nav-item" onclick="openCity(event)"><a class="nav-link " aria-current="page" href="#about">About</a></li>-->
+<!--              <li class="nav-item" onclick="openCity(event)"><a class="nav-link " aria-current="page" href="#programs">Programs</a></li>-->
+<!--              <li class="nav-item" onclick="openCity(event)"><a class="nav-link" aria-current="page" href="#courses">Courses</a></li>-->
+<!--              <li class="nav-item" onclick="openCity(event)"><a class="nav-link " aria-current="page" href="#services">Services</a></li>-->
+<!--              <li class="nav-item" onclick="openCity(event)"><a class="nav-link " aria-current="page" href="#events">Events</a> </li>-->
+<!--              <li class="nav-item" onclick="openCity(event)"><a class="nav-link " aria-current="page" href="#testimonial">Testimonial</a></li>-->
+<!--              <li class="nav-item" onclick="openCity(event)"><a class="nav-link " aria-current="page" href="#contact">{% trans "Contact Us" %}</a></li>-->
+<!--              <li class="nav-item" onclick="openCity(event)"><a class="nav-link "  href="{% url 'users:login' %}" style="font-size:15px;text-align:center;color:green;"><i class="fa fa-user" style='font-size:20px;'></i>&nbsp;Log in/Register</a></li>-->
+<!--              <li class="nav-item" onclick="openCity(event)"><a class="nav-link " href="{% url 'users:change_password' %}" style="color:green;">{% trans "Reset Password" %}</a></li>-->
 <!--            </ul>-->
 <!--            {% endif %}-->
-<!--          </div>-->
-<!--        </nav>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </nav>-->
+
