@@ -376,7 +376,7 @@ def signup_login_form(request, error_message=''):
     form_signup = RegistrationForm()
 
     arg = {'form_login': form_login, 'form_signup': form_signup,
-           'redirect_field_name': "next", 'redirect_field_value': reverse('users:my_account'),
+           'redirect_field_name': "next", 'redirect_field_value': reverse('users:login'),
            'error_message': error_message, 'institution_obj': company_obj
            }
     return render(request, 'users/authentication/login_page.html', arg)
