@@ -21,12 +21,7 @@
 {% endblock %}
 
 {% block body_content %}
-<br/><br/>
-{% if request|is_mobile %}
-<div class="container" style="background-color:lightblue;width:550px;top:20px">
-{% else %}
-<div class="container" style="background-color:lightblue;width:550px;top:20px;position:relative; left:350px">
-{% endif %}
+<div class="container" style="background-color:lightblue;width:550px;">
     {% if messages %}
     <div>
       <strong>Messages:</strong>

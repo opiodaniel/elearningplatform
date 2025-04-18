@@ -31,14 +31,14 @@
 <style>
 .gradient-custom-2 {
     /* fallback for old browsers */
-    background: #fccb90;
+    background: #90caf9;
 
     /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+    background: -webkit-linear-gradient(to right, #42a5f5, #1e88e5, #1976d2, #1565c0);
 
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
-    }
+    background: linear-gradient(to right, #42a5f5, #1e88e5, #1976d2, #1565c0);
+}
 
     @media (min-width: 768px) {
     .gradient-form {
@@ -141,11 +141,7 @@ body, html {
 
 </style>
 <br/>
-    {% if request|is_mobile %}
-    <div style="display: flex;justify-content: center;color:red;margin-top:30px; " >
-    {% else %}
-    <div style="display: flex;justify-content: center;color:red;margin-right:-800px; margin-top:50px;">
-    {% endif %}
+    <div style="display: flex;justify-content: center;color:red; margin-top:50px;">
       <strong>
       <ul>
         {% if messages %}
@@ -161,11 +157,8 @@ body, html {
       </strong>
     </div>
 <!--margin-top:-105px-->
-{% if request|is_mobile %}
+
 <div class="flip-container" style="display: flex;justify-content: center;margin-top:30px;">
-{% else %}
-<div class="flip-container" style="display: flex;justify-content: center;margin-top:30px;margin-right:-1030px;">
-{% endif %}
   <div class="flipper container py-5 h-100" id="flipper">
 <!--  Front signin page    -->
       <div class="front">
@@ -174,14 +167,14 @@ body, html {
           <div class="row g-0">
             <div class="col-lg-6">
               <div class="card-body p-md-5 mx-md-4">
-                <div class="text-center">
-                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
-                    style="width: 185px;" alt="logo">
-                  <h4 class="mt-1 mb-5 pb-1">We are The Lotus Team</h4>
-                </div>
+<!--                <div class="text-center">-->
+<!--&lt;!&ndash;                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    style="width: 185px;" alt="logo">&ndash;&gt;-->
+<!--                  <h4 class="mt-1 mb-5 pb-1">We are The Lotus Team</h4>-->
+<!--                </div>-->
                 <form action="{% url 'users:login' %}" method="post">
                     {% csrf_token %}
-                  <p>Please login to your account</p>
+                  <h4 class="text-primary">Please login to your account</h4>
                   <div class="form-outline mb-4">
                     {{form_login.username}}
                     <label class="form-label" for="">Username</label>
@@ -197,8 +190,8 @@ body, html {
                   </div>
 
                   <div class="d-flex align-items-center justify-content-center pb-4">
-                    <p class="mb-0 me-2">Don't have an account?</p>
-                    <button type="button" id="loginButton" class="flipbutton btn_create_new">Create new</button>
+<!--                    <p class="mb-0 me-2">Don't have an account?</p>-->
+                    <button type="button" id="loginButton" class="flipbutton btn_create_new">Create Account</button>
                   </div>
                 </form>
               </div>
@@ -206,9 +199,10 @@ body, html {
             <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
               <div class="text-black px-3 py-4 p-md-5 mx-md-4">
                 <h4 class="mb-4">We are more than just a company</h4>
-                <p class="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p class="small mb-0">"At our company, we specialize in providing top-tier educational services,
+                    an innovative e-learning platform, and expert web development solutions.
+                    Our comprehensive programs cover web development, data analysis, and machine learning, empowering learners with practical, hands-on experience. Whether you're looking to build websites, analyze data, or master machine learning,
+                    we offer the tools and knowledge you need to succeed."</p>
               </div>
             </div>
           </div>
@@ -229,7 +223,7 @@ body, html {
                 <!--</div>-->
                 <form action="{% url 'users:login' %}" method="post">
                   {% csrf_token %}
-                  <p>Feel free to create a New Account with us.</p>
+                  <h5 class="text-primary">Feel free to create New Account with us.</h5>
                   <div class="form-outline mb-4">
                     <label class="form-label" for="">Enter 1</label>
                     <input type="text" id="id_test" name="test" class="form-control" autofocus="" maxlength="150"
@@ -262,7 +256,7 @@ body, html {
                   </div>
 
                   <div class="d-flex align-items-center justify-content-center pb-4">
-                    <p class="mb-0 me-2">You have an account?</p>
+<!--                    <p class="mb-0 me-2">You have an account?</p>-->
                     <button type="button" id="registerButton" class="flipbutton btn_create_new">Log in</button>
 
                   </div>
@@ -273,9 +267,10 @@ body, html {
             <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
               <div class="text-black px-3 py-4 p-md-5 mx-md-4">
                 <h4 class="mb-4">We are more than just a company</h4>
-                <p class="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p class="small mb-0">"At our company, we specialize in providing top-tier educational services,
+                    an innovative e-learning platform, and expert web development solutions.
+                    Our comprehensive programs cover web development, data analysis, and machine learning, empowering learners with practical, hands-on experience. Whether you're looking to build websites,
+                    analyze data, or master machine learning, we offer the tools and knowledge you need to succeed."</p>
               </div>
             </div>
           </div>

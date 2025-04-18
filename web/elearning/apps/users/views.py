@@ -406,6 +406,7 @@ def signup_page(request):
 
             try:
                 form.save()
+                return signup_login_form(request, error_message='')
             except Exception as ex:
                 # pass
                 # print('error2:')

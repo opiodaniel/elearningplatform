@@ -5,6 +5,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+# Has to be
+SITE_ID = 1
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -18,3 +21,5 @@ DATABASES = {
 
 
 CURRENT_URL = 'dev'
+
+DOMAIN = 'http://127.0.0.1:8000'

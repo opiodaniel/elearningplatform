@@ -1,183 +1,179 @@
-{% load static i18n cms_tags menu_tags sekizai_tags thumbnail %}
 
 <style>
-div.ex1 {
-  background-color: lightblue;
-  height: 600px;
-  width: 100%;
-  overflow-y: scroll;
-}
+  .navbar_ {
+    margin-bottom: 15px;
+  }
+  .table thead th {
+    background-color: #d0e7ff;
+  }
+  .table {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .badge {
+    font-size: 0.7em;
+  }
+  .container h2 {
+    margin-top: 20px;
+  }
 
-th {
-  border: 1px solid black;
-  width:5%;
-  text-align: center;
 }
-
-td {
-  border: 1px solid black;
-}
-tr {
-  border: 1px solid black;
-}
-
 </style>
 
-<div class="w3-responsive">
+
+
+
+
+<div class="container mt-4">
   <div class="row">
-    <div class="ex1 col-sm-6 navbar_" style="background-color:lavenderblush;" onclick="btnClickMain(event)">
-      <h2>My Active Courses</h2>
-      <table class="w3-table-all w3-hoverable" style="width:30%">
-          <thead>
-            <tr class="w3-light-blue">
-              <th>#</th>
-              <th>Course</th>
-              <th>Team</th>
-              <th>Simulation</th>
-              <th>Diploma</th>
-            </tr>
-          </thead>
-        {% for course_schedule_user in my_course_schedule_user %}
-          <tr>
-            <td>{{ forloop.counter }}</td>
-            <td>
-              <a href="{{ course_schedule_user.course_schedule.course.get_absolute_url }}" target="_blank">
-                <span class="badge badge-pill badge-info">Go to {{ course_schedule_user.course_schedule.name }}</span>
-              </a>
-            </td>
-            <td>
-              {% if course_schedule_user.course_schedule.course.is_team %}
-                 {% if course_schedule_user.course_schedule.assignment_method == 1 %}
-                   <a href="#" class="assignment_method" data-view="{{ course_schedule_user.course_schedule.get_team_list_url1 }} " >
-                   <span class="badge badge-pill badge-primary">
-                     Assign to team
-                   </span>
-                 {% elif course_schedule_user.course_schedule.assignment_method == 2 %}
-                   <a href="#" class="assignment_method" data-view="{{ course_schedule_user.course_schedule.get_team_list_url2 }} " >
-                   <span class="badge badge-pill badge-primary">
-                     Teams
-                   </span>
-                 {% endif %}
-              </a>
-              {% endif %}
-            </td>
-            <td>
-              {% if course_schedule_user.course_schedule.course.link_app %}
-              <a href="{{ course_schedule_user.course_schedule.get_simulation_url }}" target="_blank">
-                <span class="badge badge-pill badge-primary">Go to simulation {{ course_schedule_user.course_schedule.name }}</span>
-              </a>
-              {% endif %}
-            </td>
-            <td>
-
-              {% if course_schedule_user.graduated%}
-                <a href="{{ course_schedule_user.get_diploma_url }}" target="_blank">
-                  <span class="badge badge-pill badge-primary">
-
-                    {% if course_schedule_user.course_schedule.certificate_number < 100 %}
-                      Show Certificate
-                    {% else %}
-                      Show Diploma
-                    {% endif %}
-
-                  </span>
-                </a>
-              {% else %}
-                Not Graduated Yet
-              {% endif %}
-
-            </td>
-          </tr>
-        {% endfor %}
-        </table>
-      <br/><br/>
-
-      <h2>My Completed Courses</h2>
-      <table class="w3-table-all w3-hoverable" style="width:30%">
+    <div class="col-md-12 mb-4" onclick="btnClickMain(event)">
+      <div class="navbar_ p-3" style="background-color:lavenderblush;">
+        <h2>My Active Courses</h2>
+        <div class="table-responsive">
+          <table class="table table-hover">
             <thead>
-              <tr class="w3-light-blue">
+              <tr>
+                <th>#</th>
+                <th>Course</th>
+                <th>Team</th>
+                <th>Simulation</th>
+                <th>Diploma</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for course_schedule_user in my_course_schedule_user %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>
+                  <a href="{{ course_schedule_user.course_schedule.course.get_absolute_url }}" target="_blank">
+                    <span class="badge badge-info">Go to {{ course_schedule_user.course_schedule.name }}</span>
+                  </a>
+                </td>
+                <td>
+                  {% if course_schedule_user.course_schedule.course.is_team %}
+                    {% if course_schedule_user.course_schedule.assignment_method == 1 %}
+                    <a href="#" class="assignment_method" data-view="{{ course_schedule_user.course_schedule.get_team_list_url1 }}">
+                      <span class="badge badge-primary">Assign to team</span>
+                    </a>
+                    {% elif course_schedule_user.course_schedule.assignment_method == 2 %}
+                    <a href="#" class="assignment_method" data-view="{{ course_schedule_user.course_schedule.get_team_list_url2 }}">
+                      <span class="badge badge-primary">Teams</span>
+                    </a>
+                    {% endif %}
+                  {% endif %}
+                </td>
+                <td>
+                  {% if course_schedule_user.course_schedule.course.link_app %}
+                  <a href="{{ course_schedule_user.course_schedule.get_simulation_url }}" target="_blank">
+                    <span class="badge badge-primary">Go to simulation {{ course_schedule_user.course_schedule.name }}</span>
+                  </a>
+                  {% endif %}
+                </td>
+                <td>
+                  {% if course_schedule_user.graduated %}
+                  <a href="{{ course_schedule_user.get_diploma_url }}" target="_blank">
+                    <span class="badge badge-primary">
+                      {% if course_schedule_user.course_schedule.certificate_number < 100 %}
+                      Show Certificate
+                      {% else %}
+                      Show Diploma
+                      {% endif %}
+                    </span>
+                  </a>
+                  {% else %}
+                  Not Graduated Yet
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="navbar_ p-3" style="background-color:lavenderblush;">
+        <h2>My Completed Courses</h2>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
                 <th>#</th>
                 <th>Course</th>
                 <th>Diploma</th>
               </tr>
             </thead>
-          {% for course_schedule_user_completed in my_course_schedule_user_completed %}
-            <tr>
-              <td>{{ forloop.counter }}</td>
-              <td>
-                <a href="{{ course_schedule_user_completed.course_schedule.course.get_absolute_url }}" target="_blank">
-                  <span class="badge badge-pill badge-primary">Go to {{ course_schedule_user_completed.course_schedule.name }}</span>
-                </a>
-              </td>
-              <td>
-
-                {% if course_schedule_user_completed.graduated%}
-                  <a href="{{ course_schedule_user_completed.get_diploma_url }}" target="_blank">
-                    <span class="badge badge-pill badge-primary">Show Diploma</span>
+            <tbody>
+              {% for course_schedule_user_completed in my_course_schedule_user_completed %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>
+                  <a href="{{ course_schedule_user_completed.course_schedule.course.get_absolute_url }}" target="_blank">
+                    <span class="badge badge-primary">Go to {{ course_schedule_user_completed.course_schedule.name }}</span>
                   </a>
-                {% else %}
-                  Not Graduated Yet.
-                {% endif %}
+                </td>
+                <td>
+                  {% if course_schedule_user_completed.graduated %}
+                  <a href="{{ course_schedule_user_completed.get_diploma_url }}" target="_blank">
+                    <span class="badge badge-primary">Show Diploma</span>
+                  </a>
+                  {% else %}
+                  Not Graduated Yet
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-              </td>
-            </tr>
-          {% endfor %}
-      </table>
-       <br/><br/>
-
-      <h2>Orders</h2>
-      <table class="w3-table-all w3-hoverable" style="width:30%">
-          <thead>
-            <tr class="w3-light-blue">
-              <th>#</th>
-              <th>Order</th>
-            </tr>
-          </thead>
-        {% for order in my_orders %}
-          <tr>
-            <td>{{ forloop.counter }}</td>
-            <td>
-              <a href="{{ order.get_invoice_url }}" target="_blank">
-                <span class="badge badge-pill badge-info">Go to Order {{ order.id }}</span>
-              </a>
-              {% if not order.paid %}
-              <a href="{{ order.get_payment_process_by_order_id_url }}" target="_blank">
-                <span class="badge badge-pill badge-primary">Go to pay Order {{ order.id }}</span>
-              </a>
-              {% endif %}
-            </td>
-          </tr>
-        {% endfor %}
-        </table>
+      <div class="navbar_ p-3" style="background-color:lavenderblush;">
+        <h2>Orders</h2>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Order</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order in my_orders %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>
+                  <a href="{{ order.get_invoice_url }}" target="_blank">
+                    <span class="badge badge-info">Go to Order {{ order.id }}</span>
+                  </a>
+                  {% if not order.paid %}
+                  <a href="{{ order.get_payment_process_by_order_id_url }}" target="_blank">
+                    <span class="badge badge-primary">Go to pay Order {{ order.id }}</span>
+                  </a>
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
 
-    <div id="sub_content" class="ex1 col-sm-6 navbar_" style="background-color:lightcyan;">
-          <h4 style="background-color:lightblue;">Info:</h4>
-    </div>
+    <!--
+    <div id="sub_content" class="col-md-4" style="background-color:lightcyan;">
+      <h4 class="p-3" style="background-color:lightblue;">Info:</h4>
+    </div> -->
+
   </div>
 </div>
 
-
-
 <script>
-
-function btnClickMain(event)
-{
-   var elm = event.target.parentNode
-   // alert(elm.outerHTML);
-   var type = elm.getAttribute("class")
-   if (type=="assignment_method")
-   {
-     event.preventDefault();
-     var s_url = elm.getAttribute("data-view")
-     // alert(s_url)
-     var output = document.getElementById("sub_content")
-     var ss="<iframe src='" + s_url + "' width='100%' height='700' frameborder='2'></iframe>"
-     // alert(ss)
-     output.innerHTML = ss
-     // alert(output.outerHTML)
-   }
+function btnClickMain(event) {
+  var target = event.target;
+  if (target.closest(".assignment_method")) {
+    event.preventDefault();
+    var s_url = target.closest(".assignment_method").getAttribute("data-view");
+    document.getElementById("sub_content").innerHTML = "<iframe src='" + s_url + "' width='100%' height='700' frameborder='2'></iframe>";
+  }
 }
-
 </script>
-

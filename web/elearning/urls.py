@@ -36,7 +36,7 @@ urlpatterns = [
     path(r'actions/', include('elearning.apps.actions.urls')),
     path(r'research/', include('elearning.apps.research.urls')),
     path('marketplace/', include('elearning.apps.marketplace.urls')),
-    path(r'vid', include('elearning.apps.videocall.urls')),
+    path(r'video/', include('elearning.apps.videocall.urls')),
     path(r'allauth/', include('allauth.urls')),
     path(r'', include('cms.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

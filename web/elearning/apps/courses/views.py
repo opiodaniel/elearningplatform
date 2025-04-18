@@ -1134,6 +1134,7 @@ def get_diploma_pdf(request, slug):
     course_schedule_user_ = CourseScheduleUser.objects.filter(slug=slug)[0]
 
     if course_schedule_user_.course_schedule.certificate_number < 100:
+        print('001--', course_schedule_user_.user.first_name)
         ss = "certificate"
     else:
         ss = "diploma"

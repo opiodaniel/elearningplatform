@@ -19,6 +19,21 @@
       crossorigin="anonymous"/>
 
 
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-VuEO23Y1BPlcknRC1nUStGSq5RVftkz7uOwPvpfC/ZzJka7Bb+FToIN65NHzjR5I"
+      crossorigin="anonymous"
+    />
+
+    <!-- Bootstrap 5 Icons (Optional) -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+
+
 <!--    <script src="{% static 'agora/bootstrap.min.css' %}"></script>-->
     <link rel="stylesheet"  type="text/css" href="{% static 'agora/index.css' %}" />
 <!--    <script src="https://cdn.agora.io/sdk/release/AgoraRTCSDK-3.3.1.js"></script>-->
@@ -33,90 +48,188 @@
     <title>Agora Video Chat Django</title>
   </head>
   <body>
-    <main id="app">
-      <main>
-        <div class="container">
-          <div class="row">
-            <div class="col-12 text-center">
-              <img
-                src="{% static 'agora/agora-logo.png' %}"
-                alt="Agora Logo"
-                class="block img-fuild"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="container my-5">
-          <div class="row">
-            <div class="col">
-              <div class="btn-group" role="group">
-                {% for singleUser in allUsers%}
-                <button
-                  type="button"
-                  class="btn btn-primary mr-2"
 
-                  @click="placeCall('{{singleUser.id}}','{{singleUser}}')"
-                >
-                  Call {{ singleUser }}
-                  <span class="badge badge-light"
-                    >${ getUserOnlineStatus({{singleUser.id}})}</span
+
+        <main id="app">
+          <div class="container my-5">
+            <!-- Header Section -->
+            <div class="row">
+              <div class="col-12 text-center">
+                <img
+                  src="{% static 'agora/agora-logo.png' %}"
+                  alt="Agora Logo"
+                  class="img-fluid mb-4"
+                  style="max-width: 200px;"
+                />
+                <h1 class="display-5 text-primary">Agora Video Chat</h1>
+                <p class="text-secondary">Connect with your team in real-time!</p>
+              </div>
+            </div>
+
+            <!-- User List Section -->
+            <div class="row my-4">
+              <div class="col">
+                <div class="card shadow-sm">
+                  <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Available Users</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="d-flex flex-wrap gap-2">
+                      {% for singleUser in allUsers %}
+                        <button
+                          type="button"
+                          class="btn btn-outline-primary d-flex align-items-center"
+                          @click="placeCall('{{singleUser.id}}','{{singleUser}}')"
+                        >
+                          <i class="bi bi-person-circle me-2"></i>
+                          {{ singleUser }}
+                          <span class="badge bg-warning ms-2">${ getUserOnlineStatus({{singleUser.id}}) }</span>
+                        </button>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Incoming Call Notification -->
+            <div class="row my-5" v-if="incomingCall">
+              <div class="col-12">
+                <div class="alert alert-warning d-flex align-items-center">
+                  <div>
+                    <strong>Incoming Call From: </strong>
+                    <span class="text-dark">${ incomingCaller }</span>
+                  </div>
+                  <div class="ms-auto">
+                    <button class="btn btn-danger me-2" @click="declineCall">
+                      Decline
+                    </button>
+                    <button class="btn btn-success" @click="acceptCall">
+                      Accept
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <section id="video-container" v-if="callPlaced" class="my-4">
+
+                <div id="local-video" class="video-box border border-primary rounded mb-3"></div>
+                <div id="remote-video" class="video-box border border-success rounded mb-3"></div>
+
+                <div class="action-btns">
+                  <button
+                    type="button"
+                    class="btn btn-info"
+                    @click="handleAudioToggle"
                   >
-                </button>
+                    ${ mutedAudio ? "Unmute" : "Mute" }
+                  </button>
 
-                {% endfor %}
-              </div>
-            </div>
+                  <!-- <button id="startButton">Start Audio</button>-->
+
+
+                  <button
+                    type="button"
+                    class="btn btn-primary mx-4"
+                    @click="handleVideoToggle"
+                  >
+                    ${ mutedVideo ? "ShowVideo" : "HideVideo" }
+                  </button>
+
+                  <button type="button" class="btn btn-danger" @click="endCall">
+                    EndCall
+                  </button>
+                </div>
+            </section>
+
           </div>
+        </main>
 
-          <!-- Incoming Call  -->
-          <div class="row my-5" v-if="incomingCall">
-            <div class="col-12">
-              <p>Incoming Call From <strong>${ incomingCaller }</strong></p>
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-danger" data-dismiss="modal"  @click="declineCall">
-                  Decline
-                </button>
-                <button type="button" class="btn btn-success ml-5" @click="acceptCall">
-                  Accept
-                </button>
-              </div>
-            </div>
-          </div>
-          <!-- End of Incoming Call  -->
-        </div>
+<!--    <main id="app">-->
+<!--      <main>-->
+<!--        <div class="container">-->
+<!--          <div class="row">-->
+<!--            <div class="col-12 text-center">-->
+<!--              <img-->
+<!--                src="{% static 'agora/agora-logo.png' %}"-->
+<!--                alt="Agora Logo"-->
+<!--                class="block img-fuild"-->
+<!--              />-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="container my-5">-->
+<!--          <div class="row">-->
+<!--            <div class="col">-->
+<!--              <div class="btn-group" role="group">-->
+<!--                {% for singleUser in allUsers%}-->
+<!--                <button-->
+<!--                  type="button"-->
+<!--                  class="btn btn-primary mr-2"-->
 
-        <section id="video-container" v-if="callPlaced">
-          <div id="local-video"></div>
-          <div id="remote-video"></div>
+<!--                  @click="placeCall('{{singleUser.id}}','{{singleUser}}')"-->
+<!--                >-->
+<!--                  Call {{ singleUser }}-->
+<!--                  <span class="badge badge-light"-->
+<!--                    >${ getUserOnlineStatus({{singleUser.id}})}</span-->
+<!--                  >-->
+<!--                </button>-->
 
-          <div class="action-btns">
-            <button
-              type="button"
-              class="btn btn-info"
-              @click="handleAudioToggle"
-            >
-              ${ mutedAudio ? "Unmute" : "Mute" }
-            </button>
+<!--                {% endfor %}-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
 
-<!--            <button id="startButton">Start Audio</button>-->
+<!--          &lt;!&ndash; Incoming Call  &ndash;&gt;-->
+<!--          <div class="row my-5" v-if="incomingCall">-->
+<!--            <div class="col-12">-->
+<!--              <p>Incoming Call From <strong>${ incomingCaller }</strong></p>-->
+<!--              <div class="btn-group" role="group">-->
+<!--                <button type="button" class="btn btn-danger" data-dismiss="modal"  @click="declineCall">-->
+<!--                  Decline-->
+<!--                </button>-->
+<!--                <button type="button" class="btn btn-success ml-5" @click="acceptCall">-->
+<!--                  Accept-->
+<!--                </button>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          &lt;!&ndash; End of Incoming Call  &ndash;&gt;-->
+<!--        </div>-->
+
+<!--        <section id="video-container" v-if="callPlaced">-->
+<!--          <div id="local-video"></div>-->
+<!--          <div id="remote-video"></div>-->
+
+<!--          <div class="action-btns">-->
+<!--            <button-->
+<!--              type="button"-->
+<!--              class="btn btn-info"-->
+<!--              @click="handleAudioToggle"-->
+<!--            >-->
+<!--              ${ mutedAudio ? "Unmute" : "Mute" }-->
+<!--            </button>-->
+
+<!--&lt;!&ndash;            <button id="startButton">Start Audio</button>&ndash;&gt;-->
 
 
-            <button
-              type="button"
-              class="btn btn-primary mx-4"
-              @click="handleVideoToggle"
-            >
-              ${ mutedVideo ? "ShowVideo" : "HideVideo" }
-            </button>
+<!--            <button-->
+<!--              type="button"-->
+<!--              class="btn btn-primary mx-4"-->
+<!--              @click="handleVideoToggle"-->
+<!--            >-->
+<!--              ${ mutedVideo ? "ShowVideo" : "HideVideo" }-->
+<!--            </button>-->
 
-            <button type="button" class="btn btn-danger" @click="endCall">
-              EndCall
-            </button>
-          </div>
+<!--            <button type="button" class="btn btn-danger" @click="endCall">-->
+<!--              EndCall-->
+<!--            </button>-->
+<!--          </div>-->
 
-        </section>
-      </main>
-    </main>
+<!--        </section>-->
+<!--      </main>-->
+<!--    </main>-->
     <!-- Add Scripts -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pusher/7.0.3/pusher.min.js"></script>
@@ -152,5 +265,13 @@
 <!--    <script src="{% static 'agora/vue.js' %}"></script>-->
 <!--    <script src="https://download.agora.io/sdk/release/AgoraRTC_N.js"></script>-->
     <script src="{% static 'agora/index.js' %}"></script>
+
+    <!-- Bootstrap 5 JavaScript Bundle -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-sA41mRyb2Kn9Dgt8siqjPS9jm8x4B+5p4e35DfF0Zjjo2IjIE1Mqh3fFUBNKHrTu"
+      crossorigin="anonymous"
+    ></script>
+
   </body>
 </html>
